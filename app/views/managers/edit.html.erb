@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>管理者情報編集</h1><br><br>
+			<%= form_for(@manager) do |f| %>
+			<h2>名前  姓<%= f.text_field :last_name, autofocus: true %> 名<%= f.text_field :first_name, autofocus: true %></h2>
+			<h2>メールアドレス<%= f.text_field :email, autofocus: true %></h2>
+			<h2>パスワード<%= f.text_field :password, autofocus: true %>
+			<%= f.submit "更新", class: "btn btn-primary" %>
+			<% end %>
+			<%= link_to "キャンセル", admin_root_top_path class: "btn btn-success" %>
+		</div>
+	</div>
+</div>
