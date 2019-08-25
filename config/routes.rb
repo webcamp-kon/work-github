@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show]
   resources :artists, only: [:index,:update,:edit,:destroy]
-  resources :labels, only: [:index,:update,:edit,:destroy]
+  get 'cart_items/confirm' => 'cartitems#confirm'
+  get 'cart_items/conpleted' => 'cart_items#conpleted'
+  resources :cart_items, only: [:index,:edit,:destroy]
+  resources :order_histories, only: [:index]
+  resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]
   resources :reviews, only: [:index,:update,:edit,:destroy]
   resources :managers, only: [:update,:edit]
