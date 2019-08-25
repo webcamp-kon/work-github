@@ -1,2 +1,25 @@
-<h1>Products#ranking</h1>
-<p>Find me in app/views/products/ranking.html.erb</p>
+<div class="serachBox">
+    <p>商品を探す</p>
+    <%= form_tag(products_search_path,:method => 'get') do %>
+        <%= text_field_tag :search %>
+        <%=button_tag:'submit' do %>
+            <i class="fa fa-search"></i>
+        <%end%>
+    <% end %>
+    <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
+</div>
+<div class="ranking_title_group">
+    <h1>ランキング</h1>
+    <p>お客様の「いいね！」の数から集計したランキング。トレンドがわかります。</p>
+</div>
+<!--ランキングは５件の表示。コンテンツが５件以上あるかを確認しなければ全件数の表示とする-->
+<div class="mainContentsGroup">
+    <%=@products.each do |product| %>
+        <div class="mainContents">
+            <%=product.jacket%>
+            <%=product.album %>
+            <%=product.artist %>
+            <%=product.price %>円（税込み）
+        </div>
+    <% end %>
+</div>

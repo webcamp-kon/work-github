@@ -1,0 +1,27 @@
+<div class="labels">
+	<h1>レーベル一覧</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th>レーベル名</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @labels.each do |label| %>
+			<tr>
+				<td><%= label.id %></td>
+				<td><%= label.name %></td>
+				<td><%= link_to "編集", edit_label_path(label.id) %></td>
+				<td><%= link_to  label_path(label.id), method: :delete do %>
+					<a data-confirm="本当に消しますか？" class="btn-sm btn-danger" rel="nofollow">削除</a>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+			<%= paginate @labels, class: "paginate" %>
+		</tbody>
+	</table>
+</div>

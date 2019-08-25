@@ -1,6 +1,4 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
-
+<%= stylesheet_link_tag    'products/product_index', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="serachBox">
     <p>商品を探す</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
@@ -9,60 +7,15 @@
             <i class="fa fa-search"></i>
         <%end%>
     <% end %>
+    <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
 </div>
 <div class="mainContentsGroup">
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
-    <div class="mainContents">
-    <img src ="test.png">
-    <p>アーティスト名</p>
-    <p>アルバム名<p>
-    <p>価格（税込み）</p>
-    </div>
+    <%=@products.each do |product| %>
+        <div class="mainContents">
+            <%=product.jacket%>
+            <%=product.album %>
+            <%=product.artist %>
+            <%=product.price %>円（税込み）
+        </div>
+    <% end %>
 </div>

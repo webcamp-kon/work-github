@@ -1,2 +1,35 @@
+<%= stylesheet_link_tag    'products/product_show', media: 'all', 'data-turbolinks-track': 'reload' %>
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
+<div class="show_main_contents">
+    <div class="show_main_left">
+        <%=attachment_image_tag @product.jacket_image %>
+        <p>いいね</p>
+    </div>
+    <div class="show_main_right">
+        <%=@product.name %>
+        <%=@product.artist %>
+        <%=@product.price %>
+        <%=@product.lebel %>
+        <%=@product.genre %>
+        <%=@product.price %>円 （税込み）
+        <%= link_to 'カートに入れる',product_index_path %>
+    </div>
+</div>
+<div class="reviewGroup">
+    <%=form_for(@review) do |f|%>
+        <%=f.text_field :title %>
+        <%=f.text_area :body %>
+        <%=f.submit '送信する' %>
+    <% end %>
+    <div class="show_review_group">
+        <%=@reviews.each do |review| %>
+            <div class="show_review_contents">
+                <%=review.title %>
+                <%=review.body %>
+                <%=review.user %>
+            </div>
+        <% end %>
+    </div>
+    <!--５件ずつ表示する昨日はjQueryによって実装-->
+</div>
