@@ -11,14 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_08_23_174151) do
-=======
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_08_23_025007) do
 =======
 ActiveRecord::Schema.define(version: 2019_08_23_174151) do
 >>>>>>> 6e3e53a5d0a2cd2228188807b980c65578609efb
->>>>>>> 17c5c59b8c92bb621e12e5922f7991b1949a58cf
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -26,8 +22,6 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   create_table "cart_items", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
@@ -36,7 +30,6 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.datetime "updated_at", null: false
   end
 
->>>>>>> 17c5c59b8c92bb621e12e5922f7991b1949a58cf
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -68,8 +61,6 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
   end
 
-<<<<<<< HEAD
-=======
   create_table "order_histories", force: :cascade do |t|
     t.integer "user_id"
     t.string "address_id"
@@ -85,7 +76,6 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.datetime "updated_at", null: false
   end
 
->>>>>>> 17c5c59b8c92bb621e12e5922f7991b1949a58cf
   create_table "products", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
