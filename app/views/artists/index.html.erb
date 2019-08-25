@@ -1,0 +1,27 @@
+<div class="artists">
+	<h1>アーティスト一覧</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th>アーティスト名</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @artists.each do |artist| %>
+			<tr>
+				<td><%= artist.id %></td>
+				<td><%= artist.name %></td>
+				<td><%= link_to "編集", edit_artist_path(artist.id) %></td>
+				<td><%= link_to  artist_path(artist.id), method: :delete do %>
+					<a data-confirm="本当に消しますか？" class="btn-sm btn-danger" rel="nofollow">削除</a>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+			<%= paginate @artists, class: "paginate" %>
+		</tbody>
+	</table>
+</div>

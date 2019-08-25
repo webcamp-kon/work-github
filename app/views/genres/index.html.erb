@@ -1,0 +1,27 @@
+<div class="genres">
+	<h1>ジャンル一覧</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th>ジャンル名</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @genres.each do |genre| %>
+			<tr>
+				<td><%= genre.id %></td>
+				<td><%= genre.name %></td>
+				<td><%= link_to "編集", edit_genre_path(genre.id) %></td>
+				<td><%= link_to  genre_path(genre.id), method: :delete do %>
+					<a data-confirm="本当に消しますか？" class="btn-sm btn-danger" rel="nofollow">削除</a>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+			<%= paginate @genres, class: "paginate" %>
+		</tbody>
+	</table>
+</div>

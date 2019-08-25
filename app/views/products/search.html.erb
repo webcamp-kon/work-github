@@ -1,0 +1,22 @@
+<div class="serachBox">
+    <p>商品を探す</p>
+    <%= form_tag(products_search_path,:method => 'get') do %>
+        <%= text_field_tag :search %>
+        <%=button_tag:'submit' do %>
+            <i class="fa fa-search"></i>
+        <%end%>
+    <% end %>
+    <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
+</div>
+<h1><%=@search.word %>の検索結果</h1>
+<div class="mainContentsGroup">
+    <%=@products.each do |product| %>
+        <div class="mainContents">
+            <%=product.jacket%>
+            <%=product.album %>
+            <%=product.artist %>
+            <%=product.price %>円（税込み）
+        </div>
+    <% end %>
+</div>
+<!--検索ワードが入る変数をsearchと仮定。実装方法については変更の可能性あり-->
