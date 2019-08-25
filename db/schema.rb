@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_08_23_025007) do
+=======
+ActiveRecord::Schema.define(version: 2019_08_23_174151) do
+>>>>>>> 6e3e53a5d0a2cd2228188807b980c65578609efb
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -80,6 +84,9 @@ ActiveRecord::Schema.define(version: 2019_08_23_025007) do
     t.integer "stock_quantity"
     t.integer "price"
     t.boolean "is_selling"
+    t.integer "artist_id"
+    t.integer "label_id"
+    t.integer "genre_id"
   end
 
   create_table "reviews", force: :cascade do |t|
