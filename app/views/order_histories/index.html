@@ -1,0 +1,14 @@
+<div class="history">
+	<h1 class="history-title">購入履歴一覧</h1>
+	<div class="history-container">
+	　<div class="history-container-box">
+		合計<%=order_history.sum%>
+        お届け先住所<%=user.adress%>
+        電話番号<%=user_history.sum%>
+        お支払い方法<%=user.method_of_pay%>
+      </div>
+      <div class="histry-container-list">
+      	<%=order_history.step%>
+      </div>
+	</div>
+</div>
