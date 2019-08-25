@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'reviews/index'
+    get 'reviews/show'
+    get 'reviews/edit'
+    get 'reviews/update'
+  end
+  namespace :admin do
     get 'order_histories/index'
     get 'order_histories/show'
     get 'order_histories/update'
