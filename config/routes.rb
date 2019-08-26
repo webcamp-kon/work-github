@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :managers,controllers:{
+    sessions: 'admin/sessions'
+  }
+  devise_for :users,controllers:{
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations'
+  }
   namespace :admin do
     get 'reviews/index'
     get 'reviews/show'
@@ -24,8 +32,9 @@ Rails.application.routes.draw do
     get 'users/show'
     get 'users/edit'
   end
-  devise_for :managers
-  devise_for :users
+
+  get 'admin/sign_in' => 'admin/sessions#new'
+  post 'admin/sign_in' => 'admin/sessions#create'
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show]
