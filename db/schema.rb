@@ -10,8 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2019_08_25_101926) do
 
-ActiveRecord::Schema.define(version: 2019_08_23_174151) do
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "address"
+    t.integer "post_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "arrivalmanagements", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "arrival_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -23,6 +37,18 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.integer "user_id"
     t.integer "product_id"
     t.string "order_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "discs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,6 +99,15 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_lists", force: :cascade do |t|
+    t.integer "order_history_id"
+    t.integer "product_id"
+    t.integer "amount"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -91,6 +126,14 @@ ActiveRecord::Schema.define(version: 2019_08_23_174151) do
     t.integer "product_id"
     t.string "title"
     t.text "main_sentence"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.integer "disc_id"
+    t.string "title"
+    t.integer "oridinal_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

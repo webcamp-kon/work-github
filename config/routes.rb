@@ -24,14 +24,6 @@ Rails.application.routes.draw do
     get 'users/show'
     get 'users/edit'
   end
-  namespace :admin do
-    get 'product/index'
-    get 'product/show'
-    get 'product/edit'
-    get 'product/create'
-    get 'product/new'
-    get 'product/arrive'
-  end
   devise_for :managers
   devise_for :users
   get 'products/search' => 'products#search'
@@ -45,9 +37,6 @@ Rails.application.routes.draw do
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]
   resources :reviews, only: [:index,:update,:edit,:destroy]
-  namespace :admin do
-
-  end
   resources :managers, only: [:update,:edit]
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
