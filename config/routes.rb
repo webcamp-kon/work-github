@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     resources :reviews,only:[:index,:show,:edit,:update]
     resources :order_histories,only:[:index,:show,:update,:create]
     resources :products,only:[:index,:show,:edit,:create,:new,:arrive]
-    resources :users,only:[:index,:show,:edit]
   end
+  resources :users,only:[:index,:show,:edit]
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show]
