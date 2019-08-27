@@ -7,11 +7,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   namespace :admin do
-    devise_for :managers, class_name: "Admin::Manager",controllers:{
-      sessions:'admin/managers/sessions',
-      passwords:'admin/managers/sessions',
-      registrations:'admin/managers/sessions'
-    }
     resources :reviews,only:[:index,:show,:edit,:update]
     resources :order_histories,only:[:index,:show,:update,:create]
     resources :products,only:[:index,:show,:edit,:create,:new,:arrive]
