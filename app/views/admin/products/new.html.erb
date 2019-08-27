@@ -1,2 +1,56 @@
-<h1>Admin::Products#new</h1>
-<p>Find me in app/views/admin/products/new.html.erb</p>
+
+<div class="product_title_group">
+<h1>商品の追加</h1>
+<%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
+</div>
+<%=form_for(@product) do |f|%>
+<table class="main_contents">
+    <tr>
+    <th></th>
+    <th></th>
+    </tr>
+    <tr>
+    <td>アルバム名</td>
+    <td><%=f.text_field :name%></td>
+    </tr>
+    <tr>
+    <td>価格（税抜）</td>
+    <td><%=f.text_field :price%></td>
+    </tr>
+    <tr>
+    <td>アーティスト名</td>
+    <td><%= f.collection_select :artist_id, Artist.all, :id, :name %></td>
+    </tr>
+    <tr>
+    <td>レーベル名</td>
+    <td><%= f.collection_select :label_id, Label.all, :id, :name %></td>
+    </tr>
+    <tr>
+    <td>ジャンル名</td>
+    <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+    </tr>
+    <tr>
+    <td>在庫数</td>
+    <td><%=f.text_field :stock_quantity%>　枚</td>
+    </tr>
+    <tr>
+    <td>ステータス</td>
+    <td><%= f.select :is_selling,[["販売中",true],["販売停止中",false]] %></td>
+    </tr>
+    <!--
+    曲数に加えてディスク数の制御をするにはどうしたらいいか？
+    ここにはディスク、曲を選択するページが入ります
+    -->
+    <tr>
+    <td>ジャケット</td>
+    <td><%=f.text_field :name%></td>
+    <%= f.attachment_field :jacket_image %>
+    </tr>
+    
+    <div class="product_add_ending_group">
+        <%=f.submit %><div class="to_button">送信する</div><% end %>
+        <%=link_to (admin_product_path) do%><div class="to_button">キャンセル</div><% end %>
+    </div>
+</div>
+<% end %>
+ <%#= f.collection_select :prefecture_id, Prefecture.all, :id, :name商品の
