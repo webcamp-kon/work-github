@@ -1,2 +1,26 @@
-<h1>Admin::OrderHistories#index</h1>
-<p>Find me in app/views/admin/order_histories/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>受注一覧</h1>
+			<table>
+				<% @order_histories.each do |order_history| %>
+					<tr>
+						<td><%= order_history.id %></td>
+						<td><%= order_history.user.last_name + order_history.user.first_name %><br>
+							<%= order_history.created_at %>
+						</td>
+						<td><%= order_history.sum %><br>
+							<% if order_history.step == 1 %>受付<% end %>
+							<% if order_history.step == 2 %>商品準備中<% end %>
+							<% if order_history.step == 3 %>出荷済み<% end %>
+						</td>
+						<td><%= link_to "詳細", order_history_path(order_history) %></td>
+						<td><%= link_to "編集", edit_order_history_path(order_history) %></td>
+						<td><%= link_to "削除", order_history_path(order_history), method: :delete %></td>
+					</tr>
+				<% end %>
+				<%= paginate @order_histories, class: "paginate" %>
+			</table>
+		</div>
+	</div>
+</div>
