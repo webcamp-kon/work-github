@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#coding: utf-8
+Manager.create(:first_name => '山田', :last_name => '太郎', :email => 'admin@root.jp', :encrypted_password => 'rootadmin')

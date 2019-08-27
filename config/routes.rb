@@ -1,12 +1,46 @@
 Rails.application.routes.draw do
-  devise_for :managers
-  devise_for :users
+  devise_for :managers,controllers:{
+    sessions: 'admin/sessions'
+  }
+  devise_for :users,controllers:{
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations'
+  }
+  namespace :admin do
+    get 'reviews/index'
+    get 'reviews/show'
+    get 'reviews/edit'
+    get 'reviews/update'
+  end
+  namespace :admin do
+    get 'order_histories/index'
+    get 'order_histories/show'
+    get 'order_histories/update'
+    get 'order_histories/create'
+  end
+  namespace :admin do
+    get 'products/index'
+    get 'products/show'
+    get 'products/edit'
+    get 'products/create'
+    get 'products/new'
+    get 'products/arrive'
+  end
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+  end
+
+  get 'admin/sign_in' => 'admin/sessions#new'
+  post 'admin/sign_in' => 'admin/sessions#create'
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show]
   resources :artists, only: [:index,:update,:edit,:destroy]
-  get 'cart_items/confirm' => 'cartitems#confirm'
-  get 'cart_items/conpleted' => 'cart_items#conpleted'
+  get 'cart_items/confirm' => 'cart_items#confirm'
+  get 'cart_items/completed' => 'cart_items#completed'
   resources :cart_items, only: [:index,:edit,:destroy]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
