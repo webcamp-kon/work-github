@@ -38,7 +38,7 @@
 						<th>メールアドレス</th>
 						<td><%= @user.email %></td>
 					</tr>
-					<% @user.addresses.each do |address| %>
+					<% @user.Address.all.each do |address| %>
 					<tr>
 						<th>住所</th>
 						<td><%= address.post_number %><br><%= address.address %></td>
