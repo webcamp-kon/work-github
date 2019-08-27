@@ -48,9 +48,8 @@
     </tr>
     
     <div class="product_add_ending_group">
-        <%=f.submit %><div class="to_button">送信する</div><% end %>
+        <%=f.submit do%><div class="to_button">送信する</div><% end %>
         <%=link_to (admin_product_path) do%><div class="to_button">キャンセル</div><% end %>
     </div>
 </div>
 <% end %>
- <%#= f.collection_select :prefecture_id, Prefecture.all, :id, :name商品の

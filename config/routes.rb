@@ -1,40 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :managers,controllers:{
-    sessions: 'admin/sessions'
-  }
-  devise_for :users,controllers:{
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
+
+  devise_for :managers, class_name: "Admin::Manager"
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
   namespace :admin do
-    get 'reviews/index'
-    get 'reviews/show'
-    get 'reviews/edit'
-    get 'reviews/update'
+    devise_for :managers, class_name: "Admin::Manager",controllers:{
+      sessions:'admin/managers/sessions',
+      passwords:'admin/managers/sessions',
+      registrations:'admin/managers/sessions'
+    }
+    resources :reviews,only:[:index,:show,:edit,:update]
+    resources :order_histories,only:[:index,:show,:update,:create]
+    resources :products,only:[:index,:show,:edit,:create,:new,:arrive]
+    resources :users,only:[:index,:show,:edit]
   end
-  namespace :admin do
-    get 'order_histories/index'
-    get 'order_histories/show'
-    get 'order_histories/update'
-    get 'order_histories/create'
-  end
-  namespace :admin do
-    get 'products/index'
-    get 'products/show'
-    get 'products/edit'
-    get 'products/create'
-    get 'products/new'
-    get 'products/arrive'
-  end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-
-  get 'admin/sign_in' => 'admin/sessions#new'
-  post 'admin/sign_in' => 'admin/sessions#create'
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show]
@@ -45,7 +27,7 @@ Rails.application.routes.draw do
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]
-  resources :reviews, only: [:index,:update,:edit,:destroy]
+  resources :reviews, only: [:index,:update,:edit,:destrsoy]
   resources :managers, only: [:update,:edit]
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
