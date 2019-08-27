@@ -1,2 +1,28 @@
-<h1>Admin::OrderHistories#show</h1>
-<p>Find me in app/views/admin/order_histories/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>受注詳細</h1>
+			<h2><%= @order_history.id %></h2>
+			<table class="table table-bordered">
+				<tr>
+					<th>購入者</th>
+					<td><%= @order_history.user.last_name + @order_history.user.first_name %></td>
+				</tr>
+				<tr>
+					<th>購入日</th>
+					<td><%= @order_history.created_at.strftime('%Y/%m/%d') %></td>
+				</tr>
+				<tr>
+					<th>送付先住所</th>
+					<td>〒<%= @order_history.send_to_post_number %><br><%= @order_history.send_to_address %></td>
+				</tr>
+				<tr>
+					<th>送付先氏名</th>
+					<td><%= @order_history.send_to_name %></td>
+				</tr>
+				<tr>
+					<th>送付先電話番号</th>
+					<td><%= @order_history.send_to_tel_number %></td>
+				</tr>
+				<tr>
+					<th>商品</th>
