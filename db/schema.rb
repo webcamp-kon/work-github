@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_101926) do
+ActiveRecord::Schema.define(version: 2019_08_27_115118) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "address"
-    t.integer "post_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "telephone_number"
+    t.string "post_number"
   end
 
   create_table "arrivalmanagements", force: :cascade do |t|
@@ -86,10 +89,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_101926) do
 
   create_table "order_histories", force: :cascade do |t|
     t.integer "user_id"
-    t.string "address_id"
     t.datetime "buy_date"
-    t.string "send_to_name"
-    t.integer "send_to_tel_number"
     t.integer "step"
     t.string "order_status"
     t.integer "method_of_pay"
@@ -97,6 +97,12 @@ ActiveRecord::Schema.define(version: 2019_08_25_101926) do
     t.integer "delivery_fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "address_id"
+    t.string "send_to_first_name"
+    t.string "send_to_last_name"
+    t.string "send_to_address"
+    t.string "send_to_post_number"
+    t.string "send_to_telephone_number"
   end
 
   create_table "order_lists", force: :cascade do |t|
@@ -119,6 +125,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_101926) do
     t.integer "artist_id"
     t.integer "label_id"
     t.integer "genre_id"
+    t.string "name"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -151,6 +158,12 @@ ActiveRecord::Schema.define(version: 2019_08_25_101926) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.string "last_name"
+    t.integer "address_id"
+    t.boolean "is_deleted"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
