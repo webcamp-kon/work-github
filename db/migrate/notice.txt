@@ -1,0 +1,1 @@
+create songs,discsにmigrationの記述あり、db:migrate:resetの必要性
