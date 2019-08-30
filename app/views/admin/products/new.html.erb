@@ -3,8 +3,8 @@
 <h1>商品の追加</h1>
 <%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
 </div>
-<%=form_for(@product) do |f|%>
 <table class="main_contents">
+<%=form_for(@product) do |f|%>
     <tr>
     <th></th>
     <th></th>
@@ -43,13 +43,11 @@
     -->
     <tr>
     <td>ジャケット</td>
-    <td><%=f.text_field :name%></td>
-    <%= f.attachment_field :jacket_image %>
+    <td><%= f.attachment_field :jacket_image %></td>
     </tr>
-    
+    </table>
     <div class="product_add_ending_group">
-        <%=f.submit do%><div class="to_button">送信する</div><% end %>
-        <%=link_to (admin_product_path) do%><div class="to_button">キャンセル</div><% end %>
+        <%=f.submit "登録する"%>
+        <%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
     </div>
-</div>
 <% end %>

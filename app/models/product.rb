@@ -8,4 +8,5 @@ class Product < ApplicationRecord
     has_many :order_lists
     has_many :arrivalmanagements
     has_many :discs
+    attachment :jacket_image
 end
