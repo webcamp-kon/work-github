@@ -1,1 +1,46 @@
-
+<h1>編集</h1>
+<div class="container">
+  <div class="row">
+     <div class="col-xs-12">
+　　　<%= form_for(@user) do |f| %>
+	  <table>
+	   <tr>
+         <td>ユーザーID</td>
+         <td><%= f.text_field :user_id %></td>
+       </tr>
+       <tr>
+         <td>名前(漢字)</td>
+         <td>性<%=f.text_field :first_name%></td>
+         <td>名<%=f.text_field :last_name%></td>
+       </tr>
+       <tr>
+         <td>名前(カナ)</td>
+         <td>性<%=f.text_field :first_name_kana%></td>
+         <td>名<%=f.text_field :last_name_kana%></td>
+       </tr>
+       <tr>
+         <td>住所</td>
+         <%= f.text_field :user_id %>
+       </tr>
+       <tr>
+         <td>メールアドレス</td>
+         <td><%= f.text_field :mail_address %></td>
+       </tr>
+       <tr>
+         <td>郵便番号</td>
+         <td><%= f.text_field :post_number %></td>
+       </tr>
+       <tr>
+         <td>電話番号</td>
+         <td><%= f.text_field :telephone_number %></td>
+       </tr>
+        </tr>
+       </table>
+      <div class="A">
+      	 <%= f.submit '送信する' %>
+         <%= link_to 'キャンセル',user_path,class: "back" %>
+      </div>
+     <% end %>
+   </div>
+  </div>
+</div>
