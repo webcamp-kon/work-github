@@ -12,9 +12,9 @@
 <div class="mainContentsGroup">
     <%=@products.each do |product| %>
         <div class="mainContents">
-            <%=product.jacket%>
-            <%=product.album %>
-            <%=product.artist %>
+            <%= attachment_image_tag product, :jacket_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+            <%=product.name %>
+            <%=product.artist.name %>
             <%=product.price %>円（税込み）
         </div>
     <% end %>
