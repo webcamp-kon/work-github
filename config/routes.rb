@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :order_histories,only:[:index,:show,:update,:create]
     resources :products,only:[:index,:show,:edit,:create,:new,:arrive]
   end
+  namespace :admin do
+  get 'root/top', to: 'root#top'
+  end
   resources :users,only:[:index,:show,:edit]
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'

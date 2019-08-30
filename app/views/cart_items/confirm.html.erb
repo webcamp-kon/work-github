@@ -1,9 +1,39 @@
-<div class="confirm">
-	<h1 class="confirm-title">購入履歴一覧</h1>
-	<div class="confirm-container">
-		<%=order_history.sum%>
-        <%=user.adress%>
-        <%=user_history.sum%>
-        <%=user.method_of_pay%>
-	</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+  　  <table>
+       <tr>
+         <th>商品名</th>
+          <th>価格(税込)</th>
+          <th>数量</th>
+        </tr>
+      </table>
+      <table>
+        <tr>
+         <td><%= @cart_item.product.jacket_image%>
+             <%= @cart_item.product.artist%>
+             <%= @cart_item.product.name%>
+         </td>
+        </tr>
+         <tr>
+         <td><%= @cart_item.product.price%>円</td>
+        </tr>
+         <tr>
+         <td>
+          <select id="number"><option value="0">--</option></select>枚
+        </tr>
+      </table>
+      <div>
+      小計　(税込) <%= @order_history.sum %>円<br>
+      送料 <%= @order_history.delivery_fee  %>円<br>
+      合計金額　(税込) <%= @order_history.sum + @order_history.delivery_fee %>円
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.submit '変更' %>
+    </div>
+  </div>
+  <%= javascript_include_tag "number.js" %>
 </div>
