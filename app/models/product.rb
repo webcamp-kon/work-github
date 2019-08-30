@@ -9,4 +9,5 @@ class Product < ApplicationRecord
     has_many :arrivalmanagements
     has_many :discs
     attachment :jacket_image
+    accepts_nested_attributes_for :discs,allow_destroy: true
 end

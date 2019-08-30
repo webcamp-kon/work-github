@@ -5,6 +5,8 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product=Product.new
+    @disk=@product.disks.build
+    @disk.songs.build
   end
   def create
     product=Product.new(product_params)
