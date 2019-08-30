@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_124936) do
+ActiveRecord::Schema.define(version: 2019_08_30_125333) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 2019_08_27_124936) do
   create_table "products", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "jacket_image"
     t.datetime "released_date"
     t.integer "stock_quantity"
     t.integer "price"
@@ -138,6 +137,7 @@ ActiveRecord::Schema.define(version: 2019_08_27_124936) do
     t.integer "label_id"
     t.integer "genre_id"
     t.string "name"
+    t.string "jacket_image_id"
   end
 
   create_table "reviews", force: :cascade do |t|
