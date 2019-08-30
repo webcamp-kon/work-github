@@ -1,0 +1,31 @@
+<h1>ユーザー一覧</h1>
+<div class="container">
+  <div class="row">
+     <div class="col-xs-12">
+     	<table>
+      <thead>
+       <tr>
+         <th>ID</th>
+          <th>メールアドレス</th>
+          <th></th>
+        </tr>
+      </thead>
+     <tbody>
+     <% @users.each do |post| %>
+      <tr>
+       <td><%= user.id %></td>
+       <td><%=user.mail_address%></td>
+       <td class="rr"><%=link_to "編集", edit_user_path(user.id),class: "edit_#{user.id}" %>
+       </td>
+       <td class="rr"><%=link_to "詳細", user_path(user.id),class: "show_#{user.id}" %>
+       </td>
+       <td class="rr">
+        <%=link_to "Destroy", destroy_post_path(post.id),class: "destroy_#{user.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+       </td>
+     </tr>
+    <% end %>
+  </tbody>
+      </table>
+　　　</div>
+  </div>
+</div>

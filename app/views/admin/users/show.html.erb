@@ -1,0 +1,27 @@
+<h1>詳細</h1>
+<%=link_to "編集", edit_user_path(user.id),class: "edit_#{user.id}" %>
+<%=link_to "一覧へ", users_path(user.id),class: "index_#{user.id}" %>
+<div class="container">
+ <div class="row">
+    <div class="col-xs-12">
+      <table>
+       <tr>
+        <th>ユーザーID</th>
+        <td><%= @user.id %></td>
+        <th>名前(漢字)</th>
+        <td><%= @user.first_name + @user.last_name %></td>
+        <th>名前(カナ)</th>
+        <td><%= @user.first_name_kana + @user.last_name_kana %></td>
+        <th>住所</th>
+        <td><%= @user.address %></td>
+        <th>郵便番号</th>
+        <td><%= @user.post_number %></td>
+        <th>電話番号</th>
+        <td><%= @user.telephone_number %></td>
+        <th>メールアドレス</th>
+        <td><%= @user.mail_address %></td>
+       </tr>
+      </table>
+     </div>
+    </div>
+  </div>
