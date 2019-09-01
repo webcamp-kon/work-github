@@ -4,11 +4,13 @@ class ProductsController < ApplicationController
   end
 
   def search
-
+    @products=Product.search(params[:search])
+    @user=current_user
+    @search=params[:search]
   end
 
   def ranking
-
+    @products=Product.ranking
   end
 
   def show
