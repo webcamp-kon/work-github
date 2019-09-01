@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2019_09_01_101502) do
   create_table "products", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "jacket_image"
     t.datetime "released_date"
     t.integer "stock_quantity"
     t.integer "price"

@@ -1,1 +1,7 @@
 create songs,discsにmigrationの記述あり、db:migrate:resetの必要性
+
+ジャケット画像
+<%= attachment_image_tag product, :jacket_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+
+いいね順
+Product.order(product.favorites.count).first(5)

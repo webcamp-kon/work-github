@@ -12,9 +12,8 @@
 <div class="mainContentsGroup">
     <%=@products.each do |product| %>
         <div class="mainContents">
-            <%=product.jacket%>
-            <%=product.album %>
-            <%=product.artist %>
+            <%=product.name %>
+            <%=product.artist.name %>
             <%=product.price %>円（税込み）
         </div>
     <% end %>

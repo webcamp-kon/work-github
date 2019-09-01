@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrato</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+
+	<header class="after_login">
+		<div class="container">
+			<nav class="navbaar navbar-left">
+				<%= link_to "Vibrato", root_path, class: "logo" %>
+			</nav>
+			<nav class="navbar navber-right">
+				<ul class="navbar navbar-right">
+					<li><%= link_to "いいねランキング", products_ranking_path %></li>
+					<% if user_signed_in? %>
+					<li><%= link_to "", user_path(user) %></li>
+					<%= current_user.last_name %>
+					<li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+					<% else %>
+					<li><%= link_to "新規登録", new_user_registration_path %></li>
+					<li><%= link_to "ログイン", new_user_session_path %></li>
+					<% end %>
+					<li><%= link_to cart_items_path do %>
+						<i class="fas fa-cart-arrow-down"></i>
+						<% end %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+  </body>
+ </html>
