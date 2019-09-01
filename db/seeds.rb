@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #coding: utf-8
 Manager.create(:first_name => '山田', :last_name => '太郎', :email => 'admin@root.jp', :encrypted_password => 'rootadmin')
+Artist.create(:name=>'星野源')
+Label.create(:name=>'SpeedStarRecords')
+Genre.create(:name=>'ロック')
 Genre.create(:name => 'Jポップ')
 Label.create(:name => 'Queen_record')
 Artist.create(:name => '米津玄師')

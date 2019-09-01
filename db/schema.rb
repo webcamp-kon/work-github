@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_30_125333) do
+ActiveRecord::Schema.define(version: 2019_09_01_101502) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2019_08_30_125333) do
   end
 
   create_table "discs", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "ordinal_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
