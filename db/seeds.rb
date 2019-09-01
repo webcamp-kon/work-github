@@ -10,4 +10,4 @@ Manager.create(:first_name => '山田', :last_name => '太郎', :email => 'admin
 Genre.create(:name => 'Jポップ')
 Label.create(:name => 'Queen_record')
 Artist.create(:name => '米津玄師')
-Product.create!(:jacket_image_id => open('app/assets/images/no_image.jpg'), :stock_quantity => 90, :price => 1000, :is_selling => true, :artist_id => 1, :label_id => 1,:genre_id => 1, :name => 'CD')
+Product.create!(:jacket_image => open('db/data/no_image.jpg'), :stock_quantity => 90, :price => 1000, :is_selling => true, :artist_id => 1, :label_id => 1,:genre_id => 1, :name => 'CD')

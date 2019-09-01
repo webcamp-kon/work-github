@@ -15,11 +15,12 @@
 <!--ランキングは５件の表示。コンテンツが５件以上あるかを確認しなければ全件数の表示とする-->
 <div class="mainContentsGroup">
     <%=@products.each do |product| %>
+    <%= link_to product_path(product) do %>
         <div class="mainContents">
-            <%=product.jacket%>
-            <%=product.album %>
-            <%=product.artist %>
+            <%=product.name %>
+            <%=product.artist.name %>
             <%=product.price %>円（税込み）
         </div>
+        <% end %>
     <% end %>
 </div>
