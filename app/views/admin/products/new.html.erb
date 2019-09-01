@@ -4,7 +4,7 @@
 <%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
 </div>
 <table class="main_contents">
-<%=form_for(@product) do |f|%>
+<%=form_for(@product, url: {action: 'create'}) do |f|%>
     <tr>
     <th></th>
     <th></th>
@@ -36,27 +36,22 @@
     <td>ステータス</td>
     <td><%= f.select :is_selling,[["販売中",true],["販売停止中",false]] %></td>
     </tr>
+    <tr>
         <td>曲名</td>
         <td>
-      <%= f.fields_for :disks do |f| %><!--ディスクはじめ-->
-        <%= f.text_field :name, {placeholder: "ディスク名"} %>
-        <%= f.link_to_remove "削除" %>
-            <%= f.fields_for :songs do |f| %><!--曲はじめ-->
-              <%= f.text_field :name, {placeholder: "曲名"} %>
-              <%= f.link_to_remove "削除" %>
-            <% end %>
-            <%= f.link_to_add "追加", :songs %><!--曲終わり-->
-          </div>
-      <% end %>
-      <%= f.link_to_add "追加", :disks %><!--ディスク終わり-->
+         <%= f.fields_for :discs do |d| %>
+         <%= render "disc_fields", :f => d %>
+         <% end %>
+         <%= link_to_add_association 'add disc',f, :discs %>
         </td>
+    </tr>
     <tr>
     <td>ジャケット</td>
     <td><%= f.attachment_field :jacket_image %></td>
     </tr>
     </table>
     <div class="product_add_ending_group">
-        <%=f.submit "登録する"%>
-        <%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
+        <%=f.submit '登録する'%>
+       
     </div>
 <% end %>

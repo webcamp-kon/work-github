@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     resources :reviews,only:[:index,:show,:edit,:update]
     resources :order_histories,only:[:index,:show,:update,:create]
     resources :products,only:[:index,:show,:edit,:create,:new,:arrive]
+    resources :labels, only: [:index,:update,:new,:destroy]
+    resources :genres, only: [:index,:update,:edit,:destroy]
+    resources :reviews, only: [:index,:update,:edit,:destrsoy]
+    resources :managers, only: [:update,:edit]
+    
   end
   namespace :admin do
   get 'root/top', to: 'root#top'
@@ -26,10 +31,7 @@ Rails.application.routes.draw do
   get 'cart_items/completed' => 'cart_items#completed'
   resources :cart_items, only: [:index,:edit,:destroy]
   resources :order_histories, only: [:index]
-  resources :labels, only: [:index,:update,:new,:destroy]
-  resources :genres, only: [:index,:update,:edit,:destroy]
-  resources :reviews, only: [:index,:update,:edit,:destrsoy]
-  resources :managers, only: [:update,:edit]
+
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
