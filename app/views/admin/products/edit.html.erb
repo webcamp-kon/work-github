@@ -1,23 +1,57 @@
+
 <div class="product_title_group">
-<h1>商品一覧</h1>
-<%=link_to admin_products_new_path %><div class="to_>add_button">商品を編集する</div><% end %>
+<h1>商品の編集</h1>
+<%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
 </div>
-<div class="main_contents_group">
-<%=@products.each do |product|%>
-    <%=attachment_image_tag product,:jacket_image,:fill,60,60,:fallback: "noimage.png",style:"width:40px;height:40px;"%>
-    <table class="alone_contents_group">
-        <tr><td><%=product.album%></td></tr>
-        <tr><td><%=product.artist%></td></tr>
-        <tr><td><%=product.price%></td></tr>
-        <tr><td><%=product.stock_quantity%></td></tr>
-        <tr><td><%=product.is_selling%></td></tr>
+<table class="main_contents">
+<%=form_for(@product, url: {action: 'update'}) do |f|%>
+    <tr>
+    <th></th>
+    <th></th>
+    </tr>
+    <tr>
+    <td>アルバム名</td>
+    <td><%=f.text_field :name%></td>
+    </tr>
+    <tr>
+    <td>価格（税抜）</td>
+    <td><%=f.text_field :price%></td>
+    </tr>
+    <td>アーティスト名</td>
+    <td><%= f.collection_select :artist_id, Artist.all, :id, :name %></td>
+    </tr>
+    <tr>
+    <td>レーベル名</td>
+    <td><%= f.collection_select :label_id, Label.all, :id, :name %></td>
+    </tr>
+    <tr>
+    <td>ジャンル名</td>
+    <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+    </tr>
+    <tr>
+    <td>在庫数</td>
+    <td><%=f.text_field :stock_quantity%>　枚</td>
+    </tr>
+    <tr>
+    <td>ステータス</td>
+    <td><%= f.select :is_selling,[["販売中",true],["販売停止中",false]] %></td>
+    </tr>
+    <tr>
+        <td>曲名</td>
+        <td>
+         <%= f.fields_for :discs do |d| %>
+         <%= render "disc_fields", :f => d %>
+         <% end %>
+         <%= link_to_add_association 'add disc',f, :discs %>
+        </td>
+    </tr>
+    <tr>
+    <td>ジャケット</td>
+    <td><%= f.attachment_field :jacket_image %></td>
+    </tr>
     </table>
-    <div class="contents_menu_group">
-    <%=link_to "入荷",admin_products_arrive_path(product.id) %>
-    <%=link_to "編集",admin_products_edit_path(product.id) %>
-    <%=link_to "詳細",admin_products_show_path(product.id) %>
-    <%=link_to "削除",admin_products_new_path(product.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %>
+    <div class="product_add_ending_group">
+        <%=f.submit '登録する'%>
+       
     </div>
 <% end %>
-<%= paginate @products, class: "paginate" %>
-</div>

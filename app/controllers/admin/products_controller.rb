@@ -16,9 +16,14 @@ class Admin::ProductsController < ApplicationController
   end
   def edit
     @product=Product.find(params[:id])
+    @artists=Artist.all
+    @labels=Label.all
+    @genres=Genre.all
   end
   def update
     product=Product.find(params[:id])
+    product.update(product_params)
+    redirect_to admin_products_path
   end
   def arrive
     @product=Product.find(params[:id])
