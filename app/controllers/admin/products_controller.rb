@@ -16,9 +16,14 @@ class Admin::ProductsController < ApplicationController
   end
   def edit
     @product=Product.find(params[:id])
+    @artists=Artist.all
+    @labels=Label.all
+    @genres=Genre.all
   end
   def update
     product=Product.find(params[:id])
+    product.update(product_params)
+    redirect_to admin_products_path
   end
   def arrive
     @product=Product.find(params[:id])
@@ -37,6 +42,6 @@ class Admin::ProductsController < ApplicationController
   end
   private
   def product_params
-    params.require(:product).permit(:artist_id,:label_id,:genre_id,:jacket_image_id,:released_date,:stock_quantity,:price,:is_selling,discs_attributes:[:product_id,:ordinal_number,songs_attributes:[:disc_id,:title,:ordinal_number]])
+    params.require(:product).permit(:name,:artist_id,:label_id,:genre_id,:jacket_image_id,:released_date,:stock_quantity,:price,:is_selling,discs_attributes:[:product_id,:ordinal_number,songs_attributes:[:disc_id,:title,:ordinal_number]])
   end
 end
