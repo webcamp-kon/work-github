@@ -1,29 +1,34 @@
-<!--インスタンス変数として@addStockを宣言し、ゼロを代入する。addの後の処理の段階で@productのstock_quantityに数値を加える。-->
+            <!--インスタンス変数として@addStockを宣言し、ゼロを代入する。addの後の処理の段階で@productのstock_quantityに数値を加える。-->
 
-<div class="product_title_group">
-<h1>商品の追加</h1>
-<%=link_to (admin_product_path) do%><div class="to_button">取消</div><% end %>
-</div>
-<table class="main_contents">
-    <tr>
-    <th>ID</th>
-    <th><%=@product.id%></th>
-    </tr>
-    <tr>
-    <td>アルバム</td>
-    <td><%=@product.name%></td>
-    </tr>
-    </table>
-    <%=form_for(@addStock) do |f|%>
-        <table class="add_group">
-            <tr>
-                <td>新規入荷数</td>
-                <td><%=f.text_field :adds%></td>
-            </tr>
-        </table>
-        <div class="product_add_ending_group">
-            <%=f.submit %><div class="to_button">入荷処理</div><% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+            <div class="product_title_group">
+            <h1>商品の追加</h1>
             <%=link_to (admin_product_path) do%><div class="to_button">取消</div><% end %>
-        </div>
-    <% end %>
- <%#= f.collection_select :prefecture_id, Prefecture.all, :id, :name商品の
+            </div>
+            <table class="main_contents">
+                <tr>
+                <th>ID</th>
+                <th><%=@product.id%></th>
+                </tr>
+                <tr>
+                <td>アルバム</td>
+                <td><%=@product.name%></td>
+                </tr>
+                </table>
+                <%=form_for(@addStock,url: {action: 'arrived'}) do |f|%>
+                    <table class="add_group">
+                        <tr>
+                            <td>新規入荷数</td>
+                            <td><%=f.text_field :adds%></td>
+                        </tr>
+                    </table>
+                    <div class="product_add_ending_group">
+                        <%=f.submit do%><div class="to_button">入荷処理</div><% end %>
+                        <%=link_to (admin_product_path) do%><div class="to_button">取消</div><% end %>
+                    </div>
+                <% end %>
+    	</div>
+    </div>
+</div>

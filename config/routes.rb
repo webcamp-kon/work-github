@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :reviews,only:[:index,:show,:edit,:update]
     resources :order_histories,only:[:index,:show,:update,:create]
-    resources :products,only:[:index,:show,:edit,:create,:new,:arrive,:update,:destroy]
+    resources :products,only:[:index,:show,:edit,:create,:new,:update,:destroy]
     resources :labels, only: [:index,:update,:new,:destroy]
     resources :genres, only: [:index,:update,:edit,:destroy]
     resources :reviews, only: [:index,:update,:edit,:destrsoy]
@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   end
   namespace :admin do
   get 'root/top', to: 'root#top'
+  get 'products/:id/arrive', to: 'products#arrive',as: 'arrive_product'
   end
+  
   resources :users,only:[:index,:show,:edit]
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'

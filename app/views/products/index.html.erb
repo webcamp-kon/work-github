@@ -10,7 +10,7 @@
     <p class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
 </div>
 <div class="mainContentsGroup">
-    <%=@products.each do |product| %>
+    <%@products.each do |product| %>
         <div class="mainContents">
             <%=product.name %>
             <%=product.artist.name %>

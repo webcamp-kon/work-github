@@ -28,10 +28,11 @@ class Admin::ProductsController < ApplicationController
   end
   def arrive
     @product=Product.find(params[:id])
+    @addstock=0
   end
   def arrived
     @product=Product.find(params[:id])
-    @product.stock_quantity+=:addstock
+    @product.stock_quantity+=@addstock
     @product.save
   end
 
