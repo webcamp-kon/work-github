@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+     <%= form_for(@order_history) do |f| %>
       <h1>ショッピングカート一覧</h1>
   　  <table>
        <tr>
@@ -8,6 +9,7 @@
           <th>価格（税込み）</th>
           <th>数量</th>
         </tr>
+        <% sum=0%>
         <% @cart_items.each do |cart_item| %>
         <tr>
          <td>
@@ -19,10 +21,11 @@
           <select id="number"><option value="0">--</option></select>枚
         </td>
         </tr>
+        <% sum+=cart_item.product.price%>
         <% end %>
       </table>
       <div>
-      合計金額 <%= @sum %>円（税込み）
+      合計金額 <%= sum %>円（税込み）
       </div>
     </div>
   </div>
@@ -30,5 +33,6 @@
     <div class="col-xs-12">
       <%=f.submit 'ご購入手続き' %>
     </div>
+    <% end %>
   </div>
 </div>
