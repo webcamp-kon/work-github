@@ -15,18 +15,19 @@ Rails.application.routes.draw do
     resources :products,only:[:index,:show,:edit,:create,:new,:arrive,:update,:destroy]
     resources :labels, only: [:index,:update,:new,:destroy]
     resources :genres, only: [:index,:update,:edit,:destroy]
-    resources :reviews, only: [:index,:update,:edit,:destrsoy]
+    resources :reviews, only: [:index,:update,:edit,:destroy]
     resources :managers, only: [:update,:edit]
-    
+    resources :users,only:[:index,:show,:edit,:update, :destroy]
   end
   namespace :admin do
   get 'root/top', to: 'root#top'
+    
   end
   resources :users,only:[:index,:show,:edit]
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show] do
-    resources :reviews, only: [:index,:update,:edit,:destrsoy,:create]
+    resources :reviews, only: [:index,:update,:edit,:destroy,:create]
   end
   resources :artists, only: [:index,:update,:edit,:destroy]
   get 'cart_items/confirm' => 'cart_items#confirm'

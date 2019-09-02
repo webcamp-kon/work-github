@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+.email_field{
+	width:400px;
+	margin-left:90px;
+	magin-top:50px;
+}
+.password_field{
+	width:400px;
+	margin-left:90px;
+	magin-top:40px;
+}
+.login{
+	margin-left:20px;
+	margin-top: 50px;
+	font-size:30px;
+}

@@ -17,9 +17,9 @@
       </table>
       <table>
         <tr>
-         <td><% if order_history.step == 1 %>受付<% end %>
-              <% if order_history.step == 2 %>商品準備中<% end %>
-              <% if order_history.step == 3 %>出荷済み<% end %>
+         <td><% if @order_history.step == 1 %>受付<% end %>
+              <% if @order_history.step == 2 %>商品準備中<% end %>
+              <% if @order_history.step == 3 %>出荷済み<% end %>
          </td>
         </tr>
          <tr>
