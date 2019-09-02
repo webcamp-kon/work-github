@@ -1,0 +1,10 @@
+<div class="discs_group">
+    <div class="mainContents">
+    ディスク
+    <%= link_to_remove_association "削除", f %>
+    </div>
+    <%=f.fields_for :songs do |s| %>
+        <%= render "song_fields", :f => s %>
+    <% end %>
+    <%= link_to_add_association 'add song',f, :songs %>
+</div>
