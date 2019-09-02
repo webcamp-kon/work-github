@@ -57,8 +57,6 @@ ActiveRecord::Schema.define(version: 2019_08_30_125333) do
   end
 
   create_table "discs", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "ordinal_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
