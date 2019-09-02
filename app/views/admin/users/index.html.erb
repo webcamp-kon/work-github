@@ -12,7 +12,9 @@
       </thead>
      <tbody>
      <% @users.each do |user| %>
-      <% if user.is_deleted == false %>
+      <% if user.is_deleted == true %>
+        <% next%>
+      <% else %>
       <tr>
        <td><%= user.id %></td>
        <td><%=user.email%></td>
@@ -21,11 +23,12 @@
        <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "show_#{user.id}" %>
        </td>
        <td class="rr">
-        <%= link_to "退会", admin_user_path(user.id), method: :patch %>
+        <%= link_to "退会", admin_user_path(user.id), method: :delete %>
+              </td>
        </td>
      </tr>
      <% end %>
-    <% end %>
+     <% end %>
   </tbody>
       </table>
 　　　</div>

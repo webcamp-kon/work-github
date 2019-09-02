@@ -7,9 +7,5 @@ class User < ApplicationRecord
          has_many :reviews
          has_many :favorites
          has_many :order_histories
-   def erase
-    user = User.find(params[:id])
-    user.is_deleted = true
-    user.save
-   end
+
 end
