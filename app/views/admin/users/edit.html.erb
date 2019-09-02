@@ -3,28 +3,28 @@
   <div class="row">
      <div class="col-xs-12">
 　　　<%= form_for(@user) do |f| %>
-	  <table>
-	   <tr>
+	    <table>
+	     <tr>
          <td>ユーザーID</td>
-         <td><%= f.text_field :user_id %></td>
+         <td><%= @user.id %></td>
        </tr>
        <tr>
          <td>名前(漢字)</td>
-         <td>性<%=f.text_field :first_name%></td>
+         <td>姓<%=f.text_field :first_name%></td>
          <td>名<%=f.text_field :last_name%></td>
        </tr>
        <tr>
          <td>名前(カナ)</td>
-         <td>性<%=f.text_field :first_name_kana%></td>
+         <td>姓<%=f.text_field :first_name_kana%></td>
          <td>名<%=f.text_field :last_name_kana%></td>
        </tr>
        <tr>
          <td>住所</td>
-         <%= f.text_field :user_id %>
+         <td><%= f.text_field :address %></td>
        </tr>
        <tr>
          <td>メールアドレス</td>
-         <td><%= f.text_field :mail_address %></td>
+         <td><%= f.text_field :email %></td>
        </tr>
        <tr>
          <td>郵便番号</td>
@@ -36,10 +36,10 @@
        </tr>
         </tr>
        </table>
-      <div class="A">
+       <div class="A">
       	 <%= f.submit '送信する' %>
-         <%= link_to 'キャンセル',user_path,class: "back" %>
-      </div>
+         <%= link_to 'キャンセル',admin_user_path,class: "back" %>
+       </div>
      <% end %>
    </div>
   </div>

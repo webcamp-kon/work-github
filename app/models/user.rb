@@ -3,9 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         has_many :addresses, dependent: :destroy
-         has_many :reviews, dependent: :destroy
-         has_many :favorites, dependent: :destroy
+         has_many :addreses
+         has_many :reviews
+         has_many :favorites
          has_many :order_histories
-         has_many :cart_items, dependent: :destroy
+   def erase
+    user = User.find(params[:id])
+    user.is_deleted = true
+    user.save
+   end
 end

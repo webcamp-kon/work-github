@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index,:update,:edit,:destroy]
     resources :reviews, only: [:index,:update,:edit,:destrsoy]
     resources :managers, only: [:update,:edit]
-    
+    resources :users,only:[:index,:show,:edit,:update]
   end
   namespace :admin do
   get 'root/top', to: 'root#top'
