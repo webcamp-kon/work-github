@@ -24,8 +24,8 @@
 				<ul class="navbar navbar-right">
 					<li><%= link_to "いいねランキング", products_ranking_path %></li>
 					<% if user_signed_in? %>
-					<li><%= link_to "", user_path(user) %></li>
-					<%= current_user.last_name %>
+					<li><%= link_to current_user.last_name, user_path(user) %></li>
+					
 					<li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
 					<% else %>
 					<li><%= link_to "新規登録", new_user_registration_path %></li>
