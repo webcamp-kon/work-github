@@ -7,4 +7,6 @@ class User < ApplicationRecord
          has_many :reviews
          has_many :favorites
          has_many :order_histories
+         has_many :cart_items
+
 end

@@ -1,28 +1,29 @@
 <div class="body">
   <div class="container">
     <div class="row">
-　　　<h2>ログイン</h2>
 
-　　　　<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-       <div class="field col-xs-10 col-xs-offset-1">
-        <h4>メールアドレス</h4>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-       </div>
-
-       <div class="field col-xs-10 col-xs-offset-1">
-        <h4>パスワード</h4>
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
-       </div>
-
-
-       <div class="actions col-xs-10 col-xs-offset-1">
-        <%= f.submit "ログイン" %>
-       </div>
-　　　　<% end %>
+　　　<h2 style = "font-size:50px; padding-left:30px">ログイン</h2>
+      <div class="btn-wrapper">
+          <div class="row">
+            <div class = "col-xs-6 col-xs-offset-3">
+　　　　       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+             <h4 style = "text-align: center; margin-top:50px;">メールアドレス</h4>
+             <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "email_field "%>
+            </div>
+          </div>
+          <div class="row">
+            <div class = "col-xs-6 col-xs-offset-3">
+             <h4 style = "text-align: center; margin-top:40px;">パスワード</h4>
+             <%= f.password_field :password, autocomplete: "current-password",class: "password_field" %>
+            </div>
+          </div>
+          <div class="row">
+           <div class="actions col-xs-2 col-xs-offset-5">
+           <%= f.submit "ログイン",class: "login" %>
+          </div>
+　　　　    <% end %>
+      </div>
+     
     </div>
   </div>
 </div>
-
-　　<%= render "admin/managers/shared/links" %>
