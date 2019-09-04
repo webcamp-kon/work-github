@@ -12,9 +12,7 @@
       </thead>
      <tbody>
      <% @users.each do |user| %>
-      <% if user.is_deleted == true %>
-        <% next%>
-      <% else %>
+      <% if user.is_deleted == false %>
       <tr>
        <td><%= user.id %></td>
        <td><%=user.email%></td>
