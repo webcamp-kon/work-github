@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :artists, only: [:index,:update,:edit,:destroy]
   get 'cart_items/confirm' => 'cart_items#confirm'
   get 'cart_items/completed' => 'cart_items#completed'
-  resources :cart_items, only: [:index,:edit,:destroy]
+  resources :cart_items, only: [:index,:edit,:destroy,:create]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]

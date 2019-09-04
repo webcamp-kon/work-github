@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h3><%= link_to "購入履歴はこちら", order_histor </h3>
+			<h3><%= link_to "購入履歴はこちら", order_histories_path %> </h3>
 			<h1>いいね一覧</h1>
 			<% @products.each do |product| %>
 			<% if product.favorited_by?(current_user) %>
@@ -20,7 +20,7 @@
 			<% end %>
 			<div class="user_information">
 				<h1>ユーザー情報</h1>
-				<%= link_to "編集", edit_user_path(@user) class: "btn btn-primary" %><%= link_to "退会", user_path(@user), method: :patch, class: "btn btn-success" %>
+				<%= link_to "編集", edit_user_path(@user) class: "btn btn-primary" %><%= link_to "退会", admin_user_path(@user), method: :delete, class: "btn btn-success" %>
 				<table class="table table-bordered">
 					<tr>
 						<th>氏名（漢字）</th>
