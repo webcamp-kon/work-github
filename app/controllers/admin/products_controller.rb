@@ -9,6 +9,9 @@ class Admin::ProductsController < ApplicationController
     @artists=Artist.all
     @labels=Label.all
     @genres=Genre.all
+    @discs=@product.discs.build
+    @discs.songs.build
+
   end
   def create
     @product=Product.new(product_params)
@@ -31,7 +34,7 @@ class Admin::ProductsController < ApplicationController
   end
   def arrived
     @product=Product.find(params[:id])
-    @product.stock_quantity+=:addstock
+    @product.stock_quantity=@product.stock_quantity+params[:addStock].to_i
     @product.save
   end
 

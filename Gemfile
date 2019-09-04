@@ -67,3 +67,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'kaminari','~> 1.1.1'
 gem 'jquery-rails'
 gem 'cocoon'
+gem "paranoia", "~> 2.2"
