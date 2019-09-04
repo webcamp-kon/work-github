@@ -13,7 +13,7 @@
         <%=@product.label.name %>
         <%=@product.genre.name %>
         <% if user_signed_in? %>
-        <%= link_to 'カートに入れる',cart_items_path %>
+        <%= link_to 'カートに入れる',cart_items_path,method: :post %>
         <% else %>
         <%= link_to 'カートに入れる', new_user_session_path %>
         <% end %>

@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-     <%= form_for(@order_history) do |f| %>
       <h1>ショッピングカート一覧</h1>
   　  <table>
        <tr>
@@ -16,12 +15,12 @@
              <%= cart_item.product.artist.name%>
              <%= cart_item.product.name%>
          </td>
-         <td><%= cart_item.product.price%>円</td>
+         <td><%= (cart_item.product.price*1.08).to_i %>円</td>
          <td>
           <select id="number"><option value="0">--</option></select>枚
         </td>
         </tr>
-        <% sum+=cart_item.product.price%>
+        <% sum+=(cart_item.product.price*1.08).to_i%>
         <% end %>
       </table>
       <div>
@@ -31,8 +30,7 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <%=f.submit 'ご購入手続き' %>
+      <%= link_to "購入手続きへ",cart_items_new %>
     </div>
-    <% end %>
   </div>
 </div>

@@ -25,4 +25,7 @@ class Product < ApplicationRecord
     .group('products.id')
     .order('favs desc').first(5)
     end
+    def favorited_by?(user)
+          favorites.where(user_id: user.id).exists?
+        end
 end

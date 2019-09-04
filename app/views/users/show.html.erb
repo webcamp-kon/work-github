@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h3><%= link_to "購入履歴はこちら", order_histor </h3>
+			<h3><%= link_to "購入履歴はこちら", order_histories_path %> </h3>
 			<h1>いいね一覧</h1>
 			<% @products.each do |product| %>
 			<% if product.favorited_by?(current_user) %>
@@ -20,28 +20,28 @@
 			<% end %>
 			<div class="user_information">
 				<h1>ユーザー情報</h1>
-				<%= link_to "編集", edit_user_path(@user) class: "btn btn-primary" %><%= link_to "退会", user_path(@user), method: :patch, class: "btn btn-success" %>
+				<%= link_to "編集", edit_user_path(current_user.id), class: "btn btn-primary" %><%= link_to "退会", users_leave_path, class: "btn btn-success" %>
 				<table class="table table-bordered">
 					<tr>
 						<th>氏名（漢字）</th>
-						<td><%= @user.last_name @user.first_name %></td>
+						<td><%= @user.last_name + @user.first_name %></td>
 					</tr>
 					<tr>
 						<th>氏名（カナ）</th>
-						<td><%= @user.last_name_kana @user.first_name_kana %></td>
+						<td><%= @user.last_name_kana + @user.first_name_kana %></td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td><%= @user.phone_number %></td>
+						<td><%= @user.telephone_number %></td>
 					</tr>
 					<tr>
 						<th>メールアドレス</th>
 						<td><%= @user.email %></td>
 					</tr>
-					<% @user.Address.all.each do |address| %>
+					<% @user.delivery.all.each do |delivery| %>
 					<tr>
 						<th>住所</th>
-						<td><%= address.post_number %><br><%= address.address %></td>
+						<td><%= delivery.post_number %><br><%= delivery.address %></td>
 					</tr>
 					<% end %>
 				</table>
