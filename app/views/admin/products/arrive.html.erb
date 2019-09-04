@@ -17,11 +17,11 @@
                 <td><%=@product.name%></td>
                 </tr>
                 </table>
-                <%=form_for(@addStock,url: {action: 'arrived'}) do |f|%>
+                <%=form_with(url: admin_arrived_product_path, method: :patch, local: true)do |f|%>
                     <table class="add_group">
                         <tr>
                             <td>新規入荷数</td>
-                            <td><%=f.text_field :adds%></td>
+                            <td><%=f.text_field :addStock%></td>
                         </tr>
                     </table>
                     <div class="product_add_ending_group">

@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
   def index
     @products=Product.all
-    @discs=Product.discs.build
-    @songs=@discs.songs.build
   end
 
   def search

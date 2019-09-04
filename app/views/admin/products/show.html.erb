@@ -36,11 +36,11 @@
                 <td>曲名</td>
                 <td>
                 <%cnt=0%>
-                    <%=@product.discs.each do |disc|%>
-                    <%=cnt+=1%>
+                    <%@product.discs.each do |disc|%>
+                    <%cnt+=1%>
                         ディスク <%=cnt%>
-                        <%=disc.songs.each do |song|%>
-                            <%=song.name%>
+                        <%disc.songs.each do |song|%>
+                            <%=song.title%>
                         <% end %>
                     <% end %>
                 </td>
