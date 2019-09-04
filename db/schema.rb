@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_073102) do
-
-  create_table "addresses", force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "address"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "telephone_number"
-    t.string "post_number"
-  end
+ActiveRecord::Schema.define(version: 2019_09_04_064938) do
 
   create_table "admin_managers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -56,7 +45,20 @@ ActiveRecord::Schema.define(version: 2019_09_03_073102) do
     t.integer "order_number"
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "address"
+    t.string "post_number"
+    t.string "telephone_number"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "discs", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "ordinal_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -177,7 +179,6 @@ ActiveRecord::Schema.define(version: 2019_09_03_073102) do
     t.integer "address_id"
     t.string "telephone_number"
     t.string "post_number"
-    t.string "address"
     t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

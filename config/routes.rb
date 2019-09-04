@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     
   end
   resources :users,only:[:index,:show,:edit]
+  get 'users/leave' => 'users#leave'
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show] do
