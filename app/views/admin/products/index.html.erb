@@ -22,6 +22,7 @@
                 <%=link_to admin_product_path(product.id),method: :delete do%><div class="to_button">削除</div><% end %>
                 </div>
             <% end %>
+            <%= paginate @products, class: "paginate" %>
             </div>
     	</div>
     </div>
