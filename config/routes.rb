@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :managers, class_name: "Admin::Manager",controllers:{
-    sessions: 'admin/managers/sessions',
-    registrations: 'admin/managers/registrations'
-  }
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
@@ -16,7 +12,6 @@ Rails.application.routes.draw do
     resources :labels, only: [:index,:update,:new,:destroy]
     resources :genres, only: [:index,:update,:edit,:destroy]
     resources :reviews, only: [:index,:update,:edit,:destroy]
-    resources :managers, only: [:update,:edit]
     devise_for :managers, controllers: {
       sessions:      'admin/managers/sessions',
       passwords:     'admin/managers/passwords',
@@ -44,7 +39,6 @@ Rails.application.routes.draw do
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]
-  resources :managers, only: [:update,:edit]
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
