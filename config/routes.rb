@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     resources :genres, only: [:index,:update,:edit,:destroy]
     resources :reviews, only: [:index,:update,:edit,:destroy]
     resources :managers, only: [:update,:edit]
+    devise_for :managers, controllers: {
+      sessions:      'admin/managers/sessions',
+      passwords:     'admin/managers/passwords',
+      registrations: 'admin/managers/registrations'
+    }
     resources :users,only:[:index,:show,:edit,:update, :destroy]
   end
   namespace :admin do
