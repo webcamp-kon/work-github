@@ -4,6 +4,18 @@ class CartItemsController < ApplicationController
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
+	def plus
+		@cart_item = CartItem.find(params[:id])
+		@cart_item.order_number += 1
+		@cart_item.update
+		redirect_to cart_items_path
+	end
+	def minus
+		@cart_item = CartItem.find(params[:id])
+		@cart_item.order_number -= 1
+		@cart_item.update
+		redirect_to cart_items_path
+	end
 	def create
 		product = Product.find(params[:product_id])
 		cart_item = current_user.cart_items.new

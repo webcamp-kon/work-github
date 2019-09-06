@@ -17,20 +17,22 @@
          </td>
          <td><%= (cart_item.product.price*1.08).to_i %>円</td>
          <td>
-          <select id="number"><option value="0">--</option></select>枚
+          <%= link_to "-", cart_items_minus_path, class: "btn-square" %>
+          <%= cart_item.order_number %>枚
+          <%= link_to "+", cart_items_minus_path, class: "btn-square" %>
         </td>
         </tr>
         <% sum+=(cart_item.product.price*1.08).to_i%>
         <% end %>
       </table>
       <div>
-      合計金額 <%= sum*1.08 %>円（税込み）
+      合計金額 <%= sum %>円（税込み）
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <%= link_to "購入手続きへ",cart_items_new %>
+      <%= link_to "購入手続きへ",cart_items_confirm_path %>
     </div>
   </div>
 </div>

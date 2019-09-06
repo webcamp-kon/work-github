@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 		@user = current_user
 	end
 	def update
-		@user = current_user
+		user = current_user
+		user.update(user_params)
+		redirect_to root_path
 	end
 	def show
 		@products = Product.all
@@ -18,7 +20,7 @@ class UsersController < ApplicationController
 	end
 	private
 	def user_params
-		params.require(:user).permit(:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:address_id,:is_deleted,:telephone_number,:post_number,:address)
+		params.require(:user).permit(:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:telephone_number,:post_number,:address)
 	end
 	def cuser
 	cuser=User.find(params[:id])

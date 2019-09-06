@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   patch 'products/:id/arrive', to: 'products#arrived',as: 'arrived_product'
   end
   
-  resources :users,only:[:index,:show,:edit]
+  resources :users,only:[:index,:show,:edit,:update]
   get 'users/leave' => 'users#leave'
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   resources :artists, only: [:index,:update,:edit,:destroy]
   get 'cart_items/confirm' => 'cart_items#confirm'
   get 'cart_items/completed' => 'cart_items#completed'
+  get 'cart_items/minus' => 'cart_items#minus'
+  get 'cart_items/plus' => 'cart_items#plus'
   resources :cart_items, only: [:index,:edit,:destroy,:create]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
