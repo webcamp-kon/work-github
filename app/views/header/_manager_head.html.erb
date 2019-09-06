@@ -20,8 +20,8 @@
 			</nav>
 			<nav class="navbar navber-right">
 				<ul class="navbar navbar-left">
-					<li><%= manager %></li>
-					<li><%= link_to "ログアウト", destroy_manager_session_path, method: :delete %></li>
+					<li><%= current_admin_manager.last_name %></li>
+					<li><%= link_to "ログアウト", destroy_admin_manager_session_path, method: :delete %></li>
 				</ul>
 			</nav>
 		</div>

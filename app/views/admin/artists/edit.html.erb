@@ -1,13 +1,14 @@
+<%=render 'header/manager_head'%>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1>編集    <%= @artist %></h1><br><br>
+			<h1>編集    id:[<%=@artist.id %>]</h1><br><br>
 			<h2>アーティスト名</h2>
-			<%= form_for(@artist) do |f| %>
+			<%=form_with model:@artist,url:edit_admin_artist_path do |f|%>
 			<%= f.text_field :name, autofocus: true %>
 			<%= f.submit "更新", class: "btn btn-primary" %>
 			<% end %>
-			<%= link_to "キャンセル", admin_artists_path class: "btn btn-success" %>
+			<%= link_to "キャンセル", admin_artists_path,class: "btn btn-success" %>
 		</div>
 	</div>
 </div>
