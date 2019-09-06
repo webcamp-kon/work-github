@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resources :labels, only: [:index,:update,:new,:destroy]
     resources :genres, only: [:index,:update,:edit,:destroy]
     resources :reviews, only: [:index,:update,:edit,:destroy]
-    devise_for :managers, controllers: {
+    resources :managers,only:[:edit,:update]
+    devise_for :managers,controllers: {
       sessions:      'admin/managers/sessions',
       passwords:     'admin/managers/passwords',
       registrations: 'admin/managers/registrations'
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
   resources :artists, only: [:index,:update,:edit,:destroy]
   get 'cart_items/confirm' => 'cart_items#confirm'
   get 'cart_items/completed' => 'cart_items#completed'
-  resources :cart_items, only: [:index,:edit,:destroy,:create]
+  resources :cart_items, only: [:index,:edit,:destroy,:create,:new,:confirm,:completed]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]
