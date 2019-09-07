@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :managers, class_name: "Admin::Manager",controllers:{
-    sessions: 'admin/managers/sessions',
-    registrations: 'admin/managers/registrations'
-  }
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
@@ -12,17 +8,25 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :reviews,only:[:index,:show,:edit,:update]
     resources :order_histories,only:[:index,:show,:update,:create]
-    resources :products,only:[:index,:show,:edit,:create,:new,:arrive,:update,:destroy]
-    resources :labels, only: [:index,:update,:new,:destroy]
-    resources :genres, only: [:index,:update,:edit,:destroy]
+    resources :products,only:[:index,:show,:edit,:create,:new,:update,:destroy,:arrive,:arrived]
     resources :reviews, only: [:index,:update,:edit,:destroy]
-    resources :managers, only: [:update,:edit]
+    resources :artists, only: [:index,:new,:create,:edit,:update,:destroy]
+    resources :labels, only: [:index,:new,:create,:edit,:update,:destroy]
+    resources :genres, only: [:index,:new,:create,:edit,:update,:destroy]
+    resources :managers,only:[:edit,:update]
+    devise_for :managers,controllers: {
+      sessions:      'admin/managers/sessions',
+      passwords:     'admin/managers/passwords',
+      registrations: 'admin/managers/registrations'
+    }
     resources :users,only:[:index,:show,:edit,:update, :destroy]
   end
   namespace :admin do
   get 'root/top', to: 'root#top'
-    
+  get 'products/:id/arrive', to: 'products#arrive',as: 'arrive_product'
+  patch 'products/:id/arrive', to: 'products#arrived',as: 'arrived_product'
   end
+  
   resources :users,only:[:index,:show,:edit]
   get 'users/leave' => 'users#leave'
   get 'products/search' => 'products#search'
@@ -30,14 +34,12 @@ Rails.application.routes.draw do
   resources :products, only: [:index,:show] do
     resources :reviews, only: [:index,:update,:edit,:destroy,:create]
   end
-  resources :artists, only: [:index,:update,:edit,:destroy]
   get 'cart_items/confirm' => 'cart_items#confirm'
   get 'cart_items/completed' => 'cart_items#completed'
-  resources :cart_items, only: [:index,:edit,:destroy,:create]
+  resources :cart_items, only: [:index,:edit,:destroy,:create,:new,:confirm,:completed]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]
-  resources :managers, only: [:update,:edit]
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

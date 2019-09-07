@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag    'products/product_index', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= render 'header/user_head', user: @user %>
 <div class="serachBox">
     <p>商品を探す</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
@@ -10,7 +11,7 @@
     <p class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
 </div>
 <div class="mainContentsGroup">
-    <%=@products.each do |product| %>
+    <%@products.each do |product| %>
         <div class="mainContents">
             <%=product.name %>
             <%=product.artist.name %>

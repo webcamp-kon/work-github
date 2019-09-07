@@ -1,7 +1,9 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate_admin_manager!	
+  PER=5
+
   def index
-    @products=Product
-    .all
+    @products=Product.page(params[:page]).per(PER)
   end
 
   def new
@@ -9,6 +11,7 @@ class Admin::ProductsController < ApplicationController
     @artists=Artist.all
     @labels=Label.all
     @genres=Genre.all
+
   end
   def create
     @product=Product.new(product_params)
@@ -31,7 +34,7 @@ class Admin::ProductsController < ApplicationController
   end
   def arrived
     @product=Product.find(params[:id])
-    @product.stock_quantity+=:addstock
+    @product.stock_quantity=@product.stock_quantity+params[:addStock].to_i
     @product.save
   end
 

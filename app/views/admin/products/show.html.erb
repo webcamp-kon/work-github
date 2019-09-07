@@ -1,55 +1,64 @@
-<div class="product_title_group">
-<h1>商品の詳細</h1>
-<%=link_to (edit_admin_product_path) do%><div class="to_button">編集</div><% end %>
-<%=link_to (admin_products_path) do%><div class="to_button">一覧へ</div><% end %>
-</div>
-<%=attachment_image_tag @product,:jacket_image,:fill,60,60,style:"width:40px;height:40px;"%>
-<table class="main_contents_group">
-    <tr>
-    <td>アルバム名</td>
-    <td><%=@product.name%></td>
-    </tr>
-    <tr>
-    <td>アーティスト名</td>
-    <td><%=@product.artist.name%></td>
-    </tr>
-    <tr>
-    <td>レーベル名</td>
-    <td><%=@product.label.name%></td>
-    </tr>
-    <tr>
-    <td>ジャンル名</td>
-    <td><%=@product.genre.name%></td>
-    </tr>
-    <tr>
-    <td>発売日</td>
-    <td><%=@product.released_date%></td>
-    </tr>
-    <tr>
-    <td>価格</td>
-    <td><%=@product.price%></td>
-    </tr>
-    <tr>
-    <td>曲名</td>
-    <td>
-        <%=@product.discs.each do |disc|%>
-            <%=disc.name%>
-            <%=disc.songs.each do |song|%>
-                <%=song.name%>
-            <% end %>
-        <% end %>
-    </td>
-    </tr>
-    <tr>
-    <td>在庫数</td>
-    <td><%=@product.stock_quantity%></td>
-    </tr>
-    <tr>
-    <td>ステータス</td>
-    <td><%=@product.is_selling%></td>
-    </tr>
-</table>
-<div class="contetns_end_group">
-    <%=link_to (edit_admin_product_path) do%><div class="to_button">編集</div><% end %>
-    <%=link_to (admin_products_path) do%><div class="to_button">一覧へ</div><% end %>
+<%= render 'header/manager_head'%>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+            <div class="product_title_group">
+            <h1>商品の詳細</h1>
+            <%=link_to (edit_admin_product_path) do%><div class="to_button">編集</div><% end %>
+            <%=link_to (admin_products_path) do%><div class="to_button">一覧へ</div><% end %>
+            </div>
+            <%=attachment_image_tag @product,:jacket_image,:fill,60,60,style:"width:40px;height:40px;"%>
+            <table class="main_contents_group">
+                <tr>
+                <td>アルバム名</td>
+                <td><%=@product.name%></td>
+                </tr>
+                <tr>
+                <td>アーティスト名</td>
+                <td><%=@product.artist.name%></td>
+                </tr>
+                <tr>
+                <td>レーベル名</td>
+                <td><%=@product.label.name%></td>
+                </tr>
+                <tr>
+                <td>ジャンル名</td>
+                <td><%=@product.genre.name%></td>
+                </tr>
+                <tr>
+                <td>発売日</td>
+                <td><%=@product.released_date%></td>
+                </tr>
+                <tr>
+                <td>価格</td>
+                <td><%=@product.price%></td>
+                </tr>
+                <tr>
+                <td>曲名</td>
+                <td>
+                <%cnt=0%>
+                    <%@product.discs.each do |disc|%>
+                    <%cnt+=1%>
+                        ディスク <%=cnt%>
+                        <%disc.songs.each do |song|%>
+                            <%=song.title%>
+                        <% end %>
+                    <% end %>
+                </td>
+                </tr>
+                <tr>
+                <td>在庫数</td>
+                <td><%=@product.stock_quantity%></td>
+                </tr>
+                <tr>
+                <td>ステータス</td>
+                <td><%=@product.is_selling%></td>
+                </tr>
+            </table>
+            <div class="contetns_end_group">
+                <%=link_to (edit_admin_product_path) do%><div class="to_button">編集</div><% end %>
+                <%=link_to (admin_products_path) do%><div class="to_button">一覧へ</div><% end %>
+            </div>
+    	</div>
+    </div>
 </div>

@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag    'products/product_show', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= render 'header/user_head', user: @user %>
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
 <div class="show_main_contents">
@@ -12,7 +13,7 @@
         <%=@product.label.name %>
         <%=@product.genre.name %>
         <% if user_signed_in? %>
-        <%= link_to 'カートに入れる',cart_items_path,method: :post %>
+        <%= link_to 'カートに入れる',cart_items_path,product_id: @product.id,method: :post %>
         <% else %>
         <%= link_to 'カートに入れる', new_user_session_path %>
         <% end %>

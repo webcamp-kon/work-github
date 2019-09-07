@@ -24,13 +24,13 @@
         <% end %>
       </table>
       <div>
-      合計金額 <%= sum %>円（税込み）
+      合計金額 <%= sum*1.08 %>円（税込み）
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <%= link_to "購入手続きへ",cart_items_new %>
+      <%= link_to "購入手続きへ",new_cart_item_path %>
     </div>
   </div>
 </div>

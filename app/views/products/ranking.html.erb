@@ -1,3 +1,4 @@
+<%= render 'header/user_head', user: @user %>
 <div class="serachBox">
     <p>商品を探す</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
@@ -14,7 +15,7 @@
 </div>
 <!--ランキングは５件の表示。コンテンツが５件以上あるかを確認しなければ全件数の表示とする-->
 <div class="mainContentsGroup">
-    <%=@products.each do |product| %>
+    <%@products.each do |product| %>
     <%= link_to product_path(product) do %>
         <div class="mainContents">
             <%=product.name %>
