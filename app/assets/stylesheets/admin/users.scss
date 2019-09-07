@@ -1,3 +1,18 @@
 // Place all the styles related to the admin/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.admin-user-table{
+  margin: 50px 0 0 60px;
+  width: 100%;
+
+}
+.admin-user{
+	font-size: 25px;
+}
+.oo:first-child{
+	color: black;
+	padding-right: 60px;
+}
+.td{
+	padding-left: 140px;
+}

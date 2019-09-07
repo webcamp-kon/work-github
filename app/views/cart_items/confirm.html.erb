@@ -10,18 +10,20 @@
       </table>
       <table>
         <tr>
-         <td><%= @cart_item.product.jacket_image%>
-             <%= @cart_item.product.artist%>
-             <%= @cart_item.product.name%>
+       <% cart_items.each do |cart_item| %>
+         <td><%= cart_items.product.jacket_image%>
+             <%= cart_items.product.artist%>
+             <%= cart_items.product.name%>
          </td>
         </tr>
          <tr>
-         <td><%= @cart_item.product.price%>円</td>
+         <td><%= cart_items.product.price%>円</td>
         </tr>
          <tr>
          <td>
           <select id="number"><option value="0">--</option></select>枚
         </tr>
+      <% end %>
       </table>
       <div>
       小計　(税込) <%= @order_history.sum %>円<br>
