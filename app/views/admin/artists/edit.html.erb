@@ -4,7 +4,7 @@
 		<div class="col-xs-12">
 			<h1>編集    id:[<%=@artist.id %>]</h1><br><br>
 			<h2>アーティスト名</h2>
-			<%=form_with model:@artist,url:edit_admin_artist_path do |f|%>
+			<%= form_for @artist,:url => {:action => :update} do |f| %>
 			<%= f.text_field :name, autofocus: true %>
 			<%= f.submit "更新", class: "btn btn-primary" %>
 			<% end %>

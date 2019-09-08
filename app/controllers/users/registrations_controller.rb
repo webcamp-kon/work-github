@@ -12,6 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   # def create
   #   super
+  #   :address=Address.new(address_params)
+
   # end
 
   # GET /resource/edit
@@ -58,5 +60,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
+  # end
+  # private
+  # def address_params
+  #   params.require(:address).permit(:user_id,:address,:first_name,:last_name,:telephone_number,:post_number)
   # end
 end
