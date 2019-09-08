@@ -2,9 +2,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1>編集    id:[<%= @genre.id %>]</h1><br><br>
+			<h1>編集    id:[<%=@genre.id %>]</h1><br><br>
 			<h2>ジャンル名</h2>
-			<%= form_for(@genre) do |f| %>
+			<%= form_for @genre,:url => {:action => :update} do |f| %>
 			<%= f.text_field :name, autofocus: true %>
 			<%= f.submit "更新", class: "btn btn-primary" %>
 			<% end %>
