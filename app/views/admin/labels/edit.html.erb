@@ -4,7 +4,7 @@
 		<div class="col-xs-12">
 			<h1>編集    id:[<%= @label.id %>]</h1><br><br>
 			<h2>レーベル名</h2>
-			<%= form_for(@label) do |f| %>
+			<%= form_for @label,:url => {:action => :update} do |f| %>
 			<%= f.text_field :name, autofocus: true %>
 			<%= f.submit "更新", class: "btn btn-primary" %>
 			<% end %>
