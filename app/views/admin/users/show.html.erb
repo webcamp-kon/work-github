@@ -1,11 +1,13 @@
 <%=render 'header/manager_head'%>
-<h1>詳細</h1>
-<%=link_to "編集", edit_admin_user_path %>
-<%=link_to "一覧へ", admin_users_path %>
 <div class="container">
  <div class="row">
     <div class="col-xs-12">
-      <table>
+     <h1><strong class = "admin-user-show-title">詳細</strong></h1>
+      <div class ="admin-link">
+       <%=link_to "編集", edit_admin_user_path,class: "link" %>
+       <%=link_to "一覧へ", admin_users_path,class: "link" %>
+      </div>
+      <table class = "aa">
        <tr>
         <th>ユーザーID</th>
         <td><%= @user.id %></td>
@@ -20,7 +22,7 @@
       </tr>
       <tr>
         <th>住所</th>
-        <td><%= @user.address %></td>
+        <td><%= @user.address_id %></td>
       </tr>
       <tr>
         <th>郵便番号</th>
@@ -35,6 +37,6 @@
         <td><%= @user.email %></td>
        </tr>
       </table>
-     </div>
     </div>
+  </div>
   </div>

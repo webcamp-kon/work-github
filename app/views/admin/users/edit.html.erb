@@ -1,10 +1,10 @@
 <%=render 'header/manager_head'%>
-<h1>編集</h1>
 <div class="container">
   <div class="row">
      <div class="col-xs-12">
+     <h1><strong>編集</strong></h1>
 　　　<%= form_for(@user, url: {action: 'update'}) do |f| %>
-	    <table>
+	    <table class ="edit">
 	     <tr>
          <td>ユーザーID</td>
          <td><%= @user.id %></td>
@@ -21,7 +21,7 @@
        </tr>
        <tr>
          <td>住所</td>
-         <td><%= f.text_field :address %></td>
+         <td><%= f.text_field :address_id %></td>
        </tr>
        <tr>
          <td>メールアドレス</td>
@@ -38,7 +38,7 @@
         </tr>
        </table>
        <div class="A">
-      	 <%= f.submit '送信する' %>
+      	 <%= f.submit '送信する' ,class: "button" %>
          <%= link_to 'キャンセル',admin_user_path,class: "back" %>
        </div>
      <% end %>
