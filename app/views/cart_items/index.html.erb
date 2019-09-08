@@ -17,9 +17,11 @@
          </td>
          <td><%= (cart_item.product.price*1.08).to_i %>円</td>
          <td>
-          <%= link_to "-", cart_items_minus_path, class: "btn-square" %>
+          <%= link_to "-", cart_items_minus_path(cart_item_id: cart_item
+          .id), class: "btn-square" %>
           <%= cart_item.order_number %>枚
-          <%= link_to "+", cart_items_minus_path, class: "btn-square" %>
+          <%= link_to "+", cart_items_plus_path(cart_item_id: cart_item
+          .id), class: "btn-square" %>
         </td>
         </tr>
         <% sum+=(cart_item.product.price*1.08).to_i%>
