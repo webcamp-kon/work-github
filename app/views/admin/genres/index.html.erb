@@ -1,5 +1,7 @@
+<%=render 'header/manager_head'%>
 <div class="genres">
 	<h1>ジャンル一覧</h1>
+	<%=link_to new_admin_genre_path do%><div class="to_add_button">ジャンルを追加する</div><% end %>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -14,9 +16,9 @@
 			<tr>
 				<td><%= genre.id %></td>
 				<td><%= genre.name %></td>
-				<td><%= link_to "編集", edit_genre_path(genre.id) %></td>
-				<td><%= link_to  genre_path(genre.id), method: :delete do %>
-					<a data-confirm="本当に消しますか？" class="btn-sm btn-danger" rel="nofollow">削除</a>
+				<td><%= link_to "編集", edit_admin_genre_path(genre.id) %></td>
+				<td><%= link_to  admin_genre_path(genre.id), method: :delete do %>
+				<td><%=link_to "削除",admin_genre_path(genre.id),class:"btn btn-danger",method: :delete,"data-confirm"=>"本当に削除しますか？"%></td>
 					<% end %>
 				</td>
 			</tr>

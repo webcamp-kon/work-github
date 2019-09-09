@@ -1,0 +1,37 @@
+<%=render 'header/manager_head'%>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>管理者情報の編集</h1>
+             <%=link_to (admin_root_top_path) do%><div class="to_button">メニューに戻る<% end %>
+             <table class="main_contents">
+            <%=form_with model: @manager,url:admin_manager_path do |f|%>
+                <tr>
+                <th></th>
+                <th></th>
+                </tr>
+                <tr>
+                <td>名前</td>
+                <td>姓<%=f.text_field :first_name %></td>
+                <td>名<%=f.text_field :last_name %></td>
+                </tr>
+                <tr>
+                <td>メールアドレス</td>
+                <td><%=f.text_field :email%></td>
+                </tr>
+                <tr>
+                    <td>パスワード</td>
+                    <td><%= f.password_field :password, autofocus: true, autocomplete: "new-password" %></td>
+                </tr>
+                <tr>
+                    <td>パスワード（確認）</td>
+                    <td><%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password" %></td>
+                </tr>
+                </table>
+                <div class="product_add_ending_group">
+                    <%=f.submit '登録する'%>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

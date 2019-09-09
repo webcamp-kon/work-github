@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :cuser, only: [:update, :edit]
 	def edit
-		@user = current_user
+		@user =User.find(params[:id])
 	end
 	def update
 		user = current_user

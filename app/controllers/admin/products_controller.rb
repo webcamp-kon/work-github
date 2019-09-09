@@ -1,7 +1,9 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate_admin_manager!	
+  PER=5
+
   def index
-    @products=Product
-    .all
+    @products=Product.page(params[:page]).per(PER)
   end
 
   def new
@@ -9,8 +11,6 @@ class Admin::ProductsController < ApplicationController
     @artists=Artist.all
     @labels=Label.all
     @genres=Genre.all
-    @discs=@product.discs.build
-    @discs.songs.build
 
   end
   def create

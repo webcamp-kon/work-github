@@ -4,6 +4,7 @@ class CartItemsController < ApplicationController
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
+
 	def plus
 		cart_item = CartItem.find(params[:cart_item_id])
 		cart_item.increment(:order_number, 1)
@@ -16,13 +17,20 @@ class CartItemsController < ApplicationController
 		cart_item.save
 		redirect_to cart_items_path
 	end
+	def new
+
+	end
 	def create
-		cart_items = current_user.cart_items
-		product = Product.find(params[:product_id])
-		if product
+		# product = Product.find(params[:product_id])
 		cart_item = current_user.cart_items.new
-		cart_item.product_id = product.id
+		cart_item.product_id = :product_id
 		cart_item.save
 		redirect_to cart_items_path
+	end
+	def confirm
+
+	end
+	def completed
+
 	end
 end

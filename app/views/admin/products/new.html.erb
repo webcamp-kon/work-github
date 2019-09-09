@@ -1,3 +1,4 @@
+<%= render 'header/manager_head'%>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
@@ -41,10 +42,12 @@
                 <tr>
                     <td>曲名</td>
                     <td>
-                    <%= f.fields_for :discs do |d| %>
-                    <%= render "disc_fields", :f => d %>
-                    <% end %>
-                    <%= link_to_add_association 'add disc',f, :discs %>
+                        <div class="productGroup">
+                            <%= f.fields_for :discs do |d| %>
+                            <%= render "disc_fields", :f => d %>
+                            <% end %>
+                            <%= link_to_add_association 'add disc',f, :discs %>
+                        </div>
                     </td>
                 </tr>
                 <tr>
