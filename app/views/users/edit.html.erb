@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h1>登録情報編集画面</h1>
-			<%= form_for(@user) do %>
+			<%= form_for(@user) do |f| %>
 			<label>氏名（漢字）</label>
 			<%= f.label :姓 %>
 		    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
@@ -25,12 +25,17 @@
 		    <%= f.password_field :password, autocomplete: "new-password" %>
 		    <%= f.label :パスワード確認 %><br />
     		<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    		<% @user.addresses.each do |address| %>
     		<%= f.label :郵便番号 %>
-    		<%= f.text_field :address.post_number, autofocus: true, autocomplete: "address.post_number" %>
+    		<%= f.text_field :post_number, autofocus: true, autocomplete: "post_number" %>
     		<%= f.label :住所 %>
-    		<%= f.textarea :address.address, autofocus: true, autocomplete: "address.addresss" %>
+    		<%= f.text_area :address, autofocus: true, autocomplete: "addresss" %>
+    		<% @user.deliveries.each do |delivery| %>
+    		<%= f.label :郵便番号 %>
+    		<%= f.text_field :delivery.post_number, autofocus: true, autocomplete: "delivery.post_number" %>
+    		<%= f.label :住所 %>
+    		<%= f.textarea :delivery.address, autofocus: true, autocomplete: "delivery.addresss" %>
     		<% end %>
+    		<%= f.submit "更新", class: "btn btn-primary" %>
     		<% end %>
     	</div>
     </div>

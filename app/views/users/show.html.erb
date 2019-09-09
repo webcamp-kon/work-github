@@ -39,7 +39,7 @@
 						<th>メールアドレス</th>
 						<td><%= @user.email %></td>
 					</tr>
-					<% @user.delivery.all.each do |delivery| %>
+					<% @user.deliveries.each do |delivery| %>
 					<tr>
 						<th>住所</th>
 						<td><%= delivery.post_number %><br><%= delivery.address %></td>
