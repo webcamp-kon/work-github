@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
   resources :products, only: [:index,:show] do
+    resource :favorites, only: [:create, :destroy]
     resources :reviews, only: [:index,:update,:edit,:destroy,:create]
   end
   get 'cart_items/confirm' => 'cart_items#confirm'

@@ -15,11 +15,12 @@
              <%= cart_item.product.artist.name%><br>
              <%= cart_item.product.name%>
          </td>
-         <td><%= cart_item.product.price%>円</td>
+      <td><%= cart_item.product.price%>円</td>
          <td>
           <%= cart_item.order_number %>枚
         </td>
         </tr>
+      <% end %>
       </table>
       <div>
       小計　(税込) <%= @order_history.sum %>円<br>
