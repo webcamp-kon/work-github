@@ -2,9 +2,9 @@
 <%= render 'header/manager_head', manager: @manager %>
 <div class="container">
   <div class="row">
-     <div class="col-xs-12">
+     <div class="bt col-xs-12">
       <main>
-      	<h1>トップページ</h1>
+      	<h1 crass = "top">トップページ</h1>
 		<div class="step-box">
 			<%=link_to "商品管理", admin_products_path,class: "title" %>
 	    </div>
@@ -18,13 +18,13 @@
 			<%=link_to "受注管理", admin_order_histories_path,class: "title" %>
 		</div>
 		<div class="step-box">
-			<%=link_to "アーティスト管理", artists_path,class: "title" %>
+			<%=link_to "アーティスト管理", admin_artists_path,class: "title" %>
 		</div>
 		<div class="step-box">
-			<%=link_to "レーベル管理", labels_path,class: "title" %>
+			<%=link_to "レーベル管理", admin_labels_path,class: "title" %>
 		</div>
 		<div class="step-box">
-			<%=link_to "ジャンル管理", genres_path,class: "title" %>
+			<%=link_to "ジャンル管理", admin_genres_path,class: "title" %>
 		</div>
 	  </main>
 	 </div>

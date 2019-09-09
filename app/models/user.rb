@@ -8,5 +8,6 @@ class User < ApplicationRecord
          has_many :favorites
          has_many :order_histories
          has_many :cart_items
-
+         include Discard::Model
+         default_scope -> { kept }
 end

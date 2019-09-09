@@ -1,34 +1,36 @@
+
 <%=render 'header/manager_head'%>
-<h1>ユーザー一覧</h1>
 <div class="container">
   <div class="row">
      <div class="col-xs-12">
-     	<table>
-      <thead>
+      <h1><strong>ユーザー一覧</strong></h1>
+     	<table class ="admin-user-table">
+      <thead class = "admin-user">
        <tr>
          <th>ID</th>
-          <th>メールアドレス</th>
+          <th class = "td">メールアドレス</th>
           <th></th>
         </tr>
       </thead>
-     <tbody>
+     <tbody class = "admin-user">
      <% @users.each do |user| %>
       <% if user.is_deleted == false %>
       <tr>
        <td><%= user.id %></td>
-       <td><%=user.email%></td>
-       <td class="rr"><%=link_to "編集", edit_admin_user_path(user.id),class: "edit_#{user.id}" %>
+       <td class = "td"><%=user.email%></td>
+       <td class="rr"><%=link_to "編集", edit_admin_user_path(user.id),class: "oo" %>
        </td>
-       <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "show_#{user.id}" %>
+       <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "oo" %>
        </td>
        <td class="rr">
-        <%= link_to "退会", admin_user_path(user.id), method: :delete %>
+        <%= link_to "退会", admin_user_path(user.id), method: :delete,class: "oo" %>
               </td>
        </td>
      </tr>
+      <% end %>
      <% end %>
-     <% end %>
-  </tbody>
+        <%= paginate @users, class: "paginate" %>
+      </tbody>
       </table>
 　　　</div>
   </div>
