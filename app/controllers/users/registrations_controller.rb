@@ -5,21 +5,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
     super
-    address=Address.new(address_params)
-    address.user_id=resource.id
-    address.address=resource.address
-    address.first_name=resource.first_name
-    address.last_name=resource.last_name
-    address.telephone_number=resource.telephone_number
-    address.post_number=resource.post_number
-    address.save
+    # myAddress=Address.new(address_params)
+    # myAddress.user_id=resource.id
+    # myAddress.address=resource.address
+    # myAddress.post_number=resource.post_number
+    # myAddress.save
 
   end
 
@@ -70,6 +67,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   private
   def address_params
-    params.require(:address).permit(:user_id,:address,:first_name,:last_name,:telephone_number,:post_number)
+    params.require(:address).permit(:user_id,:address,:post_number)
   end
 end

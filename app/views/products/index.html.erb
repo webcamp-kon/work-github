@@ -13,9 +13,10 @@
 <div class="mainContentsGroup">
     <%@products.each do |product| %>
         <div class="mainContents">
-            <%=product.name %>
-            <%=product.artist.name %>
-            <%=product.price %>円（税込み）
+            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
+            <br><span class="contents"><%=product.name%></span>
+            <br><span class="contents"><%=product.artist.name%></span>
+            <br><span class="contents"><%=product.price %>円（税込み）</div>
         </div>
     <% end %>
 </div>
