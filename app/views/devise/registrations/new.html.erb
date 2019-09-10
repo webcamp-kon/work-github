@@ -28,12 +28,13 @@
     <%= f.label :郵便番号 %><br />
     <%= f.text_field :post_number, autofocus: true, autocomplete: "post_number" %>
   </div>
-   <%= f.fields_for :address do |f| %>
-    <div class="field">
-      <%= f.label :住所 %><br />
-      <%= f.text_field :address, autofocus: true, autocomplete: "addresss"%>
-    </div>
-   <% end %>
+
+  <div class="field">
+    <%= f.label :住所 %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+
+  </div>
+
   <div class="field">
     <%= f.label :パスワード（6文字以上） %>
     <% if @minimum_password_length %>

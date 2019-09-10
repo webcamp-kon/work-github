@@ -12,11 +12,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    # myAddress=Address.new(address_params)
-    # myAddress.user_id=resource.id
-    # myAddress.address=resource.address
-    # myAddress.post_number=resource.post_number
-    # myAddress.save
+
+    delivery=Delivery.new
+    delivery.user_id=resource.id
+    delivery.address=resource.address
+    delivery.first_name=resource.first_name
+    delivery.last_name=resource.last_name
+    delivery.telephone_number=resource.telephone_number
+    delivery.post_number=resource.post_number
+    delivery.save
 
   end
 
@@ -65,8 +69,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+<<<<<<< HEAD
   private
   def address_params
     params.require(:address).permit(:user_id,:address,:post_number)
   end
+=======
+  # private
+  # def delivery_params
+  #   params.require(:delivery).permit(:user_id,:address,:first_name,:last_name,:telephone_number,:post_number)
+  # end
+>>>>>>> 7bf86b6d68f25857a3bb70b8c30218da72ca110c
 end

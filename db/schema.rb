@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 2019_09_08_205357) do
     t.string "telephone_number"
     t.string "post_number"
     t.boolean "is_deleted", default: false
+    t.string "address"
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -9,32 +9,29 @@
         </tr>
       </table>
       <table>
+        <% @cart_items.each do |cart_item| %>
         <tr>
-       <% cart_items.each do |cart_item| %>
-         <td><%= cart_items.product.jacket_image%>
-             <%= cart_items.product.artist%>
-             <%= cart_items.product.name%>
-         </td>
-        </tr>
-         <tr>
-         <td><%= cart_items.product.price%>円</td>
-        </tr>
-         <tr>
          <td>
-          <select id="number"><option value="0">--</option></select>枚
+             <%= cart_item.product.artist.name%><br>
+             <%= cart_item.product.name%>
+         </td>
+      <td><%= cart_item.product.price%>円</td>
+         <td>
+          <%= cart_item.order_number %>枚
+        </td>
         </tr>
       <% end %>
       </table>
       <div>
       小計　(税込) <%= @order_history.sum %>円<br>
-      送料 <%= @order_history.delivery_fee  %>円<br>
+      送料 <%= @order_history.delivery_fee %>円<br>
       合計金額　(税込) <%= @order_history.sum + @order_history.delivery_fee %>円
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <%= f.submit '変更' %>
+      <%= 
     </div>
   </div>
   <%= javascript_include_tag "number.js" %>

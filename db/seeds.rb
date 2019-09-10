@@ -8,6 +8,7 @@
 #coding: utf-8
 manager=Manager.new(:first_name => '山田', :last_name => '太郎', :email => 'admin@root.jp', :password => 'rootadmin')
 manager.save!
+
 Artist.create(:name=>'星野源')
 Label.create(:name=>'SpeedStarRecords')
 Genre.create(:name=>'ロック')

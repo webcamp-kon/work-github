@@ -27,7 +27,17 @@
         <%=@product.label.name %>
         <%=@product.genre.name %>
         <% if user_signed_in? %>
-        <%= link_to 'カートに入れる',cart_items_path,product_id: @product.id,method: :post %>
+        <% judge=0 %>
+        <% @cart_items.each do |cart_item| %>
+        <% if cart_item.product_id = @product.id %>
+        <% judge=1 %>
+        <% end %>
+        <% end %>
+        <% if judge == 0 %>
+        <%= link_to 'カートに入れる',cart_items_path(product_id: @product.id),method: :post %>
+        <% else %>
+        <%= link_to 'カートに入れる',cart_items_path %>
+        <% end %>
         <% else %>
         <%= link_to 'カートに入れる', new_user_session_path %>
         <% end %>

@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products=Product.all
+    @user=current_user
   end
 
   def search
@@ -17,6 +18,7 @@ class ProductsController < ApplicationController
     @product=Product.find(params[:id])
     @review = Review.new
     @reviews = @product.reviews
+    @cart_items = current_user.cart_items
   end
   private
   def product_params

@@ -1,4 +1,4 @@
-<%=render 'header/manager_head'%>
+<%= render 'header/user_head', user: @user %>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
@@ -39,7 +39,7 @@
 						<th>メールアドレス</th>
 						<td><%= @user.email %></td>
 					</tr>
-					<% @user.delivery.all.each do |delivery| %>
+					<% @user.deliveries.each do |delivery| %>
 					<tr>
 						<th>住所</th>
 						<td><%= delivery.post_number %><br><%= delivery.address %></td>
