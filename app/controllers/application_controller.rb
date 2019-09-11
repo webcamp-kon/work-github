@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     protected
   
       def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:address_id,:is_deleted,:telephone_number,:post_number,:address])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:address_id,:is_deleted,:telephone_number,:post_number,:address,address_attributes: [:user_id,:address,:post_number]])
       end
       def after_sign_in_path_for(resource)
         case resource

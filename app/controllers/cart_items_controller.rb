@@ -21,10 +21,13 @@ class CartItemsController < ApplicationController
 
 	end
 	def create
+		
 		# product = Product.find(params[:product_id])
 		cart_item = current_user.cart_items.new
-		cart_item.product_id = :product_id
-		cart_item.save
+		cart_item.user_id=current_user.id
+		cart_item.product_id = params[:product_id]
+		cart_item.order_number=1
+		cart_item.save!
 		redirect_to cart_items_path
 	end
 	def confirm
@@ -33,4 +36,8 @@ class CartItemsController < ApplicationController
 	def completed
 
 	end
+	private
+	def cart_item_params
+		params.require(:cart_item).permit(:user_id,:product_id,:order_number)
+    end
 end
