@@ -1,4 +1,4 @@
-<%=render 'header/manager_head'%>
+<%= render 'header/user_head', user: @user %>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
@@ -29,11 +29,18 @@
     		<%= f.text_field :post_number, autofocus: true, autocomplete: "post_number" %>
     		<%= f.label :住所 %>
     		<%= f.text_area :address, autofocus: true, autocomplete: "addresss" %>
-    		<% @user.deliveries.each do |delivery| %>
-    		<%= f.label :郵便番号 %>
-    		<%= f.text_field :delivery.post_number, autofocus: true, autocomplete: "delivery.post_number" %>
-    		<%= f.label :住所 %>
-    		<%= f.textarea :delivery.address, autofocus: true, autocomplete: "delivery.addresss" %>
+    		<%= f.fields_for :deliveries do |delivery| %>
+    		<%= delivery.label :姓 %>
+		    <%= delivery.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+		    <%= delivery.label :名 %>
+		    <%= delivery.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+    		<%= delivery.label :郵便番号 %>
+    		<%= delivery.text_field :post_number, autofocus: true, autocomplete: "delivery.post_number" %>
+    		<%= delivery.label :住所 %>
+    		<%= delivery.text_area :address, autofocus: true, autocomplete: "delivery.addresss" %>
+    		<%= delivery.label :電話番号 %><br />
+    		<%= delivery.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
+    		<%= delivery.hidden_field :id, value: delivery.object.id %>
     		<% end %>
     		<%= f.submit "更新", class: "btn btn-primary" %>
     		<% end %>

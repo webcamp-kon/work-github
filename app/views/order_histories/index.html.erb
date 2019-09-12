@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>購入履歴一覧</h1>
+      <% @order_histories.each do |order_history| %>
+  　  <table>
+       <tr>
+        <th>合計:</th>
+        <td>¥<%= order_history.sum %></td>
+        <th>お届け先住所</th>
+        <td><%= order_history.user.first_name + order_history.user.last_name %><br>〒<%= order_history.send_to_post_number %><br><%= order_history.send_to_address %>
+        </td>
+        <th>電話番号</th>
+        <td><%= order_history.send_to_telephone_number %></td>
+        <th>お支払い方法</th>
+        <td><%= order_history.method_of_pay %></td>
+       </tr>
+      </table>
+      <table>
+        <tr>
+         <td><% if order_history.step == 1 %>受付<% end %>
+              <% if order_history.step == 2 %>商品準備中<% end %>
+              <% if order_history.step == 3 %>出荷済み<% end %>
+         </td>
+        </tr>
+         <tr>
+         <td><%= order_history.product.jacket_image%></td>
+        </tr>
+         <tr>
+         <td><%= order_history.product.artist%></td>
+        </tr>
+         <tr>
+         <td><%= order_history.product.price%></td>
+        </tr>
+      </table>
+      <% end %>
+  </div>
+</div>
