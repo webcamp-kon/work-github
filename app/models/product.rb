@@ -7,11 +7,9 @@ class Product < ApplicationRecord
     has_many :cart_item, dependent: :destroy
     has_many :order_lists
     has_many :arrivalmanagements
-    has_many :discs,inverse_of: :product
-    has_many :songs,through: :discs
+    has_many :discs,inverse_of: :product,dependent: :destroy
     attachment :jacket_image
     accepts_nested_attributes_for :discs,allow_destroy: true
-    accepts_nested_attributes_for :songs,allow_destroy: true
     def self.search(search)
       if search
         Product.where(['name LIKE ?', "#{search}"])
