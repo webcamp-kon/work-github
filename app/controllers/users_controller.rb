@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 	def update
 		user = current_user
-		user.update(user_params)
+		user.update(update_delivery_params)
 		redirect_to root_path
 	end
 	def show
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
     redirect_to root_path
 	end
 	private
-	def user_params
-		params.require(:user).permit(:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:telephone_number,:post_number,:address)
+	def update_delivery_params
+		params.require(:user).permit(:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:telephone_number,:post_number,:address,deliveries_attributes: [:address,:post_number,:telephone_number,:last_name,:first_name, :_destroy, :id])
 	end
 	def cuser
 	cuser=User.find(params[:id])
