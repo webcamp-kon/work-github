@@ -50,10 +50,11 @@
         <%=f.submit '送信する' %>
     <% end %>
     <div class="show_review_group">
-        <%=@reviews.each do |review| %>
+        <% @reviews.each do |review| %>
             <div class="show_review_contents">
                 <%=review.title %>
                 <%=review.main_sentence %>
+                <%=review.user.last_name %><%=review.user.first_name %>
             </div>
         <% end %>
     </div>

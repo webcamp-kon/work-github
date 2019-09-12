@@ -1,2 +1,33 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row">
+     <div class="col-xs-12">
+      <h1>レビュー一覧</h1>
+       <div class="show_review_group">
+       	 <% @reviews.each do |review| %>
+            <table class="show_review_contents">
+              <tr>
+              	<td>ユーザー名</td>
+              	<td>
+            	<%= review.user.last_name %><%= review.user.first_name %></td>
+             </tr>
+             <tr>
+             	<td>アルバム名</td>
+             	<td><%= review.product.name %></td>
+             </tr>
+             <tr>
+             	<td><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+             </tr>
+             <tr>
+             	<td><%= link_to "編集", edit_admin_review_path(review.id) %></td>
+             	<td><%= link_to "削除", admin_review_path(review.id), method: :delete%></td>
+             </tr>
+             <tr>
+             	<td><%= review.title %></td>
+                <td><%= review.main_sentence %></td>
+             </tr>
+          <% end %>
+             </table>
+       </div>
+      </div>
+    </div>
+</div>

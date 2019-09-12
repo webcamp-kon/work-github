@@ -1,15 +1,16 @@
 class ReviewsController < ApplicationController
 	def edit
-		@review = Review.find(param[:id])
+		@review = Review.page(params[:page]).reverse_order
 	end
 	def destroy
-		@review = Review.find(param[:id])
+		@review = Review.find(params[:id])
 	end
 	def update
-		@review = Review.find(param[:id])
+		@review = Review.find(params[:id])
 	end
 	def index
 		@reviews = Review.all
+		@product=Product.all
 	end
 	def create
 		product = Product.find(params[:product_id])
