@@ -31,7 +31,8 @@ class CartItemsController < ApplicationController
 		redirect_to cart_items_path
 	end
 	def confirm
-
+		@cart_items = current_user.cart_items
+		@delivery_fee = 500
 	end
 	def completed
 
