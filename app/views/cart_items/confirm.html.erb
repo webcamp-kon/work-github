@@ -9,6 +9,7 @@
         </tr>
       </table>
       <table>
+      <% sum = 0 %>
         <% @cart_items.each do |cart_item| %>
         <tr>
          <td>
@@ -16,6 +17,7 @@
              <%= cart_item.product.name%>
          </td>
       <td><%= cart_item.product.price%>円</td>
+          <% sum += cart_item.product.price %>
          <td>
           <%= cart_item.order_number %>枚
         </td>
@@ -23,16 +25,19 @@
       <% end %>
       </table>
       <div>
-      小計　(税込) <%= @order_history.sum %>円<br>
-      送料 <%= @order_history.delivery_fee %>円<br>
-      合計金額　(税込) <%= @order_history.sum + @order_history.delivery_fee %>円
+      小計　(税込) <%= sum.to_s %>円<br>
+      送料 <%= @delivery_fee.to_s %>円<br>
+      合計金額　(税込) <%= (sum + @delivery_fee).to_s %>円
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <%= 
     </div>
   </div>
-  <%= javascript_include_tag "number.js" %>
+  <%
+=begin%>
+ <%= javascript_include_tag "number.js" %> 
+<%
+=end%>
 </div>
