@@ -6,7 +6,7 @@
             <%=link_to (admin_products_path) do%><div class="to_button">キャンセル</div><% end %>
             </div>
             <table class="main_contents">
-            <%=form_for(@product, url: {action: 'create'}) do |f|%>
+            <%=form_for(@product, url: {action: 'update'}) do |f|%>
                 <tr>
                 <th></th>
                 <th></th>
@@ -41,12 +41,12 @@
                 <tr>
                     <td>曲名</td>
                     <td>
-                        <div class="productGroup">
-                            <%= f.fields_for :discs do |d| %>
+                    <div class="productGroup">
+                        <%= f.fields_for :discs do |d| %>
                             <%= render "disc_fields", :f => d %>
-                            <% end %>
-                            <%= link_to_add_association 'add disc',f, :discs %>
-                        </div>
+                        <% end %>
+                        <%= link_to_add_association 'add disc',f, :discs %>
+                    </div>
                     </td>
                 </tr>
                 <tr>

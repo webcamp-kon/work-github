@@ -8,8 +8,9 @@ class Product < ApplicationRecord
     has_many :order_lists
     has_many :arrivalmanagements
     has_many :discs,inverse_of: :product,dependent: :destroy
-    attachment :jacket_image
     accepts_nested_attributes_for :discs,allow_destroy: true
+    attachment :jacket_image
+    
     def self.search(search)
       if search
         Product.where(['name LIKE ?', "#{search}"])

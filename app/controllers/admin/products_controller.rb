@@ -11,7 +11,8 @@ class Admin::ProductsController < ApplicationController
     @artists=Artist.all
     @labels=Label.all
     @genres=Genre.all
-
+    @disc = @product.discs.build
+    @disc.songs.build
   end
   def create
     @product=Product.new(product_params)
