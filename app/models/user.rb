@@ -10,5 +10,4 @@ class User < ApplicationRecord
          has_many :cart_items
          include Discard::Model
          default_scope -> { kept }
-         accepts_nested_attributes_for :deliveries
 end
