@@ -18,7 +18,9 @@ class ProductsController < ApplicationController
     @product=Product.find(params[:id])
     @review = Review.new
     @reviews = @product.reviews
-    @cart_items = current_user.cart_items
+    if user_signed_in?
+      @cart_items = current_user.cart_items
+    end
   end
   private
   def product_params
