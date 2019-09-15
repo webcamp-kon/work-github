@@ -86,6 +86,7 @@ class CartItemsController < ApplicationController
 			n_order_list.price = cart_item.product.price # 単品価格でよかったっけ？
 			n_order_list.save!
 			n_order_list = ""
+			cart_item.destroy
 		end
 
 
