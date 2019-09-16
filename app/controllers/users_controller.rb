@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	end
 	private
 	def user_params
-		params.require(:user).permit(:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:telephone_number,:post_number,:address)
+		params.require(:user).permit(:email,:first_name,:first_name_kana,:last_name_kana,:last_name,:telephone_number,:post_number,:address, deliveries_attributes: [:id, :address, :post_number, :last_name,:first_name, :telephone_number, :_destroy])
 	end
 	def cuser
 	cuser=User.find(params[:id])
