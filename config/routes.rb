@@ -34,10 +34,11 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index,:update,:edit,:destroy,:create]
   end
   get 'cart_items/confirm' => 'cart_items#confirm'
-  get 'cart_items/completed' => 'cart_items#completed'
+  post 'cart_items/completed' => 'cart_items#completed'
   get 'cart_items/minus' => 'cart_items#minus'
   get 'cart_items/plus' => 'cart_items#plus'
-  resources :cart_items, only: [:index,:edit,:destroy,:create]
+
+  resources :cart_items, only: [:index,:edit,:destroy,:create,:new,:completed]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]

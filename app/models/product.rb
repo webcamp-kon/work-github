@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
     belongs_to :label
-    belongs_to :artist
+    belongs_to :artist,optional: true
     belongs_to :genre
     has_many :reviews, dependent: :destroy
     has_many :favorites, dependent: :destroy
