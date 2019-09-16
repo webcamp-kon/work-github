@@ -15,15 +15,22 @@
 
 	<header class="after_login">
 		<div class="container">
-			<nav class="navbaar navbar-left">
-				<%= link_to "Vibrato", root_path, class: "logo" %>
-			</nav>
-			<nav class="navbar navber-right">
-				<ul class="navbar navbar-left">
-					<li><%= current_admin_manager.last_name %></li>
-					<li><%= link_to "ログアウト", destroy_admin_manager_session_path, method: :delete %></li>
+			<div class="row">
+		     <div class="col-xs-8">
+			 <nav class="navbaar navbar-left admin-right">
+			 	<%= link_to image_tag("logo.png", class: "imagetag"), admin_root_top_path %>
+				<%= link_to "管理者ページ", admin_root_top_path,class: "page" %>
+			 </nav>
+			</div>
+		     <div class="col-xs-4">
+			 <nav class="navbar navber-right admin-left">
+			 	<ul class="navbar navbar-left">
+					<li class="mane1"><%= current_admin_manager.last_name %></li>
+					<li class ="mane2"><%= link_to "ログアウト", destroy_admin_manager_session_path, method: :delete, class: "dele" %></li>
 				</ul>
 			</nav>
+	     </div>
+         </div>
 		</div>
 	</header>
   </body>
