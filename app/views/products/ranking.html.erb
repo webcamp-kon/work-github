@@ -1,5 +1,7 @@
 <%= render 'header/user_head', user: @user %>
-<div class="serachBox">
+<div class="container">
+    <div class="row">
+<div class="col-xs-12 serachBox">
     <p>商品を探す</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
         <%= text_field_tag :search %>
@@ -9,20 +11,23 @@
     <% end %>
     <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
 </div>
-<div class="ranking_title_group">
+<div class="col-xs-12 ranking_title_group">
     <h1>ランキング</h1>
     <p>お客様の「いいね！」の数から集計したランキング。トレンドがわかります。</p>
 </div>
 <!--ランキングは５件の表示。コンテンツが５件以上あるかを確認しなければ全件数の表示とする-->
-<div class="mainContentsGroup">
+<div class="col-xs-12">
     <%@products.each do |product| %>
     <%= link_to product_path(product) do %>
-        <div class="mainContents">
-            <%=product.name %>
-            <%=product.artist.name %>
-            <%=product.price %>円（税込み）
-        </div>
-        <% end %>
+    <div class="mainContentsGroup">
+    <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
+            <br><span class="contents"><%=product.name%></span>
+            <br><span class="contents"><%=product.artist.name%></span>
+            <br><span class="contents"><%=product.price %>円（税込み）</span>
+    </div>
     <% end %>
+    <% end %>
+</div>
+</div>
 </div>
 <%=render 'footer/footer'%>
