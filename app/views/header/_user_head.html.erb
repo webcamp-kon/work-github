@@ -17,26 +17,33 @@
 
 	<header class="after_login">
 		<div class="container">
+		  <div class="row">
+		     <div class="col-xs-3">
 			<nav class="navbaar navbar-left">
-				<%= link_to "Vibrato", root_path, class: "logo" %>
+				<%= link_to image_tag("logo.png", class: "imagetag"), root_path %>
 			</nav>
-			<nav class="navbar navber-right">
+		  </div>
+		  <div class="col-xs-9">
+			<nav class="navbar navber-right btn">
 				<ul class="navbar navbar-right">
-					<li><%= link_to "いいねランキング", products_ranking_path %></li>
+					<li class = "left"><%= link_to "いいねランキング", products_ranking_path, class: "bts" %></li>
 					<% if user_signed_in? %>
-					<li><%= link_to current_user.last_name, user_path(current_user.id) %></li>
-					<li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+					<li class = "left"><%= link_to current_user.last_name, user_path(current_user.id), class: "bts aaa" %></li>
+					<li class = "left"> <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bts aaa" %></li>
 					<% else %>
-					<li><%= link_to "新規登録", new_user_registration_path %></li>
-					<li><%= link_to "ログイン", new_user_session_path %></li>
+					<li class = "left"><%= link_to "新規登録", new_user_registration_path, class: "bts aaa" %></li>
+					<li class = "left"><%= link_to "ログイン", new_user_session_path, class: "bts aaa" %></li>
 					<% end %>
-					<li><%= link_to cart_items_path do %>
-						<i class="fas fa-cart-arrow-down"></i>
+					<li class = "left icon"><%= link_to cart_items_path do %>
+						<i class="fas fa-cart-arrow-down bts dd"></i>
 						<% end %>
 					</li>
 				</ul>
 			</nav>
 		</div>
+		</div>
+		</div>
+	 </div>
 	</header>
   </body>
  </html>
