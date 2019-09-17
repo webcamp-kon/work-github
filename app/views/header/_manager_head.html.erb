@@ -13,14 +13,14 @@
 
   <body>
 
-	<header class="after_login">
+	<header class="header_after_login">
 		<div class="container">
-			<nav class="navbaar navbar-left">
+			<nav class="navbar navbar-left">
 				<%= link_to "Vibrato", root_path, class: "logo" %>
 			</nav>
-			<nav class="navbar navber-right">
-				<ul class="navbar navbar-left">
-					<li><%= current_admin_manager.last_name %></li>
+			<nav class="navbar navbar-right">
+				<ul>
+					<li>ようこそ、<%= current_admin_manager.last_name %>さん</li>
 					<li><%= link_to "ログアウト", destroy_admin_manager_session_path, method: :delete %></li>
 				</ul>
 			</nav>

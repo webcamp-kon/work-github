@@ -14,7 +14,9 @@
     <%@products.each do |product| %>
         <div class="mainContents">
             <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
+            <%=link_to product_path(product.id) do%>
             <br><span class="contents"><%=product.name%></span>
+            <% end %>
             <br><span class="contents"><%=product.artist.name%></span>
             <br><span class="contents"><%=product.price %>円（税込み）</div>
         </div>
