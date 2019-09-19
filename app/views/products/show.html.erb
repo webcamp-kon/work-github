@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag    'products/product_show', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= render 'header/user_head', user: @user %>
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
 <div class="show_main_contents">
     <div class="show_main_left">
     <% if user_signed_in? %>
@@ -23,9 +21,16 @@
     <% end %>
     </div>
     <div class="show_main_right">
-        <%=@product.name %>
-        <%=@product.artist.name %>
-        <%=@product.price %>円 （税込み）
+        <div class="mainContentsGroup">
+    <%= link_to product_path(product) do %>
+        <div class="mainContents">
+            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
+            <br><span class="contents"><%=product.name%></span>
+            <br><span class="contents"><%=product.artist.name%></span>
+            <br><span class="contents"><%=product.price %>円（税込み）</span>
+        </div>
+        <% end %>
+    </div>
         <%=@product.label.name %>
         <%=@product.genre.name %>
         <% if user_signed_in? %>
