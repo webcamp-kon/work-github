@@ -1,24 +1,42 @@
 <%= stylesheet_link_tag    'products/product_index', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= render 'header/user_head', user: @user %>
-<div class="serachBox">
-    <p>商品を探す</p>
-    <%= form_tag(products_search_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%=button_tag:'submit' do %>
-            <i class="fa fa-search"></i>
-        <%end%>
-    <% end %>
-    <p class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
-</div>
-<div class="mainContentsGroup">
-    <%@products.each do |product| %>
-        <div class="mainContents">
-            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
-            <%=link_to product_path(product.id) do%>
-            <br><span class="contents"><%=product.name%></span>
-            <% end %>
-            <br><span class="contents"><%=product.artist.name%></span>
-            <br><span class="contents"><%=product.price %>円（税込み）</div>
+<div class = "container">
+    <div class="index_page">
+        <div class = "row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="searchBox">
+                    <%= form_tag(products_search_path,:method => 'get',class:"content") do %>
+                        <p class ="search_title">商品を探す</p>
+                        <%= text_field_tag :search%>
+                        <%=button_tag:'submit',class:"btn" do %>
+                            <i class="fa fa-search"></i>
+                        <%end%>
+                    <% end %>
+                    <p class ="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
+                </div>
+            </div>
+
         </div>
-    <% end %>
+        <div class = "row">
+            <div class="col-lg-2"></div>
+            <div class ="col-lg-8">
+                <div class="mainContentsGroup">
+            <%@products.each do |product| %>
+                <div class="mainContents">
+                    <%=attachment_image_tag product,:jacket_image,class:"product_pic",fallback:"noimage.jpg"%>
+                    <%=link_to product_path(product.id) do%>
+                        <br><span class="contents"><%=product.name%></span>
+                    <% end %>
+                    <br><span class="contents"><%=product.artist.name%></span>
+                    <br><span class="contents"><%=product.price %>円（税込み）</span>
+                </div>
+            <% end %>
+            
+            </div>
+            <%= paginate @products, class: "paginate" %>
+        </div>
+    </div>
+</div>
+    
 </div>

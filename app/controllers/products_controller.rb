@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
+  PER=2
   def index
-    @products=Product.all
+    @products=Product.page(params[:page]).per(PER)
     @user=current_user
   end
 
