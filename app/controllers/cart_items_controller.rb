@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+
 	def index
 		@cart_items = current_user.cart_items
 		# @sum = CartItem.adding(current_user.id)
@@ -39,10 +40,11 @@ class CartItemsController < ApplicationController
 	end
 	def completed
 		 if params[:radiradi] == "新規作成"
-			address = Addresse.new
+			address = Delivery.new
 			address.user_id = current_user.id
 			address.address =params[:address]
 			address.post_number = params[:post_number]
+			address_id = Delivery.count+1
 			address.save!
 			order = OrderHistory.new
 			order.user_id = current_user.id
@@ -51,12 +53,13 @@ class CartItemsController < ApplicationController
 			order.order_status = "準備中"
 			order.method_of_pay = params[:method_of_pay]
 			order.sum = params[:sum]
-			order.delivery_fee = params[:delivery_fee]
+			order.delivery_fee =500
 			order.address_id = params[:address_id]
 			order.send_to_first_name = params[:first_name]
 			order.send_to_last_name = params[:last_name]
 			order.send_to_post_number = params[:post_number]
 			order.send_to_telephone_number = params[:telephone_number]
+			order.send_to_address = Addresse.find(address_id)
 			order_id = OrderHistory.count+1
 			order.save!
 		elsif params[:radiradi] == "住所の選択"
@@ -67,7 +70,7 @@ class CartItemsController < ApplicationController
 			order.order_status = "準備中"
 			order.method_of_pay = params[:method_of_pay]
 			order.sum = params[:sum]
-			order.delivery_fee = params[:delivery_fee]
+			order.delivery_fee =@delivery_fee
 			order.address_id = params[:address_id]
 			order.send_to_first_name = params[:first_name]
 			order.send_to_last_name = params[:last_name]

@@ -1,4 +1,5 @@
 class Admin::ArtistsController < ApplicationController
+	before_action :authenticate_admin_manager!	
 	PER=5
 	def index
 		@artists = Artist.page(params[:page]).per(PER)

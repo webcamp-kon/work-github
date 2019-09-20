@@ -2,35 +2,28 @@
 <%= render 'header/user_head', user: @user %>
 <div class="show_main_contents">
     <div class="show_main_left">
-    <% if user_signed_in? %>
-      <% if @product.favorited_by?(current_user) %>
-       <li>
-        <%= link_to product_favorites_path(@product), method: :delete do %>
-         いいね<%= @product.favorites.count %>
-         <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+        <% if user_signed_in? %>
+            <% if @product.favorited_by?(current_user) %>
+                <li>
+                    <%= link_to product_favorites_path(@product), method: :delete do %>
+                        いいね<%= @product.favorites.count %>
+                        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                    <% end %>
+                </li>
+            <% end %>
         <% end %>
-       </li>
-     <% else %>
-       <li>
-        <%= link_to product_favorites_path(@product), method: :post do %>
-         いいね  <%= @product.favorites.count %>
-         <i class="fa fa-heart-o" aria-hidden="true"></i>
-        <% end %>
-       </li>
-     <% end %>
-    <% end %>
     </div>
     <div class="show_main_right">
         <div class="mainContentsGroup">
-    <%= link_to product_path(product) do %>
-        <div class="mainContents">
-            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
-            <br><span class="contents"><%=product.name%></span>
-            <br><span class="contents"><%=product.artist.name%></span>
-            <br><span class="contents"><%=product.price %>円（税込み）</span>
+            <%= link_to product_path(@product) do %>
+                <div class="mainContents">
+                    <%=attachment_image_tag @product,:jacket_image,class:"product_pic"%>
+                    <br><span class="contents"><%=@product.name%></span>
+                    <br><span class="contents"><%=@product.artist.name%></span>
+                    <br><span class="contents"><%=@product.price %>円（税込み）</span>
+                </div>
+            <% end %>
         </div>
-        <% end %>
-    </div>
         <%=@product.label.name %>
         <%=@product.genre.name %>
         <% if user_signed_in? %>
@@ -39,11 +32,6 @@
                 <% if cart_item.product_id == @product.id %>
                     <% judge=1 %>
                 <% end %>
-            <% end %>
-            <% if judge == 0 %>
-                <%= link_to 'カートに入れる',cart_items_path(product_id: @product.id),method: :post %>
-            <% else %>
-                <%= link_to 'カートに入れる',cart_items_path %>
             <% end %>
         <% else %>
             <%= link_to 'カートに入れる', new_user_session_path %>
@@ -56,15 +44,14 @@
         <%=f.text_area :main_sentence %>
         <%=f.submit '送信する' %>
     <% end %>
-    <div class="show_review_group">
-        <% @reviews.each do |review| %>
-            <div class="show_review_contents">
-                <%=review.title %>
-                <%=review.main_sentence %>
-                <%=review.user.last_name %><%=review.user.first_name %>
-            </div>
-        <% end %>
-    </div>
-    <!--５件ずつ表示する昨日はjQueryによって実装-->
+<div class="show_review_group">
+    <% @reviews.each do |review| %>
+        <div class="show_review_contents">
+            <%=review.title %>
+            <%=review.main_sentence %>
+            <%=review.user.last_name %><%=review.user.first_name %>
+        </div>
+    <% end %>
 </div>
+<!--５件ずつ表示する昨日はjQueryによって実装-->
 <%=render 'footer/footer'%>
