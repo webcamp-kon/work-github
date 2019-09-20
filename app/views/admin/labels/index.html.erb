@@ -1,8 +1,10 @@
 <%=render 'header/manager_head'%>
-<div class="labels">
-	<h1>レーベル一覧</h1>
-	<%=link_to new_admin_label_path do%><div class="to_add_button">レーベルを追加する</div><% end %>
-	<table class="table table-striped">
+<div class="container">
+  <div class="row">
+     <div class="col-xs-12 genres labels">
+	  <h1>レーベル一覧</h1>
+	  <%=link_to new_admin_label_path do%><div class="to_add_button">レーベルを追加する</div><% end %>
+	  <table class="table table-striped">
 		<thead>
 			<tr>
 				<th></th>
@@ -16,7 +18,7 @@
 			<tr>
 				<td><%= label.id %></td>
 				<td><%= label.name %></td>
-				<td><%= link_to "編集", edit_admin_label_path(label.id) %></td>
+				<td><%= link_to "編集", edit_admin_label_path(label.id),class: "btn btn-success" %></td>
 				<td><%= link_to  admin_label_path(label.id), method: :delete do %>
 				<td><%=link_to "削除",admin_label_path(label.id),class:"btn btn-danger",method: :delete,"data-confirm"=>"本当に削除しますか？"%></td>
 					<% end %>
@@ -25,6 +27,9 @@
 			<% end %>
 			<%= paginate @labels, class: "paginate" %>
 		</tbody>
-	</table>
+	  </table>
+	  </div>
+    </div>
+   </div>
 </div>
 <%=render 'footer/footer'%>

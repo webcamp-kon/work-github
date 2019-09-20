@@ -1,3 +1,4 @@
+<%= render 'header/manager_head'%>
 <div class="container">
   <div class="row">
      <div class="col-xs-12">
@@ -18,8 +19,8 @@
              	<td><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
              </tr>
              <tr>
-             	<td><%= link_to "編集", edit_admin_review_path(review.id) %></td>
-             	<td><%= link_to "削除", admin_review_path(review.id), method: :delete%></td>
+             	<td><%= link_to "編集", edit_admin_review_path(review.id),class: "btn btn-success" %></td>
+             	<td><%= link_to "削除", admin_review_path(review.id),class:"btn btn-danger", method: :delete,"data-confirm"=>"本当に削除しますか？"%></td>
              </tr>
              <tr>
              	<td><%= review.title %></td>

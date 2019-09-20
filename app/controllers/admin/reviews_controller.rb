@@ -8,21 +8,22 @@ class Admin::ReviewsController < ApplicationController
 		@review = Review.find(params[:id])
         @product = @review.product
     end
-	# def update
-		# @review = Review.find(params[:id])
-        # if @review.update(review_params)
-         # flash[:notice] ="You have updated book successfully."
-         # redirect_to admin_review_path(@review.id)
-        # else
-        # render "edit"
-     # end
-	# end
+	def update
+	  @review = Review.find(params[:id])
+        if @review.update(review_params)
+         flash[:notice] ="You have updated book successfully."
+         redirect_to admin_reviews_path
+         else
+         render "edit"
+        end
+    end
 	def index
 		@reviews=Review.page(params[:page]).per(10)
 	end
 	def destroy
       @review = Review.find(params[:id])
       @review.destroy
+      flash[:notice] ="You have updated book successfully."
       redirect_to admin_reviews_path
     end
 	private

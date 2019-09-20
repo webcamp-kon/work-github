@@ -14,8 +14,8 @@ class Admin::ProductsController < ApplicationController
 
   end
   def create
-    @product=Product.new(product_params)
-    @product.save
+    product=Product.new(product_params)
+    product.save
     redirect_to admin_products_path
   end
   def edit
@@ -49,6 +49,6 @@ class Admin::ProductsController < ApplicationController
   end
   private
   def product_params
-    params.require(:product).permit(:jacket_image,:name,:artist_id,:label_id,:genre_id,:jacket_image,:released_date,:stock_quantity,:price,:is_selling,discs_attributes:[:product_id,:ordinal_number,songs_attributes:[:disc_id,:title,:ordinal_number]])
+    params.require(:product).permit(:jacket_image,:name,:artist_id,:label_id,:genre_id,:released_date,:stock_quantity,:price,:is_selling,discs_attributes:[:product_id,:ordinal_number,songs_attributes:[:disc_id,:title,:ordinal_number]])
   end
 end

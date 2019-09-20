@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   namespace :admin do
-    resources :reviews,only:[:index,:show,:edit,:update,:destroy]
+    resources :reviews,only:[:index,:edit,:update,:destroy]
     resources :order_histories,only:[:index,:show,:update,:create]
     resources :products,only:[:index,:show,:edit,:create,:new,:update,:destroy,:arrive,:arrived]
     resources :artists, only: [:index,:new,:create,:edit,:update,:destroy]
