@@ -1,4 +1,5 @@
 class Admin::ManagersController < ApplicationController
+	before_action :authenticate_admin_manager!	
 	def edit
 		@manager = Manager.find(params[:id])
 	end
