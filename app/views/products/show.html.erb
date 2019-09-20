@@ -22,14 +22,10 @@
     </div>
     <div class="show_main_right">
         <div class="mainContentsGroup">
-    <%= link_to product_path(product) do %>
-        <div class="mainContents">
-            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
-            <br><span class="contents"><%=product.name%></span>
-            <br><span class="contents"><%=product.artist.name%></span>
-            <br><span class="contents"><%=product.price %>円（税込み）</span>
-        </div>
-        <% end %>
+            <%=attachment_image_tag @product,:jacket_image,class:"product_pic"%>
+            <br><span class="contents"><%=@product.name%></span>
+            <br><span class="contents"><%=@product.artist.name%></span>
+            <br><span class="contents"><%=@product.price %>円（税込み）</span>
     </div>
         <%=@product.label.name %>
         <%=@product.genre.name %>
