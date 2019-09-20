@@ -1,62 +1,66 @@
-.manager_after_login{
-    border-bottom:4px solid black;
-    height:60px;
-    width:100%;
-    .container{
-        margin:0 auto;
-        height:60px;
-    }
-    .navbar-left,.navbar-right{
-        line-height: 60px;
-    }
-    .navbar-left{
-        float: left;
-    }
-    .logo{
-        font-size:40px;
-        font-weight: bold;
-        color:black;
-        font-style:italic;
-        
-    }
-    .navbar-right{
-        float:right;
-        
-        li{
-            text-align: center;
-            float:left;
-            padding:0 15px;
-        }
-    }
+.logo {
+  width: 400px;
+  height: 50px;
 }
-.user_after_login{
-    border-bottom:4px solid black;
-    height:60px;
-    width:100%;
-    .container{
-        margin:0 auto;
-        height:60px;
-    }
-    .navbar-left,.navbar-right{
-        line-height: 60px;
-    }
-    .navbar-left{
-        float: left;
-    }
-    .logo{
-        font-size:40px;
-        font-weight: bold;
-        color:black;
-        font-style:italic;
-        
-    }
-    .navbar-right{
-        float:right;
-        
-        li{
-            text-align: center;
-            float:left;
-            padding:0 15px;
-        }
-    }
+.imagetag{
+    width:130px;
+    height:80px;
+    margin-left:10px;
+}
+.page{
+    margin-left: 30px;
+    color: black;
+}
+header{
+ border: solid 2px #333;
+ font-size:20px;
+
+}
+.navbaar{
+    margin-top:10px;
+}
+.navbar{
+  margin-bottom: 1px;
+}
+.admin-left{
+}
+.mane1{
+    float:left;
+    margin-top: 32px;
+    margin-left: 50px;
+}
+.mane2{
+    float:left;
+    margin: 32px 0 0 80px;
+}
+.dele{
+    color: black;
+}
+
+
+.left{
+    float:left;
+    color: black;
+    margin-top:21px;
+    font-size: 20px;
+    margin-right: 50px;
+    display:-webkit-box;
+}
+.icon{
+    margin-right: 0;
+}
+.bts{
+    color: black;
+}
+.aaa{
+    margin-left:100px;
+}
+.bb{
+    margin-left:100px;
+}
+.cc{
+    margin-left:100px;
+}
+.dd{
+    margin-left:100px;
 }

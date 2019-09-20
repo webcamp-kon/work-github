@@ -3,17 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .admin-user-table{
-  margin: 50px 0 0 60px;
-  width: 100%;
+  margin: 50px 0 0 10px;
+  width: 80%;
 
 }
 .admin-user{
 	font-size: 25px;
 }
-.oo:first-child{
-	color: black;
-	padding-right: 60px;
-}
+
 .td{
 	padding-left: 140px;
 }
@@ -31,10 +28,14 @@
 	display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
-  color: black;
+  color: white;
   border-bottom: solid 4px #627295;
-  border-radius: 3px;
+  border-radius: 4px;
   margin-right: 20px;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  font-size: 13px;
+  width: 120x
 }
 .back{
 	color: black;
@@ -42,8 +43,8 @@
 .button:active {
   /*ボタンを押したとき*/
   -webkit-transform: translateY(4px);
-  transform: translateY(4px);/*下に動く*/
-  border-bottom: none;/*線を消す*/
+  transform: translateY(4px);
+  border-bottom: none;
 }
 .aa{
 	font-size: 20px;

@@ -11,7 +11,7 @@
        </tr>
        <tr>
          <td>ユーザー名</td>
-         <td><%= f.collection_select :user_id, User.all, :last_name,:first_name %></td>
+         <td><%= f.collection_select :user_id, User.all, :id, :first_name %></td>
        </tr>
        <tr>
          <td>投稿日時</td>
