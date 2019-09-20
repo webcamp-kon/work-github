@@ -1,5 +1,7 @@
 <%= render 'header/user_head', user: @user %>
-<div class="serachBox">
+<div class="container">
+    <div class="row">
+<div class="col-xs-12 serachBox">
     <p>商品を探す</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
         <%= text_field_tag :search %>
@@ -9,16 +11,22 @@
     <% end %>
     <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
 </div>
+<div class="col-xs-12">
 <h1><%= @search %>の検索結果</h1>
-<div class="mainContentsGroup">
     <% @products.each do |product| %>
+    <div class="mainContentsGroup">
     <%= link_to product_path(product) do %>
         <div class="mainContents">
-            <%=product.name %>
-            <%=product.artist.name %>
-            <%=product.price %>円（税込み）
+            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
+            <br><span class="contents"><%=product.name%></span>
+            <br><span class="contents"><%=product.artist.name%></span>
+            <br><span class="contents"><%=product.price %>円（税込み）</span>
         </div>
         <% end %>
+    </div>
     <% end %>
 </div>
+</div>
+</div>
 <!--検索ワードが入る変数をsearchと仮定。実装方法については変更の可能性あり-->
+<%=render 'footer/footer'%>

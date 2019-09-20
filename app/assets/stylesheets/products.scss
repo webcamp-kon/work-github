@@ -1,63 +1,6 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.index_page{
-    .searchBox{
-        width:100%;
-        margin:0 25%;
-        margin-top:15px;
-        margin-bottom:50px;
-        .search_title,.content,.search_explain{
-            float:left;
-            line-height: 30px;
-        }
-        .search_title{
-            padding-right:15px;
-        }
-        .content{
-            margin:0;
-            line-height: 30px;
-        }
-        .search_explain{
-            float:right;
-            font-size:8px;
-        }
-
-    }
-    .searchBox:after{
-        content:"";
-        display: block;
-        clear:both;
-    }
-    .mainContentsGroup{
-        width:100%;
-    }
-    .mainContents{
-        float:left;
-        width:calc(100%/3);
-        .product_pic{
-            width:90%;
-            margin-left:5%;
-            height:auto;
-        }
-    }
-    .mainContentsGroup:after{
-        float:none;
-        content:"";
-        clear:both;
-        display:block;
-    }
-    .pagination{
-        margin-top:30px;
-        text-align: center;
-        display: inline-block;
-        width:80%;
-        margin:50px 10% 0px 10%;
-    }
-}
-.show_page{
-
-}
-.edit_page{
-
+.mainContentsGroup{
+	display:inline-block;
 }
