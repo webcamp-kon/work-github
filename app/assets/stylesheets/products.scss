@@ -5,6 +5,22 @@
 	display:inline-block;
 }
 .details{
-	margin: 0 auto;
+	margin: 30px auto;
 	width:500px;
+}
+.detail-left{
+	float:left;
+}
+.detail-right{
+	float:right;
+}
+.review{
+	width:500px;
+	margin: 0 auto;
+}
+.reviewGroup{
+	float:right;
+}
+.show_review_group{
+	float:left;
 }
