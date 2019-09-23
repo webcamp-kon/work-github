@@ -11,7 +11,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><%=attachment_image_tag product,:jacket_image,class:"product_pic"%></td>
+						<td> <%=attachment_image_tag product,:jacket_image,:fill,60,60,fallback:"no_image.jpg",style:"width:40px;height:40px;"%></td>
 						<td><%= product.artist.name + "/" + product.name %></td>
 						<td>￥<%= product.price %></td>
 					</tr>
