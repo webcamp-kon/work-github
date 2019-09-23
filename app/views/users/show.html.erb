@@ -39,13 +39,30 @@
 						<th>メールアドレス</th>
 						<td><%= @user.email %></td>
 					</tr>
-					<% @user.deliveries.each do |delivery| %>
-					<tr>
-						<th>住所</th>
-						<td><%= delivery.post_number %><br><%= delivery.address %></td>
-					</tr>
-					<% end %>
 				</table>
+			</div>
+			<div class ="delivery_index">
+				<h1>配送先一覧</h1>
+				<% @user.deliveries.each do |delivery| %>
+					<table class="table table-bordered">
+						<tr>
+								<th>配送先氏名</th>
+								<td><%=delivery.first_name%> <%=delivery.last_name%>
+						</tr>
+						<tr>
+								<th>住所</th>
+								<td><%= delivery.address %></td>
+						</tr>
+						<tr>
+								<th>郵便番号</th>
+								<td><%= delivery.post_number%></td>
+						</tr>
+						<tr>
+								<th>電話番号</th>
+								<td><%=delivery.telephone_number%></td>
+						</tr>
+					</table>
+				<% end %>
 			</div>
 		</div>
 	</div>
