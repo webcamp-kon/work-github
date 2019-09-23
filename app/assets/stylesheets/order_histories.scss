@@ -5,29 +5,47 @@
 .index_page{
     .order_history_contents{
         width:80%;
+        display:block;
         margin:20px 10% 20px 10%;
         border:2px solid black;
-        .order_left{
-            float:left;
-            width:30%;
-        }
-        .order_middle{
-            float:left;
-            width:40%;
-        }
-        .order_right{
-            float:left;
-            width:30%;
+        .order_group{            
+            margin-top:20px;
+            margin-left:5%;
+            width:90%;
+            p{
+                font-size:24px;
+            }
+            .first_group{
+                display: flex;
+                p{
+                    width:50%;
+                }
+            }
+            .second_group{
+                display: flex;
+                p{
+                    width:50%;
+                }
+            }
+            .third_group{
+                display: flex;
+                p{
+                    width:50%;
+                }
+            }
         }
     }
-    .order_list_contents{
+    .order_list_contents{   
         width:60%;
-        margin:0 30% 0 10%;
+        margin:0 20% 0 20%;
         height:120px;
+        .image,.title,.price{
+            width:calc(100%/3);
+            text-align: center;
+        }
         .jacket{
             height:100px;
             line-height: 120px;
-            width:auto;
             margin-right:15px;
         }
         .title{
@@ -36,7 +54,6 @@
         }
         .price{
             float:right;
-            margin-right:30%;
             line-height:120px;
             font-size:28px;
             color:red;
