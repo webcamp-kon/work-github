@@ -1,3 +1,45 @@
 // Place all the styles related to the order_histories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index_page{
+    .order_history_contents{
+        width:80%;
+        margin:20px 10% 20px 10%;
+        border:2px solid black;
+        .order_left{
+            float:left;
+            width:30%;
+        }
+        .order_middle{
+            float:left;
+            width:40%;
+        }
+        .order_right{
+            float:left;
+            width:30%;
+        }
+    }
+    .order_list_contents{
+        width:60%;
+        margin:0 30% 0 10%;
+        height:120px;
+        .jacket{
+            height:100px;
+            line-height: 120px;
+            width:auto;
+            margin-right:15px;
+        }
+        .title{
+            line-height: 120px;
+            font-size:28px;
+        }
+        .price{
+            float:right;
+            margin-right:30%;
+            line-height:120px;
+            font-size:28px;
+            color:red;
+        }
+    }
+}

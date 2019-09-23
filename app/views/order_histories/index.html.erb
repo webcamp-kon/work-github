@@ -1,0 +1,35 @@
+<%= render 'header/user_head', user: @user %>
+<div class="container index_page">
+	<div class="row">
+		<div class="col-xs-12">
+            <h1>購入履歴一覧</h1>
+            <% @order_histories.each do |order_history|%>
+                <div class ="order_history_contents">
+                    <div class = "order_left">
+                        <span class ="total">合計 : <%=order_history.sum%></span>
+                    </div>
+                    <div class = "order_middle">
+                        <%=order_history.send_to_first_name%> <%=order_history.send_to_last_name%>
+                        <%=order_history.send_to_post_number%>
+                        <%=current_user.deliveries.find(order_history.address_id).address%>
+                        <%=order_history.send_to_telephone_number%>
+                    </div>
+                    <div class = "order_right">
+                    <%case order_history.method_of_pay when 0 %>
+                        銀行振り込み
+                    <%when 1 %>
+                        クレジットカード
+                    <% end %>
+                    </div>
+                    <%order_history.order_lists.each do|order_list|%>
+                        <div class ="order_list_contents">
+                            <%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,:fill,60,60,fallback:"no_image.jpg",class:"jacket"%></td> 
+                            <span class ="title"><%=order_list.product.name%></span>
+                            <span class = "price"><%=order_list.price*order_list.amount%></span>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

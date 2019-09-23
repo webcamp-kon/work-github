@@ -21,7 +21,7 @@ class CartItemsController < ApplicationController
 	def new
 		@cart_item =current_user.cart_items
 		@delivery_fee = 500
-		@address = current_user.addresses
+		@address = current_user.deliveries
 		# @address.insert(0,new_add)
 	end
 	def create
@@ -39,6 +39,7 @@ class CartItemsController < ApplicationController
 		@delivery_fee = 500
 	end
 	def completed
+		cart_items = current_user.cart_items
 		 if params[:radiradi] == "新規作成"
 			address = Delivery.new
 			address.user_id = current_user.id
@@ -60,6 +61,10 @@ class CartItemsController < ApplicationController
 			order.send_to_post_number = params[:post_number]
 			order.send_to_telephone_number = params[:telephone_number]
 			order.send_to_address = Addresse.find(address_id)
+			order.sum = 0
+			cart_items.each do |cart_item|
+				order.sum = cart_item.price*cart_item.amount+order.sum
+			end
 			order_id = OrderHistory.count+1
 			order.save!
 		elsif params[:radiradi] == "住所の選択"
@@ -70,16 +75,19 @@ class CartItemsController < ApplicationController
 			order.order_status = "準備中"
 			order.method_of_pay = params[:method_of_pay]
 			order.sum = params[:sum]
-			order.delivery_fee =@delivery_fee
+			order.delivery_fee =500
 			order.address_id = params[:address_id]
-			order.send_to_first_name = params[:first_name]
-			order.send_to_last_name = params[:last_name]
-			order.send_to_post_number = params[:post_number]
-			order.send_to_telephone_number = params[:telephone_number]
+			order.send_to_address = Delivery.find(params[:address_id]).address
+			order.send_to_first_name = Delivery.find(params[:address_id]).first_name
+			order.send_to_last_name = Delivery.find(params[:address_id]).last_name
+			order.send_to_post_number = Delivery.find(params[:address_id]).post_number
+			order.send_to_telephone_number = Delivery.find(params[:address_id]).telephone_number
+			order.sum = 0
+			cart_items.each do |cart_item|
+				order.sum = cart_item.product.price*cart_item.order_number+order.sum
+			end
 			order_id = OrderHistory.count+1
 			order.save!
-		end
-		cart_items = current_user.cart_items
 		cart_items.each do |cart_item|
 			n_order_list = nil
 			n_order_list = OrderList.new
@@ -100,6 +108,9 @@ class CartItemsController < ApplicationController
 		params.require(:cart_item).permit(:user_id,:product_id,:order_number)
 	end
 	def order_list_params
-		params.require(:order_list).permit(:order_history_id,:product_id,:amount,:price)
+		params.require(:order_list).permit(:order_history_id,:product_id,:amount,:price,:sum)
+	end
+	def product_params
+		params.require(:product).permit(:price)
 	end
 end
