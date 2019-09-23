@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
      <div class="col-xs-12">
-      <h1><strong>ユーザー一覧</strong></h1>
+      <h1>ユーザー一覧</h1>
      	<table class ="admin-user-table">
       <thead class = "admin-user">
        <tr>
@@ -18,12 +18,12 @@
       <tr>
        <td><%= user.id %></td>
        <td class = "td"><%=user.email%></td>
-       <td class="rr"><%=link_to "編集", edit_admin_user_path(user.id),class: "oo" %>
+       <td class="rr"><%=link_to "編集", edit_admin_user_path(user.id),class: "oo btn btn-success" %>
        </td>
-       <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "oo" %>
+       <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "oo btn btn-info" %>
        </td>
        <td class="rr">
-        <%= link_to "退会", admin_user_path(user.id), method: :delete,class: "oo" %>
+        <%= link_to "退会", admin_user_path(user.id), method: :delete,class: "oo btn btn-danger" %>
               </td>
        </td>
      </tr>
