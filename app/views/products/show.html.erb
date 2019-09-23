@@ -1,8 +1,11 @@
 <%= stylesheet_link_tag    'products/product_show', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= render 'header/user_head', user: @user %>
-<div class="show_main_contents">
-    <div class="show_main_left">
-        <% if user_signed_in? %>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="details">
+            <%=attachment_image_tag @product,:jacket_image,class:"product_pic"%>
+            <% if user_signed_in? %>
             <% if @product.favorited_by?(current_user) %>
                 <li>
                     <%= link_to product_favorites_path(@product), method: :delete do %>
@@ -12,10 +15,6 @@
                 </li>
             <% end %>
         <% end %>
-    </div>
-    <div class="show_main_right">
-        <div class="mainContentsGroup">
-            <%=attachment_image_tag @product,:jacket_image,class:"product_pic"%>
             <br><span class="contents"><%=@product.name%></span>
             <br><span class="contents"><%=@product.artist.name%></span>
             <br><span class="contents"><%=@product.price %>円（税込み）</span>
@@ -32,6 +31,7 @@
         <% else %>
             <%= link_to 'カートに入れる', new_user_session_path %>
         <% end %>
+    </div>
     </div>
 </div>
 <div class="reviewGroup">
