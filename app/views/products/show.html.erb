@@ -41,11 +41,15 @@
             <% judge=0 %>
             <% @cart_items.each do |cart_item| %>
                 <% if cart_item.product_id == @product.id %>
-                    <%= link_to 'カートに入れる', confirm_cart_item_path %>
+                    <%= link_to 'カートに入れる', cart_items_adding_path(cart_item_id: cart_item
+            .id) %>
                     <% judge=1 %>
+                    <% break %>
                 <% end %>
             <% end %>
-            <%= link_to 'カートに入れる',cart_items_path(product_id: @product.id),method: :post %>
+            <% if judge == 0%>
+                <%= link_to 'カートに入れる',cart_items_path(product_id: @product.id),method: :post %>
+            <% end %>
         <% else %>
             <%= link_to 'カートに入れる', new_user_session_path %>
         <% end %>

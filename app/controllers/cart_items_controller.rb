@@ -6,7 +6,12 @@ PER = 5
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
-
+	def adding
+		cart_item = CartItem.find(params[:cart_item_id])
+		cart_item.increment(:order_number, 1)
+		cart_item.save
+		redirect_to cart_items_path
+	end
 	def plus
 		cart_item = CartItem.find(params[:cart_item_id])
 		cart_item.increment(:order_number, 1)
@@ -100,11 +105,9 @@ PER = 5
 			n_order_list.save!
 			n_order_list = ""
 			cart_item.destroy
-		end
-
-
-		
+		end		
 	end
+
 	private
 	def cart_item_params
 		params.require(:cart_item).permit(:user_id,:product_id,:order_number)
