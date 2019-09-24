@@ -1,3 +1,49 @@
 // Place all the styles related to the cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.index_page{
+    .purchase{
+        font-size:24px;
+        width:30%;
+        margin:30px 35% 0 35%;
+        a{
+            color:white;
+        }
+    }
+    table{
+        width:80%;
+        margin-left:10%;
+        margin-top:50px;
+        border:2px solid black;
+        border-collapse: collapse;
+        .title{
+            height:40px;
+            font-size: 20px;
+            line-height: 40px;
+        }
+        th,td{
+            border:1px solid black;
+            text-align: center;
+        }
+    }
+    .cart_item_content{
+        height:80px;
+        font-size:20px;
+        .cart_product{
+            display:flex;
+        }
+        .amount{
+            font-size:20px;
+            line-height: 80px;
+        }
+    }
+    .total{
+        color:red;
+        display:block;
+        margin-top:70px;
+        font-size:24px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+}

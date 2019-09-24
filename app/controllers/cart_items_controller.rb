@@ -1,7 +1,8 @@
 class CartItemsController < ApplicationController
-
+PER = 5
 	def index
-		@cart_items = current_user.cart_items
+		@cart_items = current_user.cart_items.page(params[:page]).per(PER)
+		@user = current_user
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
@@ -88,6 +89,7 @@ class CartItemsController < ApplicationController
 			end
 			order_id = OrderHistory.count+1
 			order.save!
+		end
 		cart_items.each do |cart_item|
 			n_order_list = nil
 			n_order_list = OrderList.new
