@@ -1,41 +1,38 @@
-<div class="container">
+<div class="container index_page">
   <div class="row">
+    <%= render 'header/user_head', user: @user %>
     <div class="col-xs-12">
       <h1>ショッピングカート一覧</h1>
-  　  <table>
-       <tr>
-         <th>商品名</th>
+      <table>
+        <tr class = "title">
+          <th>商品名</th>
           <th>価格（税込み）</th>
           <th>数量</th>
         </tr>
         <% sum=0%>
         <% @cart_items.each do |cart_item| %>
-        <tr>
-         <td>
-             <%= cart_item.product.artist.name%>
-             <%= cart_item.product.name%>
-         </td>
-         <td><%= (cart_item.product.price*1.08).to_i %>円</td>
-         <td>
-          <%= link_to "-", cart_items_minus_path(cart_item_id: cart_item
-          .id), class: "btn-square" %>
-          <%= cart_item.order_number %>枚
-          <%= link_to "+", cart_items_plus_path(cart_item_id: cart_item
-          .id), class: "btn-square" %>
-        </td>
-        </tr>
-        <% sum+=(cart_item.product.price*1.08).to_i%>
+          <tr class = "cart_item_content">
+            <td>
+            <%=attachment_image_tag cart_item.product,:jacket_image,class:"product_pic"%>
+            <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
+            </td>
+            <td><%= (cart_item.product.price*1.08).to_i %>円</td>
+            <td>
+            <%= link_to "-", cart_items_minus_path(cart_item_id: cart_item
+            .id), class: "btn btn-primary" %>
+            <span class = "amount"><%= cart_item.order_number %>枚</span>
+            <%= link_to "+", cart_items_plus_path(cart_item_id: cart_item
+            .id), class: "btn btn-primary" %>
+            </td>
+          </tr>
+          <% sum+=(cart_item.product.price*1.08).to_i%>
         <% end %>
       </table>
-      <div>
-      合計金額 <%= sum %>円（税込み）
+      <div class = "total">
+        合計金額 <%= sum %>円（税込み）
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-
-      <%= link_to "購入手続きへ",cart_items_confirm_path %>
+      <span class ="btn btn-info purchase"><%= link_to "購入手続きへ",cart_items_confirm_path %></span>
+      <%= paginate @cart_items, class: "paginate" %>
     </div>
   </div>
 </div>
