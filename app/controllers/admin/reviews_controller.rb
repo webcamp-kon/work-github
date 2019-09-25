@@ -11,9 +11,9 @@ class Admin::ReviewsController < ApplicationController
     end
 	def update
 		@review = Review.find(params[:id])
-        if @review.update(review_params)
-         flash[:notice] ="You have updated review successfully."
-          redirect_to admin_reviews_path
+        if review.update(review_params)
+         flash[:notice] ="You have updated book successfully."
+         redirect_to admin_reviews_path
         else
         render "edit"
      end

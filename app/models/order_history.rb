@@ -1,7 +1,7 @@
 class OrderHistory < ApplicationRecord
 	belongs_to :user
 	belongs_to :address,optional: true
-	has_many :order_lists
+	has_many :order_lists, dependent: :destroy
 	validates :step, presence: true
 	validates :method_of_pay, presence: true
 	validates :buy_date, presence: true
