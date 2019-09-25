@@ -3,6 +3,11 @@
 <div class="container">
   <div class="row">
      <div class="bt col-xs-12">
+     	<% if flash[:notice] %>
+         <div class="flash">
+          <%= flash[:notice] %>
+         </div>
+        <% end %>
       <main>
       	<h1 crass = "top">トップページ</h1>
 		<div class="step-box">

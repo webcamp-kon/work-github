@@ -3,6 +3,11 @@
 <div class="container serachBox">
     <div class="row">
         <div class="col-xs-12">
+        <% if flash[:notice] %>
+         <div class="flash">
+          <%= flash[:notice] %>
+         </div>
+        <% end %>
     <p>商品を探す</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
         <%= text_field_tag :search %>
@@ -14,7 +19,7 @@
     <%@products.each do |product| %>
     <div class="mainContentsGroup">
         <%= link_to product_path(product) do %>
-            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
+            <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
             <br><span class="contents"><%=product.name%></span>
             <br><span class="contents"><%=product.artist.name%></span>
             <br><span class="contents"><%=product.price %>円（税込み）</span>

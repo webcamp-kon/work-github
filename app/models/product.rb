@@ -10,7 +10,10 @@ class Product < ApplicationRecord
     has_many :discs,inverse_of: :product,dependent: :destroy
     accepts_nested_attributes_for :discs,allow_destroy: true
     attachment :jacket_image
-    
+    validates :name, {presence: true}
+    validates :price, {presence: true}
+    validates :stock_quantity, {presence: true}
+    validates :discs, {presence: true}
     def self.search(search)
       if search
         Product.where(['name LIKE ?', "#{search}"])
