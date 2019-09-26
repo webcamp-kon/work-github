@@ -2,6 +2,16 @@
 <div class="container">
   <div class="row">
      <div class="col-xs-12">
+      <% if @review.errors.any? %>
+         <div id="error_explanation">
+          <h2><%= @review.errors.count %>errors prohibited this obj from being saved</h2>
+         </div>
+      <% end %>
+      <% @review.errors.full_messages.each do |message| %>
+       <div class="form-error">
+         <%= message %>
+       </div>
+      <% end %>
       <h1>編集</h1>
       <%= form_for(@review, url: {action: 'update'}) do |f| %>
 	    <table class ="edit">
@@ -27,7 +37,7 @@
        </table>
        <div class="A">
       	 <%= f.submit '送信する' ,class: "button" %>
-         <%= link_to 'キャンセル',admin_reviews_path,class: "back" %>
+         <%= link_to 'キャンセル',admin_reviews_path,class: "back btn btn-default" %>
        </div>
      <% end %>
      </div>

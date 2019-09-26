@@ -1,7 +1,7 @@
 class OrderHistoriesController < ApplicationController
 	PER = 5
 	def index
-		@order_histories = OrderHistory.page(params	[:page]).per(PER)
+		@order_histories = OrderHistory.page(params[:page]).per(10)
 		# @fee = 1.08.to_i
 	end
 	private
