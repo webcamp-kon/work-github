@@ -66,10 +66,10 @@ PER = 5
 			order.send_to_last_name = params[:last_name]
 			order.send_to_post_number = params[:post_number]
 			order.send_to_telephone_number = params[:telephone_number]
-			order.send_to_address = Addresse.find(address_id)
+			order.send_to_address = params[:address]
 			order.sum = 0
 			cart_items.each do |cart_item|
-				order.sum = cart_item.price*cart_item.amount+order.sum
+				order.sum = cart_item.product.price*cart_item.order_number+order.sum
 			end
 			order_id = OrderHistory.count+1
 			order.save!
