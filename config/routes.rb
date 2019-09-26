@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :reviews,only:[:index,:show,:edit,:update,:destroy]
-    resources :order_histories,only:[:index,:show,:update,:create]
+    resources :order_histories,only:[:index,:show,:update,:destroy,:edit]
     resources :products,only:[:index,:show,:edit,:create,:new,:update,:destroy,:arrive,:arrived]
     resources :artists, only: [:index,:new,:create,:edit,:update,:destroy]
     resources :labels, only: [:index,:new,:create,:edit,:update,:destroy]

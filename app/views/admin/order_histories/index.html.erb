@@ -1,27 +1,39 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<h1>受注一覧</h1>
-			<table>
-				<% @order_histories.each do |order_history| %>
-					<tr>
-						<td><%= order_history.id %></td>
-						<td><%= order_history.user.last_name + order_history.user.first_name %><br>
-							<%= order_history.created_at %>
-						</td>
-						<td><%= order_history.sum %><br>
-							<% if order_history.step == 1 %>受付<% end %>
-							<% if order_history.step == 2 %>商品準備中<% end %>
-							<% if order_history.step == 3 %>出荷済み<% end %>
-						</td>
-						<td><%= link_to "詳細", order_history_path(order_history) %></td>
-						<td><%= link_to "編集", edit_order_history_path(order_history) %></td>
-						<td><%= link_to "削除", order_history_path(order_history), method: :delete %></td>
-					</tr>
-				<% end %>
-				<%= paginate @order_histories, class: "paginate" %>
-			</table>
-		</div>
-	</div>
+<%=render 'header/manager_head'%>
+ <div class="container index_page">
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<% if flash[:notice] %>
+            	 <div class="flash">
+              		<%= flash[:notice] %>
+             	 </div>
+         	    <% end %>
+                <h1>購入履歴一覧</h1>
+                <table class ="ad">
+                	<tbody class = "aaaa">
+                <% @order_histories.each do |order_history|%>
+                    <tr>
+                        		<td class = "order-group-right">名前:<%=order_history.send_to_first_name%> <%=order_history.send_to_last_name%></td>
+                                <td class = "order-group-right">総額 : <%=order_history.sum%>円</td>
+                                <td class = "order-group-right">購入日:<%= order_history.created_at.strftime("%Y-%m-%d") %></td>
+                                <td class = "order-group-right">支払い方法:
+                                    <%case order_history.method_of_pay when 0 %>
+                                        銀行振り込み
+                                    <%when 1 %>
+                                        クレジットカード
+                                    <%when 2 %>
+                                        現金引き換え
+                                    <% end %>
+                                </td>
+                                <td> <%=link_to "編集", edit_admin_order_history_path(order_history.id),class: "ww btn btn-success" %></td>
+                                <td><%=link_to "詳細", admin_order_history_path(order_history.id),class: "ww btn btn-info" %></td>
+                           		 <td><%= link_to "退会", admin_order_history_path(order_history.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "ww btn btn-danger" %></td>
+                    </tr>
+            <% end %>
+            <%= paginate @order_histories, class: "paginate" %>
+        </tbody>
+    </table>
+        </div>
+    </div>
 </div>
 <%=render 'footer/footer'%>
+
