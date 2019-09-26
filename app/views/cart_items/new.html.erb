@@ -1,52 +1,49 @@
-<%= stylesheet_link_tag    'cart_items/cart_item_new', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="container">
-<%=form_with(url: cart_items_completed_path, method: :post, local: true) do|f|%>
-    <div class="row">
-        <div class="col-xs-12">
-            <table>
-             <h2>配送設定</h2>
-             
-             <tr><%= f.radio_button :method_of_mode, "新規作成",name: "radiradi" %>新規作成</tr>
-             <tr><%= f.radio_button :method_of_mode, "住所の選択",name: "radiradi" %>住所の選択</tr>
-             </table>
-             <div class="select_address">
-                <%= f.collection_select :address_id,@address, :id, :address %>
-             </div>
-        </div>
-    </div>
-    <div class = "row new_address">
-        <div class = "col-xs-12">
-            <table>
+<%= render 'header/user_head', user: current_user %>
+<div class="container new_page">
+    <%=form_with(url: cart_items_completed_path, method: :post, local: true) do|f|%>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class = "address_mode_select">
+                    <h2>配送設定</h2>
+                    <%= f.radio_button :method_of_mode, "新規作成",name: "radiradi" %>新規作成
+                    <%= f.radio_button :method_of_mode, "住所の選択",name: "radiradi" %>住所の選択
+                </div>
+                <% num = :id.to_s%>
+                <%= f.collection_select :address_id,@address, :id, :view_address_and_id %>
+            </div>
+            <div class = "col-xs-12">
+            <table class ="new_address_input">
                 <tr>
+                    <td class = "title">配送先の新規登録</td>
+                </tr>
+                <tr class = "contents">
                     <td>名前(漢字)</td>
-                    <td>姓 <%=f.text_field :first_name%></td>
-                    <td>名 <%=f.text_field :last_name%></td>
+                    <td>姓　<%=f.text_field :first_name%></td>
+                    <td>　名　<%=f.text_field :last_name%></td>
                 </tr>
-                <tr>
+                <tr class = "contents">
                     <td>お届け先住所</td>
-                    <td><%=f.text_field :address%></td>
+                    <td>　　<%=f.text_field :address%></td>
                 </tr>
-                <tr>
+                <tr class = "contents">
                     <td>郵便番号</td>
-                    <td><%=f.text_field :post_number%></td>
+                    <td>　　<%=f.text_field :post_number%></td>
                 </tr>
-                <tr>
+                <tr class = "contents">
                     <td>電話番号</td>
-                    <td><%=f.text_field :telephone_number%></td>
+                    <td>　　<%=f.text_field :telephone_number%></td>
                 </tr>
-                <tr>
-                    <td><h2>お支払い方法の選択</h2><td>
-                </tr>
+            </table>
+            <h2 class = "method_title">お支払い方法の選択</h2>
+            <table class = "select_method">
                 <tr>
                     <td><%= f.radio_button :method_of_pay, "銀行振込" %> 銀行振込 </td>
                     <td><%= f.radio_button :method_of_pay, "クレジットカード" %> クレジットカード</td>
                     <td><%= f.radio_button :method_of_pay, "代金引換" %> 代金引換</td>
                 </tr>
             </table>
-            <%=f.submit "送信する"%>
+            <%=f.submit "送信する", class:"btn btn-primary purchase"%>
         </div>
-    </div>
+    <% end %>
 </div>
-<% end %>
-<%= javascript_include_tag 'cart_items/cart_item_new.js' %>
-<script hre>
+<%=render 'footer/footer'%>
