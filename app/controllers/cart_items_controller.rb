@@ -6,7 +6,12 @@ PER = 5
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
-
+	def adding
+		cart_item = CartItem.find(params[:cart_item_id])
+		cart_item.increment(:order_number, 1)
+		cart_item.save
+		redirect_to cart_items_path
+	end
 	def plus
 		cart_item = CartItem.find(params[:cart_item_id])
 		cart_item.increment(:order_number, 1)
@@ -61,10 +66,10 @@ PER = 5
 			order.send_to_last_name = params[:last_name]
 			order.send_to_post_number = params[:post_number]
 			order.send_to_telephone_number = params[:telephone_number]
-			order.send_to_address = Addresse.find(address_id)
+			order.send_to_address = params[:address]
 			order.sum = 0
 			cart_items.each do |cart_item|
-				order.sum = cart_item.price*cart_item.amount+order.sum
+				order.sum = cart_item.product.price*cart_item.order_number+order.sum
 			end
 			order_id = OrderHistory.count+1
 			order.save!
@@ -100,11 +105,9 @@ PER = 5
 			n_order_list.save!
 			n_order_list = ""
 			cart_item.destroy
-		end
-
-
-		
+		end		
 	end
+
 	private
 	def cart_item_params
 		params.require(:cart_item).permit(:user_id,:product_id,:order_number)
