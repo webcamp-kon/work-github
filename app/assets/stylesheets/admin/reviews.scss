@@ -5,9 +5,14 @@
 	margin-top: 8px;
 }
 
-.show_review_contents{
-	margin: 1px;
+.show_review_groups{
+	width:100%;
+	border: 0px solid black;
+    border-collapse: collapse;
 }
 .review-title{
-	margin : 0 auto;
+	text-align: center;
+}
+.show_review_content{
+	border: 1px solid black;
 }
