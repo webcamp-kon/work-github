@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :reviews,only:[:index,:show,:edit,:update,:destroy]
-    resources :order_histories,only:[:index,:show,:update,:create]
+    resources :order_histories,only:[:index,:show,:update,:destroy,:edit]
     resources :products,only:[:index,:show,:edit,:create,:new,:update,:destroy,:arrive,:arrived]
     resources :artists, only: [:index,:new,:create,:edit,:update,:destroy]
     resources :labels, only: [:index,:new,:create,:edit,:update,:destroy]
@@ -37,8 +37,9 @@ Rails.application.routes.draw do
   post 'cart_items/completed' => 'cart_items#completed'
   get 'cart_items/minus' => 'cart_items#minus'
   get 'cart_items/plus' => 'cart_items#plus'
+  get 'cart_items/adding' => 'cart_items#adding'
 
-  resources :cart_items, only: [:index,:edit,:destroy,:create,:new,:completed]
+  resources :cart_items, only: [:index,:edit,:destroy,:create,:new,:completed,:adding]
   resources :order_histories, only: [:index]
   resources :labels, only: [:index,:update,:new,:destroy]
   resources :genres, only: [:index,:update,:edit,:destroy]

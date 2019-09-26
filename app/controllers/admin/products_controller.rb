@@ -26,9 +26,13 @@ class Admin::ProductsController < ApplicationController
     @genres=Genre.all
   end
   def update
-    product=Product.find(params[:id])
-    product.update(product_params)
-    redirect_to admin_products_path
+    @product=Product.find(params[:id])
+    if @product.update(product_params)
+       flash[:notice] ="You have updated product successfully."
+       redirect_to admin_products_path
+    else
+      render "edit"
+    end
   end
   def arrive
     @product=Product.find(params[:id])

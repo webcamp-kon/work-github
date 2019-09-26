@@ -1,34 +1,42 @@
 <%= render 'header/manager_head'%>
 <div class="container">
   <div class="row">
-     <div class="col-xs-12">
+    <% if flash[:notice] %>
+    <div class="flash">
+     <%= flash[:notice] %>
+    </div>
+   <% end %>
       <h1>レビュー一覧</h1>
        <div class="show_review_group">
        	 <% @reviews.each do |review| %>
-            <table class="show_review_contents">
-              <tr>
+            <div class="show_review_contents">
+             <div class="col-xs-4">
+              <div>
               	<td>ユーザー名</td>
               	<td>
             	<%= review.user.last_name %><%= review.user.first_name %></td>
-             </tr>
-             <tr>
+             </div>
+             <div>
              	<td>アルバム名</td>
              	<td><%= review.product.name %></td>
-             </tr>
-             <tr>
-             	<td><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-             </tr>
-             <tr>
-             	<td><%= link_to "編集", edit_admin_review_path(review.id) %></td>
-             	<td><%= link_to "削除", admin_review_path(review.id), method: :delete%></td>
-             </tr>
-             <tr>
-             	<td><%= review.title %></td>
-                <td><%= review.main_sentence %></td>
-             </tr>
+             </div>
+            </div>
+            <div class="col-xs-8">
+             <div>
+             	<td class = "review-right"><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+             </div>
+             <div>
+             	<td><%= link_to "編集", edit_admin_review_path(review.id),class: "review-right" %></td>
+             	<td><%= link_to "削除", admin_review_path(review.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "review-right"%></td>
+             </div>
+            </div>
+             <div>
+             	<td class = "review-title"><%= review.title %></td>
+                <td class = "review-title"><%= review.main_sentence %></td>
+             </div>
           <% end %>
-             </table>
-       </div>
+             </div>
+        </div>
       </div>
     </div>
 </div>

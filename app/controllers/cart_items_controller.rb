@@ -1,11 +1,17 @@
 class CartItemsController < ApplicationController
-
+PER = 5
 	def index
-		@cart_items = current_user.cart_items
+		@cart_items = current_user.cart_items.page(params[:page]).per(PER)
+		@user = current_user
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
-
+	def adding
+		cart_item = CartItem.find(params[:cart_item_id])
+		cart_item.increment(:order_number, 1)
+		cart_item.save
+		redirect_to cart_items_path
+	end
 	def plus
 		cart_item = CartItem.find(params[:cart_item_id])
 		cart_item.increment(:order_number, 1)
@@ -60,10 +66,10 @@ class CartItemsController < ApplicationController
 			order.send_to_last_name = params[:last_name]
 			order.send_to_post_number = params[:post_number]
 			order.send_to_telephone_number = params[:telephone_number]
-			order.send_to_address = Addresse.find(address_id)
+			order.send_to_address = params[:address]
 			order.sum = 0
 			cart_items.each do |cart_item|
-				order.sum = cart_item.price*cart_item.amount+order.sum
+				order.sum = cart_item.product.price*cart_item.order_number+order.sum
 			end
 			order_id = OrderHistory.count+1
 			order.save!
@@ -89,6 +95,7 @@ class CartItemsController < ApplicationController
 		else
 			order_id = OrderHistory.count+1
 			order.save!
+		end
 		cart_items.each do |cart_item|
 			n_order_list = nil
 			n_order_list = OrderList.new
@@ -99,9 +106,8 @@ class CartItemsController < ApplicationController
 			n_order_list.save!
 			n_order_list = ""
 			cart_item.destroy
-		end
+		end		
 	end
-end
 	private
 	def cart_item_params
 		params.require(:cart_item).permit(:user_id,:product_id,:order_number)

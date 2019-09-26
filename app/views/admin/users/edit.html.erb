@@ -2,6 +2,16 @@
 <div class="container">
   <div class="row">
      <div class="col-xs-12">
+      <% if @user.errors.any? %>
+         <div id="error_explanation">
+          <h2><%= @user.errors.count %>errors prohibited this obj from being saved</h2>
+         </div>
+      <% end %>
+      <% @user.errors.full_messages.each do |message| %>
+       <div class="form-error">
+         <%= message %>
+       </div>
+      <% end %>
      <h1><strong>編集</strong></h1>
 　　　<%= form_for(@user, url: {action: 'update'}) do |f| %>
 	    <table class ="edit">
