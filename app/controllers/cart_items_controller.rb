@@ -2,6 +2,10 @@ class CartItemsController < ApplicationController
 PER = 5
 	def index
 		@cart_items = current_user.cart_items.page(params[:page]).per(PER)
+		@sum = 0
+		@cart_items.each do |cart_item_single|
+			@sum+=1
+		end
 		@user = current_user
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
