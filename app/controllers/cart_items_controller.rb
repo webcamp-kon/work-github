@@ -86,6 +86,7 @@ class CartItemsController < ApplicationController
 			cart_items.each do |cart_item|
 				order.sum = cart_item.product.price*cart_item.order_number+order.sum
 			end
+		else
 			order_id = OrderHistory.count+1
 			order.save!
 		cart_items.each do |cart_item|
@@ -99,10 +100,8 @@ class CartItemsController < ApplicationController
 			n_order_list = ""
 			cart_item.destroy
 		end
-
-
-		
 	end
+end
 	private
 	def cart_item_params
 		params.require(:cart_item).permit(:user_id,:product_id,:order_number)
