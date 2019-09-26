@@ -3,37 +3,45 @@
     <%= render 'header/user_head', user: @user %>
     <div class="col-xs-12">
       <h1>ショッピングカート一覧</h1>
-      <table>
-        <tr class = "title">
-          <th>商品名</th>
-          <th>価格（税込み</th>
-          <th>数量</th>
-        </tr>
-        <% sum=0%>
-        <% @cart_items.each do |cart_item| %>
-          <tr class = "cart_item_content">
-            <td>
-            <%=attachment_image_tag cart_item.product,:jacket_image,class:"product_pic"%>
-            <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
-            </td>
-            <td><%= (cart_item.product.price*1.08).to_i %>円</td>
-            <td>
-            <%= link_to "-", cart_items_minus_path(cart_item_id: cart_item
-            .id), class: "btn btn-primary" %>
-            <span class = "amount"><%= cart_item.order_number %>枚</span>
-            <%= link_to "+", cart_items_plus_path(cart_item_id: cart_item
-            .id), class: "btn btn-primary" %>
-            </td>
+      <% if @sum >=1%>
+        <table>
+          <tr class = "title">
+            <th>商品名</th>
+            <th>価格（税込み</th>
+            <th>数量</th>
           </tr>
-          <% sum+=(cart_item.product.price*1.08).to_i%>
-        <% end %>
-      </table>
-      <div class = "total">
-        合計金額 <%= sum %>円（税込み）
-      </div>
-      <span class ="btn btn-info purchase"><%= link_to "購入手続きへ",cart_items_confirm_path %></span>
-      <%= paginate @cart_items, class: "paginate" %>
+          <% sum=0%>
+          <% @cart_items.each do |cart_item| %>
+            <tr class = "cart_item_content">
+              <td>
+              <%=attachment_image_tag cart_item.product,:jacket_image,class:"product_pic"%>
+              <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
+              </td>
+              <td><%= (cart_item.product.price*1.08).to_i %>円</td>
+              <td>
+              <% if cart_item.order_number > 1 %>
+                <%= link_to "-", cart_items_minus_path(cart_item_id: cart_item.id), class: "btn btn-primary" %>
+              <% end %>
+              <span class = "amount"><%= cart_item.order_number %>枚</span>
+              <%= link_to "+", cart_items_plus_path(cart_item_id: cart_item
+              .id), class: "btn btn-primary" %>
+              </td>
+            </tr>
+            <% sum+=(cart_item.product.price*1.08).to_i%>
+          <% end %>
+        </table>
+        <div class = "total">
+          合計金額 <%= sum %>円（税込み）
+        </div>
+        <span class ="btn btn-info purchase"><%= link_to "購入手続きへ",cart_items_confirm_path %></span>
+        <%= paginate @cart_items, class: "paginate" %>
+      <% else %>
+        <div class ="not_found">
+          <h1>カートアイテムが存在しません！</h1>
+          <p>お買い物しましょう！</p>
+        </div>
+      <% end %>
     </div>
-    <%=render 'footer/footer'%>
   </div>
+  <%=render 'footer/footer'%>
 </div>
