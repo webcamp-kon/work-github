@@ -52,19 +52,27 @@
 </div>
 <div class="review clearfix">
 <div class="reviewGroup">
+    <h2>レビューを書く</h2>
     <%=form_for [@product, @review] do |f|%>
-        <%=f.text_field :title %><br>
-        <%=f.text_area :main_sentence %>
+        <p>タイトル</p><%=f.text_field :title %><br><br>
+        <p>本文  </p><%=f.text_area :main_sentence ,class: "main_sentence"%><br>
         <%=f.submit '送信する' %>
     <% end %>
 </div>
 <div class="show_review_group">
+    <h2>レビュー一覧</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>タイトル</th>
+            <th>本文</th>
+        </tr>
     <% @reviews.each do |review| %>
-        <div class="show_review_contents">
-            <%=review.title %>
-            <%=review.main_sentence %>
-        </div>
+        <tr>
+            <td><%=review.title %></td>
+            <td><%=review.main_sentence %></td>
+        </tr>
     <% end %>
+</table>
 </div>
 </div>
 <!--５件ずつ表示する昨日はjQueryによって実装-->

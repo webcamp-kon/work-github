@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :authenticate_admin_manager!	
+  before_action :authenticate_admin_manager!
 	def index
 		@users = User.page(params[:page]).reverse_order
     end
