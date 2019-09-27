@@ -7,36 +7,34 @@
     </div>
    <% end %>
       <h1>レビュー一覧</h1>
-       <div class="show_review_group">
+       <div class="show_review_groups">
        	 <% @reviews.each do |review| %>
-            <div class="show_review_contents">
+            <div class="show_review_content">
              <div class="col-xs-4">
               <div>
-              	<td>ユーザー名</td>
-              	<td>
-            	<%= review.user.last_name %><%= review.user.first_name %></td>
+              	ユーザー名
+            	<%= review.user.last_name %><%= review.user.first_name %>
              </div>
              <div>
-             	<td>アルバム名</td>
-             	<td><%= review.product.name %></td>
+             	アルバム名
+             	<%= review.product.name %>
              </div>
             </div>
             <div class="col-xs-8">
-             <div>
-             	<td class = "review-right"><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+             <div lass = "review-right">
+              <%= review.created_at.strftime("%Y-%m-%d") %>
              </div>
              <div>
-             	<td><%= link_to "編集", edit_admin_review_path(review.id),class: "review-right" %></td>
-             	<td><%= link_to "削除", admin_review_path(review.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "review-right"%></td>
+             	<%= link_to "編集", edit_admin_review_path(review.id),class: "review-right btn btn-success" %>
+             	<%= link_to "削除", admin_review_path(review.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "review-right btn btn-danger"%>
              </div>
             </div>
-             <div>
-             	<td class = "review-title"><%= review.title %></td>
-                <td class = "review-title"><%= review.main_sentence %></td>
+             <div class = "review-title">
+             	<%= review.title %>
+              <%= review.main_sentence %>
              </div>
+            </div>
           <% end %>
-             </div>
-        </div>
       </div>
     </div>
 </div>

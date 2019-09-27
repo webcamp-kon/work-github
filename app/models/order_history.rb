@@ -12,5 +12,4 @@ class OrderHistory < ApplicationRecord
 	validates :send_to_last_name, presence: true
 	validates :send_to_address, presence: true
 	validates :send_to_post_number, presence: true
-
 end
