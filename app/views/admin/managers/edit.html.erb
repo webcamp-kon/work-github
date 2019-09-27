@@ -2,6 +2,16 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <% if @manager.errors.any? %>
+             <div id="error_explanation">
+              <h2><%= @manager.errors.count %>errors prohibited this obj from being saved</h2>
+             </div>
+            <% end %>
+            <% @manager.errors.full_messages.each do |message| %>
+             <div class="form-error">
+              <%= message %>
+             </div>
+            <% end %>
             <h1>管理者情報の編集</h1>
              <%=link_to (admin_root_top_path) do%><div class="to_button">メニューに戻る<% end %>
              <table class="main_contents">
