@@ -25,8 +25,8 @@
               <%= review.created_at.strftime("%Y-%m-%d") %>
              </div>
              <div>
-             	<%= link_to "編集", edit_admin_review_path(review.id),class: "review-right" %>
-             	<%= link_to "削除", admin_review_path(review.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "review-right"%>
+             	<%= link_to "編集", edit_admin_review_path(review.id),class: "review-right btn btn-success" %>
+             	<%= link_to "削除", admin_review_path(review.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "review-right btn btn-danger"%>
              </div>
             </div>
              <div class = "review-title">

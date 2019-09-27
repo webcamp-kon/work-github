@@ -29,7 +29,33 @@
 				</tr>
 				<tr>
 					<th class = "th">商品</th>
-					<td class = "td"><%= @order_history.sum %><%= @order_history.sum %><%= @order_history.sum %></td>
+					<td class = "td"><%@order_history.order_lists.each do|order_list|%>
+                           <%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class: "jacketimage"%>
+                           アルバム名
+                           <%=order_list.product.name%>
+                           枚数
+                           <%=order_list.product.stock_quantity%>
+                           小計
+                           <%=(order_list.price*1.08).to_i%>円
+                        </div>
+                  </td>
+				</tr>
+				<tr>
+					<th class = "th">合計金額</th>
+					<td class = "td"><%=(order_list.price*order_list.amount*1.08).to_i%></td>
+				</tr>
+				 <% end %>
+				<tr>
+					<th class = "th">送料</th>
+					<td class = "td"><%= @order_history.delivery_fee %></td>
+				</tr>
+				<tr>
+					<th class = "th">支払い方法</th>
+					<td class = "td"><%= @order_history.method_of_pay %></td>
+				</tr>
+				<tr>
+					<th class = "th">ステータス</th>
+					<td class = "td"><%= @order_history.order_status %></td>
 				</tr>
             </table>
           </div>
