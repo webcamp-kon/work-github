@@ -17,6 +17,7 @@
             <% end %>
             <p class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
             <%@products.each do |product| %>
+            <% if product.is_selling == true %>
             <div class="mainContentsGroup">
             <%= link_to product_path(product) do %>
             <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
@@ -30,6 +31,7 @@
             <br><span class="contents"><%=(product.price*1.08).to_i %>円（税込み）</span>
             <% else %>
             <br><span class="contents"><%=(product.price*1.1).to_i %>円（税込み）</span>
+            <% end %>
             <% end %>
             <% end %>
             </div>
