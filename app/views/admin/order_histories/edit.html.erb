@@ -43,12 +43,13 @@
          <td>送付先電話番号</td>
          <td> <%= f.text_field :send_to_telephone_number %></td>
        </tr>
+        <%= form_for(@order_list, url: {action: 'update'}) do |f| %>
         <tr>
          <td>商品</td>
-         <td> <%= f.text_field :product_id %></td>
-         <td> <%= f.text_field :amount %></td>
+          <td> <%= f.text_field :product_id %></td>
          <td> <%= f.text_field :price %></td>
        </tr>
+       <% end %>
         <tr>
          <td>合計</td>
          <td> <%= f.text_field :sum %></td>
@@ -69,7 +70,7 @@
        </table>
        <div class="A">
       	 <%= f.submit '送信する' ,class: "button" %>
-         <%= link_to 'キャンセル',admin_product_path,class: "back btn btn-success" %>
+         <%= link_to 'キャンセル',admin_order_history_path,class: "back btn btn-success" %>
        </div>
      <% end %>
    </div>
