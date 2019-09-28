@@ -1,33 +1,42 @@
 <%= render 'header/user_head', user: @user %>
 <div class="container">
     <div class="row">
-<div class="col-xs-12 serachBox">
-    <p>商品を探す</p>
-    <%= form_tag(products_search_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%=button_tag:'submit' do %>
+        <div class="col-xs-12 serachBox">
+            <p>商品を探す</p>
+            <%= form_tag(products_search_path,:method => 'get') do %>
+            <%= text_field_tag :search %>
+            <%=button_tag:'submit' do %>
             <i class="fa fa-search"></i>
-        <%end%>
-    <% end %>
-    <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
-</div>
-<div class="col-xs-12 ranking_title_group">
-    <h1>ランキング</h1>
-    <p>お客様の「いいね！」の数から集計したランキング。トレンドがわかります。</p>
-</div>
-<!--ランキングは５件の表示。コンテンツが５件以上あるかを確認しなければ全件数の表示とする-->
-<div class="col-xs-12">
-    <%@products.each do |product| %>
-    <%= link_to product_path(product) do %>
-    <div class="mainContentsGroup">
-    <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
-            <br><span class="contents"><%=product.name%></span>
-            <br><span class="contents"><%=product.artist.name%></span>
-            <br><span class="contents"><%=product.price %>円（税込み）</span>
+            <%end%>
+            <% end %>
+            <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
+        </div>
+        <div class="col-xs-12 ranking_title_group">
+            <h1>ランキング</h1>
+            <p>お客様の「いいね！」の数から集計したランキング。トレンドがわかります。</p>
+        </div>
+        <div class="col-xs-12">
+            <%@products.each do |product| %>
+            <% if product.is_selling == true %>
+            <%= link_to product_path(product) do %>
+            <div class="mainContentsGroup">
+                <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
+                <br><span class="contents"><%= product.favorites.count %>いいね</span>
+                <br><span class="contents"><%=product.name%></span>
+                <br><span class="contents"><%=product.artist.name%></span>
+                <% require "date"
+                d1 = Date.today;
+                d2 = Date.parse("2019/10/1");
+                if d1 < d2 %>
+                <br><span class="contents"><%=(product.price*1.08).to_i %>円（税込み）</span>
+                <% else %>
+                <br><span class="contents"><%=(product.price*1.1).to_i %>円（税込み）</span>
+                <% end %>
+            </div>
+            <% end %>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-    <% end %>
-    <% end %>
-</div>
-</div>
 </div>
 <%=render 'footer/footer'%>

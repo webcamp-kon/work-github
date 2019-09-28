@@ -1,10 +1,10 @@
 class Admin::ManagersController < ApplicationController
 	before_action :authenticate_admin_manager!
 	def edit
-		@manager = Manager.find(params[:id])
+		@manager = current_admin_manager
 	end
 	def update
-		@manager = Manager.find(params[:id])
+		@manager = current_admin_manager
 		@manager.update(manager_params)
 		redirect_to admin_root_top_path
 	end
