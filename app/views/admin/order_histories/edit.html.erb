@@ -46,7 +46,7 @@
         <%= form_for(@order_list, url: {action: 'update'}) do |f| %>
         <tr>
          <td>商品</td>
-         
+          <td> <%= f.text_field :product_id %></td>
          <td> <%= f.text_field :price %></td>
        </tr>
        <% end %>
