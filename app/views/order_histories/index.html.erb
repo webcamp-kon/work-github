@@ -23,7 +23,7 @@
                             <p>郵便番号:<%=order_history.send_to_post_number%></p>
                         </div>
                         <div class = "third_group">
-                            <p>住所:<%=current_user.deliveries.find(order_history.address_id).address%></p>
+                            <p>住所:<%=order_history.send_to_address%></p>
                             <p>電話番号:<%=order_history.send_to_telephone_number%></p>
                         </div>
                     </div>
