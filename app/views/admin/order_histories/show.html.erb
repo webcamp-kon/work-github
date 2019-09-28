@@ -42,12 +42,12 @@
 				</tr>
 				<tr>
 					<th class = "th">合計金額</th>
-					<td class = "td"><%=(order_list.price*order_list.amount*1.08).to_i%></td>
+					<td class = "td"><%=(order_list.price*order_list.amount*1.08).to_i%>円</td>
 				</tr>
 				 <% end %>
 				<tr>
 					<th class = "th">送料</th>
-					<td class = "td"><%= @order_history.delivery_fee %></td>
+					<td class = "td"><%= @order_history.delivery_fee %>円</td>
 				</tr>
 				<tr>
 					<th class = "th">支払い方法</th>

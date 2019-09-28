@@ -1,5 +1,5 @@
 class Admin::ManagersController < ApplicationController
-	before_action :authenticate_admin_manager!	
+	before_action :authenticate_admin_manager!
 	def edit
 		@manager = Manager.find(params[:id])
 	end
@@ -10,6 +10,6 @@ class Admin::ManagersController < ApplicationController
 	end
 	private
 		def manager_params
-			params.require(:manager).permit(:first_name,:last_name,:mail_address,:password)
+			params.require(:manager).permit(:first_name,:last_name,:email,:password)
 		end
 end
