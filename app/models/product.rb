@@ -2,6 +2,7 @@ class Product < ApplicationRecord
     belongs_to :label
     belongs_to :artist,optional: true
     belongs_to :genre
+    has_many :users
     has_many :reviews, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :cart_item, dependent: :destroy
@@ -28,6 +29,6 @@ class Product < ApplicationRecord
     .order('favs desc').first(5)
     end
     def favorited_by?(user)
-          favorites.where(user_id: user.id).exists?
+          return favorites.where(user_id: user.id).exists?
     end
 end
