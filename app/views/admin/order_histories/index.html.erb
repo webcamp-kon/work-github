@@ -26,7 +26,6 @@
                                 </td>
                                 <td> <%=link_to "編集", edit_admin_order_history_path(order_history.id),class: "ww btn btn-success" %></td>
                                 <td><%=link_to "詳細", admin_order_history_path(order_history.id),class: "ww btn btn-info" %></td>
-                           		 <td><%= link_to "退会", admin_order_history_path(order_history.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "ww btn btn-danger" %></td>
                     </tr>
             <% end %>
             <%= paginate @order_histories, class: "paginate" %>
