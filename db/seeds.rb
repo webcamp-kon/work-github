@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #coding: utf-8
-manager=Manager.new(:first_name => '山田', :last_name => '太郎', :email => 'admin@root.jp', :password => 'rootadmin')
+manager=Manager.new(:first_name => '田', :last_name => '太', :email => 'a@a', :password => 'pppppp')
 manager.save!
 
 Artist.create(:name=>'星野源')
@@ -15,4 +15,4 @@ Genre.create(:name=>'ロック')
 Genre.create(:name => 'Jポップ')
 Label.create(:name => 'Queen_record')
 Artist.create(:name => '米津玄師')
-Product.create!(:jacket_image => open('db/data/no_image.jpg'), :stock_quantity => 90, :price => 1000, :is_selling => true, :artist_id => 1, :label_id => 1,:genre_id => 1, :name => 'CD')
+# Product.create!(:jacket_image => open('db/data/no_image.jpg'), :stock_quantity => 90, :price => 1000, :is_selling => true, :artist_id => 1, :label_id => 1,:genre_id => 1, :name => 'CD')

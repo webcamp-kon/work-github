@@ -1,32 +1,41 @@
 <%= render 'header/user_head', user: @user %>
 <div class="container">
     <div class="row">
-<div class="col-xs-12 serachBox">
-    <p>商品を探す</p>
-    <%= form_tag(products_search_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%=button_tag:'submit' do %>
+        <div class="col-xs-12 serachBox">
+            <p>商品を探す</p>
+            <%= form_tag(products_search_path,:method => 'get') do %>
+            <%= text_field_tag :search %>
+            <%=button_tag:'submit' do %>
             <i class="fa fa-search"></i>
-        <%end%>
-    <% end %>
-    <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
-</div>
-<div class="col-xs-12">
-<h1><%= @search %>の検索結果</h1>
-    <% @products.each do |product| %>
-    <div class="mainContentsGroup">
-    <%= link_to product_path(product) do %>
-        <div class="mainContents">
-            <%=attachment_image_tag product,:jacket_image,class:"product_pic"%>
-            <br><span class="contents"><%=product.name%></span>
-            <br><span class="contents"><%=product.artist.name%></span>
-            <br><span class="contents"><%=product.price %>円（税込み）</span>
+            <%end%>
+            <% end %>
+            <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
         </div>
-        <% end %>
+        <div class="col-xs-12">
+            <h1><%= @search %>の検索結果</h1>
+            <% @products.each do |product| %>
+            <% if product.is_selling == true %>
+            <div class="mainContentsGroup">
+                <%= link_to product_path(product) do %>
+                <div class="mainContents">
+                    <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
+                    <br><span class="contents"><%= product.favorites.count %>いいね</span>
+                    <br><span class="contents"><%=product.name%></span>
+                    <br><span class="contents"><%=product.artist.name%></span>
+                    <% require "date"
+                    d1 = Date.today;
+                    d2 = Date.parse("2019/10/1");
+                    if d1 < d2 %>
+                    <br><span class="contents"><%=(product.price*1.08).to_i %>円（税込み）</span>
+                    <% else %>
+                    <br><span class="contents"><%=(product.price*1.1).to_i %>円（税込み）</span>
+                    <% end %>
+                </div>
+                <% end %>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-    <% end %>
 </div>
-</div>
-</div>
-<!--検索ワードが入る変数をsearchと仮定。実装方法については変更の可能性あり-->
 <%=render 'footer/footer'%>

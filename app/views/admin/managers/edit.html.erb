@@ -37,11 +37,11 @@
                     <td>パスワード（確認）</td>
                     <td><%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password" %></td>
                 </tr>
+                <%=f.submit '登録する'%>
+                <% end %>
                 </table>
                 <div class="product_add_ending_group">
-                    <%=f.submit '登録する'%>
                 </div>
-            <% end %>
         </div>
     </div>
 </div>
