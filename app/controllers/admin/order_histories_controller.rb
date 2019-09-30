@@ -11,7 +11,7 @@ class Admin::OrderHistoriesController < ApplicationController
   def show
     @order_history=OrderHistory.find(params[:id])
      @order_lists = OrderList.find(params[:id])
-     @products = @order_lidts.product
+     @products = @order_lists.product
   end
   def update
     @order_history=OrderHistory.find(params[:id])

@@ -3,20 +3,20 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<% if @genre.errors.any? %>
-             <div id="error_explanation">
-              <h2><%= @genre.errors.count %>errors prohibited this obj from being saved</h2>
-             </div>
+            	<div id="error_explanation">
+              		<h2><%= @genre.errors.count %>errors prohibited this obj from being saved</h2>
+             	</div>
             <% end %>
             <% @genre.errors.full_messages.each do |message| %>
-             <div class="form-error">
-              <%= message %>
-             </div>
+            	<div class="form-error">
+              		<%= message %>
+             	</div>
             <% end %>
 			<h1>編集    id:[<%=@genre.id %>]</h1><br><br>
 			<h2>ジャンル名</h2>
 			<%= form_for @genre,:url => {:action => :update} do |f| %>
-			<%= f.text_field :name, autofocus: true %>
-			<%= f.submit "更新", class: "btn btn-primary" %>
+				<%= f.text_field :name, autofocus: true %>
+				<%= f.submit "更新", class: "btn btn-primary" %>
 			<% end %>
 			<%= link_to "キャンセル", admin_genres_path,class: "btn btn-success" %>
 		</div>
