@@ -27,13 +27,8 @@ class Admin::OrderHistoriesController < ApplicationController
     @order_histories.destroy
     redirect_to admin_order_histories_path
   end
+  private
   def order_history_params
-   params.require(:order_history).permit(:send_to_first_name,:send_to_last_name,:send_to_address,:send_to_first_name,:send_to_last_name,:send_to_post_number,:send_to_telephone_number,:sum,:delivery_fee,:method_of_pay,:order_status)
-  end
-  def order_list_params
-    params.require(:order_list).permit(:order_history_id,:product_id,:amount,:price)
-  end
-  def product_params
-     params.require(:product).permit(:jacket_image)
+   params.require(:order_history).permit(:send_to_first_name,:send_to_last_name,:send_to_address,:send_to_post_number,:delivery_fee,:method_of_pay,:order_status,:sum,order_lists_attributes: [:product_id,:price,:amount])
   end
 end

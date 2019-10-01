@@ -1,6 +1,6 @@
+<%= render 'header/user_head', user: current_user %>
 <div class="container confirm_page">
   <div class="row">
-    <%= render 'header/user_head', user: current_user %>
     <div class="col-xs-12">
       <h1>ご注文の確認</h1>
   　  <table class = "cart_item_group">
@@ -15,14 +15,29 @@
           <td>
             <%=attachment_image_tag cart_item.product,:jacket_image,class:"product_pic"%>
             <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
-         </td>
-          <td><%= (cart_item.product.price*1.08).to_i %>円</td>
-          <% sum += cart_item.product.price %>
-         <td>
-          <%= cart_item.order_number %>枚
-        </td>
+          </td>
+          <td><% require "date"
+              d1 = Date.today;
+              d2 = Date.parse("2019/10/1");
+              if d1 < d2 %>
+              <span class="contents"><%=(cart_item.product.price*1.08).to_i %>円（税込み）</span>
+              <% else %>
+              <span class="contents"><%=(cart_item.product.price*1.1).to_i %>円（税込み）</span>
+              <% end %>
+          </td>
+                <% require "date"
+                d1 = Date.today;
+                d2 = Date.parse("2019/10/1");
+                if d1 < d2 %>
+                <% sum += (cart_item.product.price*1.08).to_i*cart_item.order_number %>
+                <% else %>
+                <% sum += (cart_item.product.price*1.1).to_i*cart_item.order_number %>
+                <% end %>
+          <td>
+           <%= cart_item.order_number %>枚
+          </td>
         </tr>
-      <% end %>
+       <% end %>
       </table>
       <table class = "datas">
         <tr>
@@ -43,8 +58,8 @@
   </div>
   <%
 =begin%>
- <%= javascript_include_tag "number.js" %> 
+ <%= javascript_include_tag "number.js" %>
 <%
 =end%>
-<%=render 'footer/footer'%>
 </div>
+<%=render 'footer/footer'%>

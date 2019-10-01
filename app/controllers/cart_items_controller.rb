@@ -110,7 +110,7 @@ PER = 5
 			n_order_list.save!
 			n_order_list = ""
 			cart_item.destroy
-		end		
+		end
 	end
 	private
 	def cart_item_params

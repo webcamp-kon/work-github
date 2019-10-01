@@ -25,9 +25,15 @@
     <div class="detail-right">
             <br><span class="contents"><%=@product.name%></span>
             <br><span class="contents"><%=@product.artist.name%></span>
-            <br><span class="contents"><%=(@product.price*1.08).to_i %>円（税込み）</span><br>
-            <br><span class="contents"><%=(@product.price*1.1).to_i %>円（税込み）</span><br>
-        <%=@product.label.name %><br>
+            <% require "date"
+            d1 = Date.today;
+            d2 = Date.parse("2019/10/1");
+            if d1 < d2 %>
+            <br><span class="contents"><%=(@product.price*1.08).to_i %>円（税込み）</span>
+            <% else %>
+            <br><span class="contents"><%=(@product.price*1.1).to_i %>円（税込み）</span>
+            <% end %>
+        <br><%=@product.label.name %><br>
         <%=@product.genre.name %><br>
         <% if user_signed_in? %>
             <% judge=0 %>
