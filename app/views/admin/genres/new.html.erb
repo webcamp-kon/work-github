@@ -2,13 +2,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-        <h1>ジャンル追加</h1>
-        <h2>ジャンル名</h2>
-        <%= form_for @genre,:url => {:action => :create} do |f| %>
-            <%= f.text_field :name, autofocus: true %>
-            <%= f.submit "更新", class: "btn btn-primary" %>
-        <% end %>
-        <%= link_to "キャンセル", admin_genres_path,class: "btn btn-success" %>
+            <h1>ジャンル追加</h1>
+            <h2>ジャンル名</h2>
+            <%= form_for @genre,:url => {:action => :create} do |f| %>
+                <%= f.text_field :name, autofocus: true %>
+                <%= f.submit "更新", class: "btn btn-primary" %>
+            <% end %>
+            <%= link_to "キャンセル", admin_genres_path,class: "btn btn-success" %>
 		</div>
 	</div>
 </div>
