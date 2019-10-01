@@ -3,18 +3,18 @@
     <div class="row">
         <div class="col-xs-12">
             <% if flash[:notice] %>
-             <div class="flash">
-              <%= flash[:notice] %>
-             </div>
+                <div class="flash">
+                    <%= flash[:notice] %>
+                </div>
             <% end %>
             <div class="product_title_group">
-            <h1>商品一覧</h1>
-            <%=link_to new_admin_product_path do%><div class="to_add_button">商品を追加する</div><% end %>
+                <h1>商品一覧</h1>
+                <%=link_to new_admin_product_path do%><div class="to_add_button">商品を追加する</div><% end %>
             </div>
             <%@products.each do |product|%>
-            <%=attachment_image_tag product,:jacket_image, size: '100x100', format: 'jpeg',fallback: "noimage.jpg",class: "product-images"%>
-             <p><%=link_to "入荷",admin_arrive_product_path(product),class: "pp btn btn-default" %><%=link_to "詳細",admin_product_path(product),class: "pp btn btn-info" %><%=link_to "編集",edit_admin_product_path(product),class: "pp btn btn-success" %>
-                    <%= link_to "退会", admin_product_path(product.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "pp btn btn-danger" %><spam class = "ID">ID:<%=product.id%></spam></p>
+                <%=attachment_image_tag product,:jacket_image, size: '100x100', format: 'jpeg',fallback: "noimage.jpg",class: "product-images"%>
+                <p><%=link_to "入荷",admin_arrive_product_path(product),class: "pp btn btn-default" %><%=link_to "詳細",admin_product_path(product),class: "pp btn btn-info" %><%=link_to "編集",edit_admin_product_path(product),class: "pp btn btn-success" %>
+                <%= link_to "削除", admin_product_path(product.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "pp btn btn-danger" %><spam class = "ID">ID:<%=product.id%></spam></p>
                 <table class="alone_contents_group">
                     <tr><td class = "pro">アルバム名</td><td class = "pro2"><%=product.name%></td></tr>
                     <tr><td class = "pro">アーティスト名</td><td class = "pro2"><%=product.artist.name%></td></tr>
