@@ -1,79 +1,76 @@
 <%=render 'header/manager_head'%>
 <div class="container">
   <div class="row">
-     <div class="col-xs-12">
+    <div class="col-xs-12">
       <% if @order_history.errors.any? %>
-         <div id="error_explanation">
+        <div id="error_explanation">
           <h2><%= @order_history.errors.count %>errors prohibited this obj from being saved</h2>
-         </div>
+        </div>
       <% end %>
       <% @order_history.errors.full_messages.each do |message| %>
-       <div class="form-error">
-         <%= message %>
-       </div>
+        <div class="form-error">
+          <%= message %>
+        </div>
       <% end %>
-     <h1>受注編集</h1>
+      <h1>受注編集</h1>
 　　　<%= form_for(@order_history, url: {action: 'update'}) do |f| %>
-	    <table class ="edit">
-       <tr>
-         <td>名前</td>
-         <td>姓<%=f.text_field :send_to_first_name%></td>
-         <td>名<%=f.text_field :send_to_last_name%></td>
-       </tr>
-       <tr>
-         <td>購入日</td>
-         <td> <input type="datetime-local" id="meeting-time"
-       name="meeting-time" value="2018-06-12T19:30"
-       min="2018-06-07T00:00" max="2018-06-14T00:00"></td>
-       </tr>
-       <tr>
-         <td>送付先住所</td>
-         <td> <%= f.text_field :send_to_address %></td>
-       </tr>
-       <tr>
-         <td>送付先</td>
-         <td>姓<%=f.text_field :send_to_first_name%></td>
-         <td>名<%=f.text_field :send_to_last_name%></td>
-       </tr>
-       <tr>
-         <td>送付先郵便番号</td>
-         <td> <%= f.text_field :send_to_post_number %></td>
-       </tr>
-       <tr>
-         <td>送付先電話番号</td>
-         <td> <%= f.text_field :send_to_telephone_number %></td>
-       </tr>
-        <%= form_for(@order_list, url: {action: 'update'}) do |f| %>
-        <tr>
-         <td>商品</td>
-          <td> <%= f.text_field :product_id %></td>
-         <td> <%= f.text_field :price %></td>
-       </tr>
-       <% end %>
-        <tr>
-         <td>合計</td>
-         <td> <%= f.text_field :sum %></td>
-       </tr>
-       <tr>
-         <td>送料</td>
-         <td> <%=f.text_field :delivery_fee%></td>
-       </tr>
-       <tr>
-         <td>支払い方法</td>
-         <td> <%= f.text_field :method_of_pay %></td>
-       </tr>
-       <tr>
-         <td>ステータス</td>
-         <td> <%= f.text_field :order_status %></td>
-       </tr>
-        </tr>
-       </table>
-       <div class="A">
-      	 <%= f.submit '送信する' ,class: "button" %>
-         <%= link_to 'キャンセル',admin_order_history_path,class: "back btn btn-success" %>
-       </div>
-     <% end %>
-   </div>
+	      <table class ="edit">
+          <tr>
+            <td>名前</td>
+            <td>姓<%=f.text_field :send_to_first_name%></td>
+            <td>名<%=f.text_field :send_to_last_name%></td>
+          </tr>
+          <tr>
+            <td>購入日</td>
+            <td> <input type="datetime-local" id="meeting-time" name="meeting-time" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00"></td>]
+          </tr>
+          <tr>
+            <td>送付先住所</td>
+            <td> <%= f.text_field :send_to_address %></td>
+          </tr>
+          <tr>
+            <td>送付先</td>
+            <td>姓<%=f.text_field :send_to_first_name%></td>
+            <td>名<%=f.text_field :send_to_last_name%></td>
+          </tr>
+          <tr>
+            <td>送付先郵便番号</td>
+            <td> <%= f.text_field :send_to_post_number %></td>
+          </tr>
+          <tr>
+            <td>送付先電話番号</td>
+            <td> <%= f.text_field :send_to_telephone_number %></td>
+          </tr>
+          <%= form_for(@order_list, url: {action: 'update'}) do |f| %>
+            <tr>
+              <td>商品</td>
+              <td> <%= f.text_field :product_id %></td>
+              <td> <%= f.text_field :price %></td>
+            </tr>
+          <% end %>
+            <tr>
+              <td>合計</td>
+              <td> <%= f.text_field :sum %></td>
+            </tr>
+            <tr>
+              <td>送料</td>
+              <td> <%=f.text_field :delivery_fee%></td>
+            </tr>
+            <tr>
+              <td>支払い方法</td>
+              <td> <%= f.text_field :method_of_pay %></td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <td> <%= f.text_field :order_status %></td>
+            </tr>
+          </table>
+        <div class="A">
+          <%= f.submit '送信する' ,class: "button" %>
+          <%= link_to 'キャンセル',admin_order_history_path,class: "back btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <%=render 'footer/footer'%>
