@@ -9,7 +9,7 @@ class Admin::ManagersController < ApplicationController
 		redirect_to admin_root_top_path
 	end
 	private
-		def manager_params
-			params.require(:manager).permit(:first_name,:last_name,:email,:password)
-		end
+	def manager_params
+		params.require(:manager).permit(:first_name,:last_name,:email,:password)
+	end
 end

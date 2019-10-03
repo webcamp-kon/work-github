@@ -37,9 +37,9 @@
             <h2 class = "method_title">お支払い方法の選択</h2>
             <table class = "select_method">
                 <tr>
-                    <td><%= f.radio_button :method_of_pay, "銀行振込" %> 銀行振込 </td>
-                    <td><%= f.radio_button :method_of_pay, "クレジットカード" %> クレジットカード</td>
-                    <td><%= f.radio_button :method_of_pay, "代金引換" %> 代金引換</td>
+                    <td><%= f.radio_button :method_of_pay, 0 %> 銀行振込 </td>
+                    <td><%= f.radio_button :method_of_pay, 1 %> クレジットカード</td>
+                    <td><%= f.radio_button :method_of_pay, 2 %> 代金引換</td>
                 </tr>
             </table>
             <%=f.submit "送信する", class:"btn btn-primary purchase"%>

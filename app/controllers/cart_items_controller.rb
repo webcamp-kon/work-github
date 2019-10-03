@@ -10,6 +10,11 @@ PER = 5
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
+	def destroy
+		cart_item = CartItem.find(params[:id])
+		cart_item.destroy
+		redirect_to cart_items_path
+	end
 	def adding
 		cart_item = CartItem.find(params[:cart_item_id])
 		cart_item.increment(:order_number, 1)
@@ -49,31 +54,36 @@ PER = 5
 	end
 	def completed
 		cart_items = current_user.cart_items
-		 if params[:radiradi] == "新規作成"
+		if params[:radiradi] == "新規作成"
 			address = Delivery.new
 			address.user_id = current_user.id
 			address.address =params[:address]
 			address.post_number = params[:post_number]
-			address_id = Delivery.count+1
 			address.save!
 			order = OrderHistory.new
 			order.user_id = current_user.id
+			order.address_id = address.id
 			order.buy_date = DateTime.now
 			order.step = 0
 			order.order_status = "準備中"
 			order.method_of_pay = params[:method_of_pay]
-			order.sum = params[:sum]
+			order.sum = 0
+			cart_items.each do |cart_item|
+				require "date"
+              	d1 = Date.today;
+              	d2 = Date.parse("2019/10/1");
+              	if d1 < d2
+					order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
+				else
+					order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
+				end
+			end
 			order.delivery_fee =500
-			order.address_id = params[:address_id]
 			order.send_to_first_name = params[:first_name]
 			order.send_to_last_name = params[:last_name]
 			order.send_to_post_number = params[:post_number]
 			order.send_to_telephone_number = params[:telephone_number]
 			order.send_to_address = params[:address]
-			order.sum = 0
-			cart_items.each do |cart_item|
-				order.sum = cart_item.product.price*cart_item.order_number+order.sum
-			end
 			order_id = OrderHistory.count+1
 			order.save!
 		elsif params[:radiradi] == "住所の選択"
@@ -91,10 +101,6 @@ PER = 5
 			order.send_to_last_name = Delivery.find(params[:address_id]).last_name
 			order.send_to_post_number = Delivery.find(params[:address_id]).post_number
 			order.send_to_telephone_number = Delivery.find(params[:address_id]).telephone_number
-			order.sum = 0
-			cart_items.each do |cart_item|
-				order.sum = cart_item.product.price*cart_item.order_number+order.sum
-			end
 		else
 			order_id = OrderHistory.count+1
 			order.save!
@@ -105,7 +111,14 @@ PER = 5
 			n_order_list.order_history_id =order_id
 			n_order_list.product_id = cart_item.product_id
 			n_order_list.amount = cart_item.order_number
-			n_order_list.price = cart_item.product.price # 単品価格でよかったっけ？
+			require "date"
+            d1 = Date.today;
+            d2 = Date.parse("2019/10/1");
+            if d1 < d2
+				n_order_list.price = cart_item.product.price*1.08
+			else
+				n_order_list.price = cart_item.product.price*1.1
+			end
 			n_order_list.save!
 			n_order_list = ""
 			cart_item.destroy

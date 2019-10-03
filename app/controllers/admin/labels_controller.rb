@@ -18,10 +18,10 @@ class Admin::LabelsController < ApplicationController
 	def update
 		@label = Label.find(params[:id])
 		if @label.update(label_params)
-		 flash[:notice] ="You have updated label successfully."
-		 redirect_to admin_labels_path
+			flash[:notice] ="You have updated label successfully."
+		 	redirect_to admin_labels_path
 		else
-		 render "edit"
+		 	render "edit"
 		end
 	end
 	def destroy

@@ -18,11 +18,11 @@ class Admin::ArtistsController < ApplicationController
 	def update
 		@artist = Artist.find(params[:id])
         if @artist.update(artist_params)
-         flash[:notice] ="You have updated artist successfully."
-		 redirect_to admin_artists_path
-		 else
-        render "edit"
-     end
+        	flash[:notice] ="You have updated artist successfully."
+			redirect_to admin_artists_path
+		else
+        	render "edit"
+    	end
 	end
 	def destroy
 		artist = Artist.find(params[:id])

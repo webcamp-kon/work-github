@@ -31,7 +31,7 @@ class Admin::ProductsController < ApplicationController
        flash[:notice] ="You have updated product successfully."
        redirect_to admin_products_path
     else
-      render "edit"
+       render "edit"
     end
   end
   def arrive
@@ -42,7 +42,6 @@ class Admin::ProductsController < ApplicationController
     @product.stock_quantity=@product.stock_quantity+params[:addStock].to_i
     @product.save
   end
-
   def show
     @product=Product.find(params[:id])
 
