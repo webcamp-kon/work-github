@@ -35,7 +35,6 @@ PER = 5
 		# @address.insert(0,new_add)
 	end
 	def create
-		
 		# product = Product.find(params[:product_id])
 		cart_item = current_user.cart_items.new
 		cart_item.user_id=current_user.id

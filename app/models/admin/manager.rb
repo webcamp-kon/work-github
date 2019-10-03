@@ -5,12 +5,8 @@ class Admin::Manager < ApplicationRecord
          :recoverable, :rememberable, :validatable
    validates :email, {presence: true}
    validates :password, {presence: true}
+   validates :first_name, {presence: true}
+   validates :last_name, {presence: true}
    devise :validatable
-   def password_required?
-  if do_validate # パスワード検証を行う条件
-    !persisted? || !password.nil? || !password_confirmation.nil?
-  else
-    false
-  end
-end
+
 end

@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-	before_action :authenticate_admin_manager!	
+	before_action :authenticate_admin_manager!
 	PER=5
 	def index
 		@genres = Genre.page(params[:page]).per(PER)

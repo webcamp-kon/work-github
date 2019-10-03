@@ -3,10 +3,10 @@
   <div class="row">
      <div class="col-xs-12 genres">
      	<% if flash[:notice] %>
-       <div class="flash">
-        <%= flash[:notice] %>
-       </div>
-      <% end %>
+         <div class="flash">
+          <%= flash[:notice] %>
+         </div>
+        <% end %>
 	<h1>ジャンル一覧</h1>
 	<%=link_to new_admin_genre_path do%><div class="to_add_button">ジャンルを追加する</div><% end %>
 	<table class="table table-striped">

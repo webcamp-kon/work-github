@@ -1,5 +1,5 @@
 class Admin::LabelsController < ApplicationController
-	before_action :authenticate_admin_manager!	
+	before_action :authenticate_admin_manager!
 	PER=5
 	def index
 		@labels = Label.page(params[:page]).per(PER)
