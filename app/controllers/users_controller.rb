@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 	before_action :cuser, only: [:update, :edit]
-	def edit
-		@user =User.find(params[:id])
-	end
 	def update
 		user = current_user
 		user.update(user_params)
@@ -14,9 +11,9 @@ class UsersController < ApplicationController
 	end
 	def leave
 		user = User.find(params[:id])
-    user.is_deleted = true
-    user.save
-    redirect_to root_path
+	    user.is_deleted = true
+	    user.save
+	    redirect_to root_path
 	end
 	private
 	def user_params

@@ -17,7 +17,7 @@
 	    <table class ="edit">
        <tr>
          <td>ユーザーID</td>
-         <td>姓<%=f.text_field :user_id%></td>
+         <td><%= f.collection_select :user_id, User.all, :id, :view_first_and_last %></td>
        </tr>
        <tr>
          <td>購入日</td>
@@ -30,7 +30,7 @@
          <td> <%= f.text_field :send_to_address %></td>
        </tr>
        <tr>
-         <td>送付先</td>
+         <td>送付先氏名</td>
          <td>姓<%=f.text_field :send_to_first_name%></td>
          <td>名<%=f.text_field :send_to_last_name%></td>
        </tr>

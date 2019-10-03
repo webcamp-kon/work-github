@@ -8,6 +8,7 @@
           <th>商品名</th>
           <th>価格（税込み</th>
           <th>数量</th>
+          <th></th>
         </tr>
         <% sum=0%>
         <% @cart_items.each do |cart_item| %>
@@ -16,7 +17,14 @@
             <%=attachment_image_tag cart_item.product,:jacket_image,class:"product_pic"%>
             <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
             </td>
-            <td><%= (cart_item.product.price*1.08).to_i %>円</td>
+            <td><% require "date"
+              d1 = Date.today;
+              d2 = Date.parse("2019/10/1");
+              if d1 < d2 %>
+              <span class="contents"><%=(cart_item.product.price*1.08).to_i %>円（税込み）</span>
+              <% else %>
+              <span class="contents"><%=(cart_item.product.price*1.1).to_i %>円（税込み）</span>
+              <% end %></td>
             <td>
               <% if cart_item.order_number > 1 %>
               <%= link_to "-", cart_items_minus_path(cart_item_id: cart_item
@@ -26,8 +34,16 @@
             <%= link_to "+", cart_items_plus_path(cart_item_id: cart_item
             .id), class: "btn btn-primary" %>
             </td>
+            <td><%= link_to "取り消し", cart_item_path(cart_item),method: :delete,class: "pp btn btn-danger" %></td>
           </tr>
-          <% sum+=(cart_item.product.price*1.08).to_i*cart_item.order_number %>
+          <% require "date"
+                d1 = Date.today;
+                d2 = Date.parse("2019/10/1");
+                if d1 < d2 %>
+                <% sum += (cart_item.product.price*1.08).to_i*cart_item.order_number %>
+                <% else %>
+                <% sum += (cart_item.product.price*1.1).to_i*cart_item.order_number %>
+                <% end %>
         <% end %>
       </table>
       <div class = "total">

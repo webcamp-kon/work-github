@@ -19,4 +19,7 @@ class User < ApplicationRecord
          include Discard::Model
          default_scope -> { kept }
          accepts_nested_attributes_for :deliveries, allow_destroy: true
+         def view_first_and_last
+    self.last_name + ' ' + self.first_name
+  end
 end
