@@ -54,7 +54,7 @@ PER = 5
 	end
 	def completed
 		cart_items = current_user.cart_items
-		 if params[:radiradi] == "新規作成"
+		if params[:radiradi] == "新規作成"
 			address = Delivery.new
 			address.user_id = current_user.id
 			address.address =params[:address]
@@ -70,14 +70,14 @@ PER = 5
 			order.sum = 0
 			cart_items.each do |cart_item|
 				require "date"
-              d1 = Date.today;
-              d2 = Date.parse("2019/10/1");
-              if d1 < d2
-				order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
+              	d1 = Date.today;
+              	d2 = Date.parse("2019/10/1");
+              	if d1 < d2
+					order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
 				else
 					order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
+				end
 			end
-		end
 			order.delivery_fee =500
 			order.send_to_first_name = params[:first_name]
 			order.send_to_last_name = params[:last_name]
@@ -115,10 +115,10 @@ PER = 5
             d1 = Date.today;
             d2 = Date.parse("2019/10/1");
             if d1 < d2
-			n_order_list.price = cart_item.product.price*1.08
-		else
-			n_order_list.price = cart_item.product.price*1.1
-		end
+				n_order_list.price = cart_item.product.price*1.08
+			else
+				n_order_list.price = cart_item.product.price*1.1
+			end
 			n_order_list.save!
 			n_order_list = ""
 			cart_item.destroy

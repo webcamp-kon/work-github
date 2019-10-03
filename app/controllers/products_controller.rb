@@ -23,9 +23,4 @@ class ProductsController < ApplicationController
       @cart_items = current_user.cart_items
     end
   end
-  
-  private
-  def product_params
-    # params.require(:product).permit(:jacket_image,)
-  end
 end

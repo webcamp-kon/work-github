@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-	before_action :authenticate_admin_manager!	
+	before_action :authenticate_admin_manager!
 	PER=5
 	def index
 		@genres = Genre.page(params[:page]).per(PER)
@@ -18,10 +18,10 @@ class Admin::GenresController < ApplicationController
 	def update
 		@genre = Genre.find(params[:id])
 		if @genre.update(genre_params)
-		  flash[:notice] ="You have updated genre successfully."
-		  redirect_to admin_genres_path
+			flash[:notice] ="You have updated genre successfully."
+		    redirect_to admin_genres_path
 		else
-		  render "edit"
+		    render "edit"
 		end
 	end
 	def destroy
