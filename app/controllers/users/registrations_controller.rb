@@ -8,6 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     super
   end
+  def edit
+    
+  end
 
   # POST /resource
   def create
@@ -22,6 +25,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     delivery.post_number=resource.post_number
     delivery.save
 
+  end
+  def update
+    super
+    resource.update(resource_params)
+    resource.save
+  end
+  private
+  def resource_params
+    params.require(:user).permit(:first_name,:first_name_kana,:last_name_kana,:last_name,:telephone_number,:post_number,:address, deliveries_attributes: [:id, :address, :post_number, :last_name,:first_name, :telephone_number, :_destroy])
   end
 
   # GET /resource/edit
