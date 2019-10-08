@@ -7,7 +7,7 @@
                 <%=link_to (edit_admin_product_path) do%><div class="to_button">編集</div><% end %>
                 <%=link_to (admin_products_path) do%><div class="to_button">一覧へ</div><% end %>
             </div>
-            <%=attachment_image_tag @product,:jacket_image,:fill,60,60,style:"width:40px;height:40px;"%>
+             <%=attachment_image_tag @product,:jacket_image,fallback:"/images/no_image.jpg",class: "jacketimage"%>
             <table class="main_contents_group">
                 <tr>
                     <td>アルバム名</td>
@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td>レーベル名</td>
-                    <td><%=@product.label.name%></td>
+                    <td><%=@product.label.name%></td>s
                 </tr>
                 <tr>
                     <td>ジャンル名</td>

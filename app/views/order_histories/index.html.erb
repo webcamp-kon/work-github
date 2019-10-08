@@ -29,7 +29,7 @@
                     </div>
                     <%order_history.order_lists.each do|order_list|%>
                         <div class ="order_list_contents">
-                            <span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,:fill,60,60,fallback:"no_image.jpg",class:"jacket"%></span>
+                            <span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class:"jacket"%></span>
                             <span class ="title"><%=order_list.product.name%></span>
                             <span class = "price"><%=(order_list.price*order_list.amount*1.08).to_i%>円</span>
                         </div>

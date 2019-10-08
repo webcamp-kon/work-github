@@ -17,20 +17,20 @@
 		<div class="container">
 			<div class="row">
 		     <div class="col-xs-8">
-			 <nav class="navbaar navbar-left admin-right">
-			 	<%= link_to image_tag("/images/2_Flat_logo_on_transparent_97x73.png", class: "imagetag"), admin_root_top_path %>
-				<%= link_to "管理者ページ", edit_admin_manager_path(current_admin_manager.id),class: "page" %>
-			 </nav>
-			</div>
-		     <div class="col-xs-4">
-			 <nav class="navbar navber-right admin-left">
-			 	<ul class="navbar navbar-left">
+			 	<nav class="navbaar navbar-left admin-right">
+			 	　<%= link_to image_tag("/images/2_Flat_logo_on_transparent_97x73.png", class: "imagetag"), admin_root_top_path %>
+				　<%= link_to "管理者ページ", edit_admin_manager_registration_path(@manager),class: "page" %>
+			 	</nav>
+			　</div>
+		      <div class="col-xs-4">
+			 	<nav class="navbar navber-right admin-left">
+			 	　<ul class="navbar navbar-left">
 					<li class="mane1"><%= current_admin_manager.last_name %></li>
 					<li class ="mane2"><%= link_to "ログアウト", destroy_admin_manager_session_path, method: :delete, class: "dele" %></li>
-				</ul>
-			</nav>
-	     </div>
-         </div>
+				　</ul>
+			　　　</nav>
+	          </div>
+            </div>
 		</div>
 	</header>
   </body>

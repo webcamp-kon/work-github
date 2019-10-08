@@ -1,15 +1,15 @@
 <%=render 'header/manager_head'%>
  <div class="container index_page">
-    	<div class="row">
-    		<div class="col-xs-12">
+    <div class="row">
+    	<div class="col-xs-12">
     			<% if flash[:notice] %>
             	 <div class="flash">
               		<%= flash[:notice] %>
              	 </div>
          	    <% end %>
                 <h1>購入履歴一覧</h1>
-                <table class ="ad">
-                	<tbody class = "aaaa">
+            <table class ="ad">
+                <tbody class = "aaaa">
                 <% @order_histories.each do |order_history|%>
                     <tr>
                         		<td class = "order-group-right">名前:<%=order_history.send_to_first_name%> <%=order_history.send_to_last_name%></td>
