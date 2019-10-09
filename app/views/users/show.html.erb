@@ -11,7 +11,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td> <%=attachment_image_tag product,:jacket_image,:fill,60,60,fallback:"/images/no_image.jpg",style:"width:40px;height:40px;"%></td>
+						<td> <%=attachment_image_tag product,:jacket_image,fallback:"/images/no_image.jpg",style:"width:80px;height:80px;"%></td>
 						<td><%= product.artist.name + "/" + product.name %></td>
 						<td>￥<%= product.price %></td>
 					</tr>
@@ -21,7 +21,7 @@
 			<% end %>
 			<div class="user_information">
 				<h1>ユーザー情報</h1>
-				<%= link_to "編集", edit_user_registration_path, class: "btn btn-primary" %><%= link_to "退会", users_leave_path, class: "btn btn-success" %>
+				<%= link_to "編集", edit_user_registration_path, class: "btn btn-primary" %><%= link_to "退会", user_path, method: :delete,"data-confirm"=>"本当に削除しますか？", class: "btn btn-success" %>
 				<table class="table table-bordered">
 					<tr>
 						<th>氏名（漢字）</th>
@@ -38,6 +38,14 @@
 					<tr>
 						<th>メールアドレス</th>
 						<td><%= @user.email %></td>
+					</tr>
+					<tr>
+						<th>郵便番号</th>
+						<td><%= @user.post_number %></td>
+					</tr>
+					<tr>
+						<th>住所</th>
+						<td><%= @user.address %></td>
 					</tr>
 				</table>
 			</div>

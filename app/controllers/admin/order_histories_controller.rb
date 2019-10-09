@@ -6,7 +6,6 @@ class Admin::OrderHistoriesController < ApplicationController
   def edit
     @order_history=OrderHistory.find(params[:id])
     @order_list = OrderList.find(params[:id])
-
   end
   def show
     @order_history=OrderHistory.find(params[:id])
