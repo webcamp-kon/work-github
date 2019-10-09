@@ -1,5 +1,5 @@
 class Admin::Managers::RegistrationsController < Devise::RegistrationsController
-  before_action :guard_signup!, only: [cancel new destroy create]
+  before_action :guard_signup!, only: [:cancel,:new,:destroy,:create]
  protected
 
   def update_resource(resource, params)
