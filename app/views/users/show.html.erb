@@ -21,7 +21,7 @@
 			<% end %>
 			<div class="user_information">
 				<h1>ユーザー情報</h1>
-				<%= link_to "編集", edit_user_registration_path, class: "btn btn-primary" %><%= link_to "退会", users_leave_path, class: "btn btn-success" %>
+				<%= link_to "編集", edit_user_registration_path, class: "btn btn-primary" %><%= link_to "退会", user_path, method: :delete,"data-confirm"=>"本当に削除しますか？", class: "btn btn-success" %>
 				<table class="table table-bordered">
 					<tr>
 						<th>氏名（漢字）</th>
