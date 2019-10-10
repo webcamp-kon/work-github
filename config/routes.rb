@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'products/:id/arrive', to: 'products#arrive',as: 'arrive_product'
   patch 'products/:id/arrive', to: 'products#arrived',as: 'arrived_product'
   end
-  resources :users,only:[:index,:show,:edit,:update]
+  resources :users,only:[:index,:show,:edit,:update, :destroy]
   get 'users/leave' => 'users#leave'
   get 'products/search' => 'products#search'
   get 'products/ranking' => 'products#ranking'
