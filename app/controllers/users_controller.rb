@@ -11,8 +11,7 @@ class UsersController < ApplicationController
 	end
 	def leave
 		user = User.find(params[:id])
-	    user.is_deleted = true
-	    user.save
+	    user.discard
 	    redirect_to root_path
 	end
 	private
