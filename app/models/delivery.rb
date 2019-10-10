@@ -8,4 +8,5 @@ class Delivery < ApplicationRecord
 	def view_address_and_id
         self.id.to_s + ' :  ' + self.address + ' '
     end
+
 end

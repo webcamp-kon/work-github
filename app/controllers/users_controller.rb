@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 	# end
 	def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    @user.discard
     redirect_to products_ranking_path
   end
 	private

@@ -68,3 +68,5 @@ gem 'kaminari','~> 1.1.1'
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'discard', '~> 1.0'
+
+gem 'pry-byebug'

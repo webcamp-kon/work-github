@@ -58,7 +58,10 @@ PER = 5
 			address = Delivery.new
 			address.user_id = current_user.id
 			address.address =params[:address]
+			address.first_name = params[:first_name]
+			address.last_name = params[:last_name]
 			address.post_number = params[:post_number]
+			address.telephone_number = params[:telephone_number]
 			address.save!
 			order = OrderHistory.new
 			order.user_id = current_user.id
@@ -93,7 +96,17 @@ PER = 5
 			order.step = 0
 			order.order_status = "準備中"
 			order.method_of_pay = params[:method_of_pay]
-			order.sum = params[:sum]
+			order.sum = 0
+			cart_items.each do |cart_item|
+				require "date"
+              	d1 = Date.today;
+              	d2 = Date.parse("2019/10/1");
+              	if d1 < d2
+					order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
+				else
+					order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
+				end
+			end
 			order.delivery_fee =500
 			order.address_id = params[:address_id]
 			order.send_to_address = Delivery.find(params[:address_id]).address
@@ -101,8 +114,6 @@ PER = 5
 			order.send_to_last_name = Delivery.find(params[:address_id]).last_name
 			order.send_to_post_number = Delivery.find(params[:address_id]).post_number
 			order.send_to_telephone_number = Delivery.find(params[:address_id]).telephone_number
-		else
-			order_id = OrderHistory.count+1
 			order.save!
 		end
 		cart_items.each do |cart_item|
@@ -120,7 +131,8 @@ PER = 5
 				n_order_list.price = cart_item.product.price*1.1
 			end
 			n_order_list.save!
-			n_order_list = ""
+			cart_item.product.decrement(:stock_quantity, cart_item.order_number)
+			cart_item.product.save!
 			cart_item.destroy
 		end
 	end
@@ -132,6 +144,6 @@ PER = 5
 		params.require(:order_list).permit(:order_history_id,:product_id,:amount,:price,:sum)
 	end
 	def product_params
-		params.require(:product).permit(:price)
+		params.require(:product).permit(:stock_quantity)
 	end
 end
