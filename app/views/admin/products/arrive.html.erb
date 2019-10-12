@@ -23,11 +23,11 @@
                         <td><%=f.text_field :addStock%></td>
                     </tr>
                 </table>
+                <%=f.submit%>
+                <% end %>
                 <div class="product_add_ending_group">
-                    <%=f.submit do%><div class="to_button">入荷処理</div><% end %>
                     <%=link_to (admin_product_path) do%><div class="to_button">取消</div><% end %>
                 </div>
-            <% end %>
     	</div>
     </div>
 </div>
