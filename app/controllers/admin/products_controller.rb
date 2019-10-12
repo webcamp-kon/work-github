@@ -15,8 +15,8 @@ class Admin::ProductsController < ApplicationController
     @disc.songs.build
   end
   def create
-    @product=Product.new(product_params)
-    @product.save
+    product=Product.new(product_params)
+    product.save
     redirect_to admin_products_path
   end
   def edit
@@ -41,6 +41,7 @@ class Admin::ProductsController < ApplicationController
     @product=Product.find(params[:id])
     @product.stock_quantity=@product.stock_quantity+params[:addStock].to_i
     @product.save
+    redirect_to admin_products_path
   end
   def show
     @product=Product.find(params[:id])

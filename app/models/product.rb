@@ -5,7 +5,7 @@ class Product < ApplicationRecord
     has_many :users
     has_many :reviews, dependent: :destroy
     has_many :favorites, dependent: :destroy
-    has_many :cart_item, dependent: :destroy
+    has_many :cart_items, dependent: :destroy
     has_many :order_lists
     has_many :arrivalmanagements
     has_many :discs,inverse_of: :product,dependent: :destroy
@@ -14,7 +14,6 @@ class Product < ApplicationRecord
     validates :name, {presence: true}
     validates :price, {presence: true}
     validates :stock_quantity, {presence: true}
-    validates :discs, {presence: true}
     def self.search(search)
       if search
         Product.where(['name LIKE ?', "#{search}"])
