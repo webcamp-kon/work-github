@@ -1,6 +1,7 @@
 class OrderHistoriesController < ApplicationController
 	PER = 5
 	def index
-		@order_histories = OrderHistory.page(params[:page]).per(10)
+		@user = current_user
+		@order_histories = @user.order_histories.page(params[:page]).per(10)
 	end
 end

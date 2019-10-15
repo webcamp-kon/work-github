@@ -2,7 +2,7 @@
 <%= render 'header/user_head', user: @user %>
 <div class="container serachBox">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-11 col-xs-offset-1">
             <% if flash[:notice] %>
             <div class="flash">
                 <%= flash[:notice] %>
@@ -18,9 +18,9 @@
             <p class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
             <%@products.each do |product| %>
             <% if product.is_selling == true %>
-            <div class="mainContentsGroup">
             <%= link_to product_path(product) do %>
-            <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
+            <div class="mainContentsGroup">
+            <%=attachment_image_tag product,:jacket_image, :fill, 400, 400, format: 'jpeg',class:"product-image"%>
             <br><span class="contents"><%= product.favorites.count %>いいね</span>
             <br><span class="contents"><%=product.name%></span>
             <br><span class="contents"><%=product.artist.name%></span>
@@ -32,9 +32,9 @@
             <% else %>
             <br><span class="contents"><%=(product.price.to_i * 1.1).to_i %>円（税込み）</span>
             <% end %>
+        </div>
             <% end %>
             <% end %>
-            </div>
             <% end %>
         </div>
     </div>
