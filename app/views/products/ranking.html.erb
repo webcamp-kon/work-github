@@ -1,7 +1,7 @@
 <%= render 'header/user_head', user: @user %>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 serachBox">
+        <div class="col-xs-11 col-xs-offset-1 serachBox">
             <p>商品を探す</p>
             <%= form_tag(products_search_path,:method => 'get') do %>
             <%= text_field_tag :search %>
@@ -11,16 +11,16 @@
             <% end %>
             <p div class="search_explain">※商品購入、いいね、レビューにはログインが必要です。</p>
         </div>
-        <div class="col-xs-12 ranking_title_group">
+        <div class="col-xs-11 col-xs-offset-1 ranking_title_group">
             <h1>ランキング</h1>
             <p>お客様の「いいね！」の数から集計したランキング。トレンドがわかります。</p>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-11 col-xs-offset-1">
             <%@products.each do |product| %>
             <% if product.is_selling == true %>
             <%= link_to product_path(product) do %>
             <div class="mainContentsGroup">
-                <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
+                <%=attachment_image_tag product,:jacket_image, :fill, 400, 400, format: 'jpeg',class:"product-image"%>
                 <br><span class="contents"><%= product.favorites.count %>いいね</span>
                 <br><span class="contents"><%=product.name%></span>
                 <br><span class="contents"><%=product.artist.name%></span>
