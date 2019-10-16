@@ -20,7 +20,7 @@
             <% if product.is_selling == true %>
             <%= link_to product_path(product) do %>
             <div class="mainContentsGroup">
-            <%=attachment_image_tag product,:jacket_image, :fill, 400, 400, format: 'jpeg',class:"product-image"%>
+            <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
             <br><span class="contents"><%= product.favorites.count %>いいね</span>
             <br><span class="contents"><%=product.name%></span>
             <br><span class="contents"><%=product.artist.name%></span>
