@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin_manager!
 	def index
-    @users = User.with_discarded.page(params[:page]).reverse_order
+    @users = User.page(params[:page]).reverse_order
   end
   def show
   	@user = User.find(params[:id])
