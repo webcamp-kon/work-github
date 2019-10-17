@@ -51,13 +51,11 @@
   padding: 8px 16px;
   border-radius: 4px;
   transition: .4s;
+  text-decoration: none;
 }
 
 .btn-border:hover {
   background-color: #ef9d38e3;
   border-color: #f6dc5a;
   color: #FFF;
-}
-a:btn-border {
-text-decoration: none;
 }
