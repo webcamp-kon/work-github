@@ -28,8 +28,11 @@
        <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "oo btn btn-info" %>
        </td>
        <td class="rr">
+        <% if User.exists?(user.id) %>
         <%= link_to "退会", admin_user_path(user.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "oo btn btn-danger" %>
-              </td>
+        <% else %>
+        <%= link_to "復元", admin_user_path(user.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "oo btn btn-danger" %>
+        <% end %>
        </td>
       </tr>
       <% end %>
