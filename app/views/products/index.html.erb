@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag    'products/product_index', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 <%= render 'header/user_head', user: @user %>
 <div class="container serachBox">
     <div class="row">
@@ -20,7 +20,7 @@
             <% if product.is_selling == true %>
             <%= link_to product_path(product) do %>
             <div class="mainContentsGroup">
-            <%=attachment_image_tag product,:jacket_image,class:"product-image"%>
+            <%=attachment_image_tag product,:jacket_image, :fill, 400, 400,class:"product-image"%>
             <br><span class="contents"><%= product.favorites.count %>いいね</span>
             <br><span class="contents"><%=product.name%></span>
             <br><span class="contents"><%=product.artist.name%></span>
