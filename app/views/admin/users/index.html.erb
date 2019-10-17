@@ -27,22 +27,19 @@
        </td>
        <td class="rr"><%=link_to "詳細", admin_user_path(user.id),class: "oo btn btn-info" %>
        </td>
-       <% if user.discarded_at.nil? %>
        <td class="rr">
+        <% if User.exists?(user.id) %>
         <%= link_to "退会", admin_user_path(user.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "oo btn btn-danger" %>
-              </td>
+        <% else %>
+        <%= link_to "復元", admin_user_path(user.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "oo btn btn-danger" %>
+        <% end %>
        </td>
-       <% else %>
-       <td>退会済み</td>
-        <%= link_to "退会", admin_user_path(user.id), method: :delete,"data-confirm"=>"本当に削除しますか？",class: "oo btn btn-danger" %>
-       <% end %>
       </tr>
       <% end %>
      <% end %>
         <%= paginate @users, class: "paginate" %>
       </tbody>
       </table>
-       
 　　　</div>
   </div>
 </div>

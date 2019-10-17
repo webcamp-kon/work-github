@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin_manager!
 	def index
-    @users = User.with_discarded.page(params[:page]).reverse_order
+    @users = User.with_discarded.page(params[:page])
   end
   def show
   	@user = User.with_discarded.find(params[:id])
@@ -9,14 +9,8 @@ class Admin::UsersController < ApplicationController
   def edit
   	@user = User.with_discarded.find(params[:id])
   end
-  def create
-      @users = User.new
-      @users.undiscard
-      flash[:notice] ="You have deleted user successfully."
-    redirect_to admin_users_path
-  end
   def update
-    @user = User.find(params[:id])
+    @user = User.with_discarded.find(params[:id])
     if @user.update(user_params)
       flash[:notice] ="You have updated user successfully."
       redirect_to admin_users_path
@@ -25,9 +19,19 @@ class Admin::UsersController < ApplicationController
     end
   end
   def destroy
-    @user = User.find(params[:id])
-    @user.discard
-    flash[:notice] ="You have deleted user successfully."
+    @user = User.with_discarded.find(params[:id])
+    @users = User.all
+    @status = 0
+    @users.each do |user|
+      if user.id == @user.id
+        @status = 1
+      end
+    end
+    if @status == 1
+      @user.discard
+    else
+      @user.undiscard
+    end
     redirect_to admin_users_path
   end
   private
