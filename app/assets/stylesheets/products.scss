@@ -39,3 +39,25 @@
     margin-right:5%;
     margin-bottom:50px;
 }
+.btn-border {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #ef9d38e3;
+  font-size: 16px;
+  color: #ef9d38e3;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+.btn-border:hover {
+  background-color: #ef9d38e3;
+  border-color: #f6dc5a;
+  color: #FFF;
+}
+a:btn-border {
+text-decoration: none;
+}
