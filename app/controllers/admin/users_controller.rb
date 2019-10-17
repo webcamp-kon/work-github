@@ -1,13 +1,19 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin_manager!
 	def index
-    @users = User.page(params[:page]).reverse_order
+    @users = User.with_discarded.page(params[:page]).reverse_order
   end
   def show
-  	@user = User.find(params[:id])
+  	@user = User.with_discarded.find(params[:id])
   end
   def edit
-  	@user = User.find(params[:id])
+  	@user = User.with_discarded.find(params[:id])
+  end
+  def create
+      @users = User.new
+      @users.undiscard
+      flash[:notice] ="You have deleted user successfully."
+    redirect_to admin_users_path
   end
   def update
     @user = User.find(params[:id])
@@ -21,6 +27,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.discard
+    flash[:notice] ="You have deleted user successfully."
     redirect_to admin_users_path
   end
   private
