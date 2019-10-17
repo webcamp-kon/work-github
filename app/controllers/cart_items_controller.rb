@@ -1,7 +1,8 @@
 class CartItemsController < ApplicationController
+	before_action :authenticate_user!
 PER = 5
 	def index
-		@cart_items = current_user.cart_items.page(params[:page]).per(PER)
+		@cart_items = current_user.cart_items.page(params[:page]).per(10)
 		@sum = 0
 		@cart_items.each do |cart_item_single|
 			@sum+=1
