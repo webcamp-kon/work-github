@@ -14,7 +14,6 @@ class Product < ApplicationRecord
     validates :name, {presence: true}
     validates :price, {presence: true}
     validates :stock_quantity, {presence: true}
-    validates :jacket_image, {presence: true}
     def self.search(search)
       if search
         Product.where(['name LIKE ?', "#{search}"])

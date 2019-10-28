@@ -19,7 +19,7 @@
                             </p>
                         </div>
                         <div class = "second_group">
-                            <p>名前:<%=order_history.send_to_last_name%> <%=order_history.send_to_first_name%></p>
+                            <p>名前:<%=order_history.send_to_first_name%> <%=order_history.send_to_last_name%></p>
                             <p>郵便番号:<%=order_history.send_to_post_number%></p>
                         </div>
                         <div class = "third_group">
@@ -29,10 +29,9 @@
                     </div>
                     <%order_history.order_lists.each do|order_list|%>
                         <div class ="order_list_contents">
-                            <span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class:"jacket"%></span>
+<span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class:"jacket"%></span>
                             <span class ="title"><%=order_list.product.name%></span>
-                            <span class = "price"><%=order_list.price%>円</span>
-                            <span class="title"><%=order_list.amount %>枚</span>
+                            <span class = "price"><%=(order_list.price*order_list.amount*1.08).to_i%>円</span>
                         </div>
                     <% end %>
                 </div>

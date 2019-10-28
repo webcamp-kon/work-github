@@ -31,8 +31,8 @@
        </tr>
        <tr>
          <td>送付先氏名</td>
-         <td>姓<%=f.text_field :send_to_last_name%></td>
-         <td>名<%=f.text_field :send_to_first_name%></td>
+         <td>姓<%=f.text_field :send_to_first_name%></td>
+         <td>名<%=f.text_field :send_to_last_name%></td>
        </tr>
        <tr>
          <td>送付先郵便番号</td>
@@ -70,7 +70,7 @@
        </table>
        <div class="A">
       	 <%= f.submit '送信する' ,class: "button" %>
-         <%= link_to 'キャンセル',admin_product_path,class: "back btn btn-success" %>
+         <%= link_to 'キャンセル',admin_order_histories_path,class: "back btn btn-success" %>
        </div>
      <% end %>
    </div>

@@ -5,8 +5,11 @@
 }
 .mainContentsGroup{
     float: left;
+    width:30%;
     margin-right:5%;
 }
 .mainContentsGroup:last-child{
     margin-right:0%;
+}
+.contents{
 }

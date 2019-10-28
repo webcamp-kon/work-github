@@ -6,9 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #coding: utf-8
-manager=Manager.new(:first_name => '山', :last_name => '郎', :email => 'oo@oo', :password => 'aaaaaa')
-manager.save!
 
+Manager.create(first_name:'テスト', last_name:'太郎', email:'admin@root.jp', password:'aaaaaa')
 Artist.create(:name=>'星野源')
 Label.create(:name=>'SpeedStarRecords')
 Genre.create(:name=>'ロック')

@@ -9,7 +9,7 @@
 			<table class="table table-bordered">
 				<tr>
 					<th class = "th">購入者</th>
-					<td class = "td"><%= @order_history.user.last_name + @order_history.user.first_name %></td>
+					 <td class = "td"><%= User.find(@order_history.user_id).last_name %> <%= User.find(@order_history.user_id).first_name %></td>
 				</tr>
 				<tr>
 					<th class = "th">購入日</th>
@@ -29,19 +29,24 @@
 				</tr>
 				<tr>
 					<th class = "th">商品</th>
-					<td class = "td">
-                           <%=attachment_image_tag @products,:jacket_image,fallback:"/images/no_image.jpg",class: "jacketimage"%>
-                           アルバム名
-                           <%=@order_lists.product.name%>
-                           枚数
-                           <%=@order_lists.amount%>
-                           小計
-                           <%=(@order_lists.price*1.08).to_i%>円
-                  	</td>
+						<%sum=0%>
+						<%@order_history.order_lists.each do|order_list|%>
+							<td class = "td">
+								<%=attachment_image_tag order_list.product,:jacket_image,fallback:"/images/no_image.jpg",class: "jacketimage"%>
+								アルバム名
+								<%=order_list.product.name%>								
+								枚数
+								<%=order_list.amount%>
+								小計
+								<%=(order_list.amount*order_list.price).to_i%>円
+							</td>
+						<%sum+=order_list.amount*order_list.price%>
+						<% end %>
+					</th>
 				</tr>
 				<tr>
 					<th class = "th">合計金額</th>
-					<td class = "td"><%=(@order_lists.price*@order_lists.amount*1.08).to_i%>円</td>
+					<td class = "td"><%=sum%>円</td>
 				</tr>
 				<tr>
 					<th class = "th">送料</th>
@@ -49,7 +54,15 @@
 				</tr>
 				<tr>
 					<th class = "th">支払い方法</th>
-					<td class = "td"><%= @order_history.method_of_pay %></td>
+					<td class = "td">
+						<%case @order_history.method_of_pay when 0 %>
+								銀行振り込み
+							<%when 1 %>
+								クレジットカード
+							<%when 2 %>
+								現金引き換え
+						<% end %>
+					</td>
 				</tr>
 				<tr>
 					<th class = "th">ステータス</th>

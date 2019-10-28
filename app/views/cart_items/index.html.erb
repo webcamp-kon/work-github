@@ -3,18 +3,23 @@
   <div class="row">
     <div class="col-xs-12">
       <h1>ショッピングカート一覧</h1>
-      <table>
+        <% sum=0%>
+	<%if @cart_items.count==0%>
+		<h1>商品が登録されていません！</h1>
+         	 <p>あなたの人生を変える音楽は以下のページからアクセスできます</p>
+          	<%=link_to "商品一覧ページへ",products_path%>
+        <%else%>
+	<table>
         <tr class = "title">
           <th>商品名</th>
           <th>価格(税込み)</th>
           <th>数量</th>
           <th></th>
         </tr>
-        <% sum=0%>
         <% @cart_items.each do |cart_item| %>
           <tr class = "cart_item_content">
             <td>
-            <%=attachment_image_tag cart_item.product,:jacket_image, :fill, 400, 400,class:"product_pic",style:"width:70px;height:70px;margin-top:20px;margin-bottom:20px;"%>
+             <%=attachment_image_tag cart_item.product,:jacket_image,class:"product_pic",style:"width:70px;height:70px;margin-top:20px;margin-bottom:20px;"%>
             <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
             </td>
             <td><% require "date"
@@ -51,6 +56,7 @@
       </div>
       <span class ="btn btn-info purchase"><%= link_to "購入手続きへ",cart_items_confirm_path %></span>
       <%= paginate @cart_items, class: "paginate" %>
+	<%end%>
     </div>
   </div>
 </div>

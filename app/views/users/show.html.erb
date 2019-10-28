@@ -13,7 +13,16 @@
 					<tr>
 						<td> <%=attachment_image_tag product,:jacket_image,fallback:"/images/no_image.jpg",style:"width:80px;height:80px;"%></td>
 						<td><%= product.artist.name + "/" + product.name %></td>
-						<td>￥<%= product.price %></td>
+						<td>/ 
+							 <% require "date"
+						            d1 = Date.today;
+						            d2 = Date.parse("2019/10/1");
+						            if d1 < d2 %>
+							            <%=(product.price.to_i * 1.08).to_i %>円
+						            <% else %>
+							            <%=(product.price.to_i * 1.1).to_i %>円
+						            <% end %>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -21,7 +30,7 @@
 			<% end %>
 			<div class="user_information">
 				<h1>ユーザー情報</h1>
-				<%= link_to "編集", edit_user_registration_path, class: "btn btn-primary" %><%= link_to "退会", user_path(@user.id), method: :delete,"data-confirm"=>"本当に削除しますか？", class: "btn btn-success" %>
+				<%= link_to "編集", edit_user_registration_path, class: "btn btn-primary" %><%= link_to "退会", user_path, method: :delete,"data-confirm"=>"本当に削除しますか？", class: "btn btn-success" %>
 				<table class="table table-bordered">
 					<tr>
 						<th>氏名（漢字）</th>
@@ -55,7 +64,7 @@
 					<table class="table table-bordered">
 						<tr>
 								<th>配送先氏名</th>
-								<td><%=delivery.last_name%> <%=delivery.first_name%>
+								<td><%=delivery.first_name%> <%=delivery.last_name%>
 						</tr>
 						<tr>
 								<th>住所</th>

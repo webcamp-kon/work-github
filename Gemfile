@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -65,7 +66,11 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'kaminari','~> 1.1.1'
 gem 'jquery-rails'
+gem 'jQuery-Validation-Engine-rails'
 gem 'cocoon'
 gem 'discard', '~> 1.0'
 
 gem 'pry-byebug'
+# gem 'json'
+# gem 'mysql2'
+# gem 'listen', '>= 3.0.5', '< 3.2'

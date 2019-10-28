@@ -16,11 +16,8 @@ class Admin::ProductsController < ApplicationController
   end
   def create
     product=Product.new(product_params)
-    if product.save
-      redirect_to admin_products_path
-    else
-      redirect_to new_admin_product_path
-    end
+    product.save
+    redirect_to admin_products_path
   end
   def edit
     @product=Product.find(params[:id])
@@ -57,6 +54,6 @@ class Admin::ProductsController < ApplicationController
   end
   private
   def product_params
-    params.require(:product).permit(:jacket_image,:name,:artist_id,:label_id,:genre_id,:jacket_image,:released_date,:stock_quantity,:price,:is_selling,discs_attributes:[:product_id,:ordinal_number,:_destroy,songs_attributes:[:disc_id,:title,:ordinal_number,:_destroy]])
+    params.require(:product).permit(:jacket_image,:name,:artist_id,:label_id,:genre_id,:jacket_image,:released_date,:stock_quantity,:price,:is_selling,:_destroy,discs_attributes:[:id,:product_id,:ordinal_number,:_destroy,songs_attributes:[:id,:disc_id,:title,:ordinal_number,:_destroy]])
   end
 end

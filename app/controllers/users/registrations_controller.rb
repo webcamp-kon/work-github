@@ -9,10 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
   def edit
-    super
-    if resource != current_user
-      redirect_to root_path
-    end
+    
   end
 
   # POST /resource

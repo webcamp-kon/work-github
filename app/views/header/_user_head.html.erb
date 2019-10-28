@@ -2,7 +2,6 @@
   <head>
     <%= csrf_meta_tags %>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vibrato</title>
@@ -28,14 +27,16 @@
 					<% if user_signed_in? %>
 					<li class = "left"><%= link_to current_user.last_name, user_path(current_user.id), class: "bts aaa" %></li>
 					<li class = "left"> <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bts aaa" %></li>
+					<li class = "left icon"><%= link_to cart_items_path do %>
+                                                <i class="fas fa-cart-arrow-down bts dd"></i>
+                                        <% end %></li>
 					<% else %>
 					<li class = "left"><%= link_to "新規登録", new_user_registration_path, class: "bts aaa" %></li>
 					<li class = "left"><%= link_to "ログイン", new_user_session_path, class: "bts aaa" %></li>
+					<li class = "left icon"><%= link_to new_user_session_path do %>
+                                                <i class="fas fa-cart-arrow-down bts dd"></i>
+                                        <% end %></li>
 					<% end %>
-					<li class = "left icon"><%= link_to cart_items_path do %>
-						<i class="fas fa-cart-arrow-down bts dd"></i>
-						<% end %>
-					</li>
 				</ul>
 			</nav>
 		</div>

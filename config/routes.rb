@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       passwords:     'admin/managers/passwords',
       registrations: 'admin/managers/registrations'
     }
-    resources :users,only:[:index,:show,:edit,:update, :destroy,:create]
+    resources :users,only:[:index,:show,:edit,:update, :destroy]
   end
   namespace :admin do
   get 'root/top', to: 'root#top'
