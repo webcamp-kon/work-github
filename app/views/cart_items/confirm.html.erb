@@ -13,7 +13,7 @@
         <% @cart_items.each do |cart_item| %>
         <tr class = "cart_item_content">
           <td>
-            <%=attachment_image_tag cart_item.product,:jacket_image, :fill, 400, 400,class:"product_pic",style:"width:70px;height:70px;margin-top:20px;margin-bottom:20px;"%>
+		<%=attachment_image_tag cart_item.product,:jacket_image, :fill, 100, 100,class:"product_pic"%>
             <%= cart_item.product.artist.name%> / <%= cart_item.product.name%>
           </td>
           <td><% require "date"

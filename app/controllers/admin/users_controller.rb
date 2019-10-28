@@ -39,3 +39,4 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :email, :address, :post_number, :telephone_number, :is_deleted, :address_id)
   end
 end
+

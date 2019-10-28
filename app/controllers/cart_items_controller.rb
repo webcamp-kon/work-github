@@ -1,8 +1,7 @@
 class CartItemsController < ApplicationController
-	before_action :authenticate_user!
 PER = 5
 	def index
-		@cart_items = current_user.cart_items.page(params[:page]).per(10)
+		@cart_items = current_user.cart_items.page(params[:page]).per(PER)
 		@sum = 0
 		@cart_items.each do |cart_item_single|
 			@sum+=1
@@ -53,7 +52,7 @@ PER = 5
 		@cart_items = current_user.cart_items
 		@delivery_fee = 500
 	end
-	def completed
+def completed
 		cart_items = current_user.cart_items
 		if params[:radiradi] == "新規作成"
 			address = Delivery.new
@@ -115,6 +114,7 @@ PER = 5
 			order.send_to_last_name = Delivery.find(params[:address_id]).last_name
 			order.send_to_post_number = Delivery.find(params[:address_id]).post_number
 			order.send_to_telephone_number = Delivery.find(params[:address_id]).telephone_number
+			order_id = OrderHistory.count+1
 			order.save!
 		end
 		cart_items.each do |cart_item|
