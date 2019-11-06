@@ -7,6 +7,11 @@ PER = 5
 			@sum+=1
 		end
 		@user = current_user
+		@ZAN = 0
+		@cart_items2 = CartItem.where(product_id: params[:id])
+		@cart_items2.each do |cart_item|
+			@ZAN += cart_item.order_number
+		end
 		# @sum = CartItem.adding(current_user.id)
 		# @sum =CartItem.where(user_id: current_user.id).products.sum(:price)
 	end
@@ -54,7 +59,7 @@ PER = 5
 	end
 def completed
 		cart_items = current_user.cart_items
-		if params[:radiradi] == "新規作成"
+		case params[:radiradi] when "新規作成" then
 			address = Delivery.new
 			address.user_id = current_user.id
 			address.address =params[:address]
@@ -73,9 +78,9 @@ def completed
 			order.sum = 0
 			cart_items.each do |cart_item|
 				require "date"
-              	d1 = Date.today;
-              	d2 = Date.parse("2019/10/1");
-              	if d1 < d2
+				d1 = Date.today;
+				d2 = Date.parse("2019/10/1");
+				if d1 < d2
 					order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
 				else
 					order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
@@ -89,7 +94,26 @@ def completed
 			order.send_to_address = params[:address]
 			order_id = OrderHistory.count+1
 			order.save!
-		elsif params[:radiradi] == "住所の選択"
+			cart_items.each do |cart_item|
+				n_order_list = nil
+				n_order_list = OrderList.new
+				n_order_list.order_history_id =order_id
+				n_order_list.product_id = cart_item.product_id
+				n_order_list.amount = cart_item.order_number
+				require "date"
+				d1 = Date.today;
+				d2 = Date.parse("2019/10/1");
+				if d1 < d2
+					n_order_list.price = cart_item.product.price*1.08
+				else
+					n_order_list.price = cart_item.product.price*1.1
+				end
+				n_order_list.save!
+				cart_item.product.decrement(:stock_quantity, cart_item.order_number)
+				cart_item.product.save!
+				cart_item.destroy
+			end
+		when "住所の選択" then
 			order = OrderHistory.new
 			order.user_id = current_user.id
 			order.buy_date = DateTime.now
@@ -99,9 +123,9 @@ def completed
 			order.sum = 0
 			cart_items.each do |cart_item|
 				require "date"
-              	d1 = Date.today;
-              	d2 = Date.parse("2019/10/1");
-              	if d1 < d2
+				d1 = Date.today;
+				d2 = Date.parse("2019/10/1");
+				if d1 < d2
 					order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
 				else
 					order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
@@ -116,25 +140,31 @@ def completed
 			order.send_to_telephone_number = Delivery.find(params[:address_id]).telephone_number
 			order_id = OrderHistory.count+1
 			order.save!
-		end
-		cart_items.each do |cart_item|
-			n_order_list = nil
-			n_order_list = OrderList.new
-			n_order_list.order_history_id =order_id
-			n_order_list.product_id = cart_item.product_id
-			n_order_list.amount = cart_item.order_number
-			require "date"
-            d1 = Date.today;
-            d2 = Date.parse("2019/10/1");
-            if d1 < d2
-				n_order_list.price = cart_item.product.price*1.08
-			else
-				n_order_list.price = cart_item.product.price*1.1
+			cart_items.each do |cart_item|
+				n_order_list = nil
+				n_order_list = OrderList.new
+				n_order_list.order_history_id =order_id
+				n_order_list.product_id = cart_item.product_id
+				n_order_list.amount = cart_item.order_number
+				require "date"
+				d1 = Date.today;
+				d2 = Date.parse("2019/10/1");
+				if d1 < d2
+					n_order_list.price = cart_item.product.price*1.08
+				else
+					n_order_list.price = cart_item.product.price*1.1
+				end
+				n_order_list.save!
+				cart_item.product.decrement(:stock_quantity, cart_item.order_number)
+				cart_item.product.save!
+				cart_item.destroy
 			end
-			n_order_list.save!
-			cart_item.product.decrement(:stock_quantity, cart_item.order_number)
-			cart_item.product.save!
-			cart_item.destroy
+		else
+		#ここにエラー文の送信と、購入確認画面のリターンを行う
+			@cart_item =current_user.cart_items
+			@delivery_fee = 500
+			@address = current_user.deliveries
+			redirect_to  new_cart_item_path,notice:"住所選べよｵﾗｧ"
 		end
 	end
 	private
