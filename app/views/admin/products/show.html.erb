@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td>レーベル名</td>
-                    <td><%=@product.label.name%></td>s
+                    <td><%=@product.label.name%></td>
                 </tr>
                 <tr>
                     <td>ジャンル名</td>
@@ -52,7 +52,11 @@
                 </tr>
                 <tr>
                     <td>ステータス</td>
-                    <td><%=@product.is_selling%></td>
+                    <%if @product.is_selling%>
+                        <td>販売中</td>
+                    <%else%>
+                        <td>販売中止</td>
+                    <%end%>
                 </tr>
             </table>
             <div class="contetns_end_group">

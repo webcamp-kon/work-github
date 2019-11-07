@@ -67,51 +67,66 @@ def completed
 			address.last_name = params[:last_name]
 			address.post_number = params[:post_number]
 			address.telephone_number = params[:telephone_number]
-			address.save!
-			order = OrderHistory.new
-			order.user_id = current_user.id
-			order.address_id = address.id
-			order.buy_date = DateTime.now
-			order.step = 0
-			order.order_status = "準備中"
-			order.method_of_pay = params[:method_of_pay]
-			order.sum = 0
-			cart_items.each do |cart_item|
-				require "date"
-				d1 = Date.today;
-				d2 = Date.parse("2019/10/1");
-				if d1 < d2
-					order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
-				else
-					order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
+			if address.save
+				order = OrderHistory.new
+				order.user_id = current_user.id
+				order.address_id = address.id
+				order.buy_date = DateTime.now
+				order.step = 0
+				order.order_status = "準備中"
+				order.method_of_pay = params[:method_of_pay]
+				order.sum = 0
+				cart_items.each do |cart_item|
+					require "date"
+					d1 = Date.today;
+					d2 = Date.parse("2019/10/1");
+					if d1 < d2
+						order.sum = cart_item.product.price*cart_item.order_number*1.08+order.sum
+					else
+						order.sum = cart_item.product.price*cart_item.order_number*1.1+order.sum
+					end
 				end
-			end
-			order.delivery_fee =500
-			order.send_to_first_name = params[:first_name]
-			order.send_to_last_name = params[:last_name]
-			order.send_to_post_number = params[:post_number]
-			order.send_to_telephone_number = params[:telephone_number]
-			order.send_to_address = params[:address]
-			order_id = OrderHistory.count+1
-			order.save!
-			cart_items.each do |cart_item|
-				n_order_list = nil
-				n_order_list = OrderList.new
-				n_order_list.order_history_id =order_id
-				n_order_list.product_id = cart_item.product_id
-				n_order_list.amount = cart_item.order_number
-				require "date"
-				d1 = Date.today;
-				d2 = Date.parse("2019/10/1");
-				if d1 < d2
-					n_order_list.price = cart_item.product.price*1.08
+				order.delivery_fee =500
+				order.send_to_first_name = params[:first_name]
+				order.send_to_last_name = params[:last_name]
+				order.send_to_post_number = params[:post_number]
+				order.send_to_telephone_number = params[:telephone_number]
+				order.send_to_address = params[:address]
+				order_id = OrderHistory.count+1
+				if order.save #支払い方法が入力されているか
+					cart_items.each do |cart_item|
+						n_order_list = nil
+						n_order_list = OrderList.new
+						n_order_list.order_history_id =order_id
+						n_order_list.product_id = cart_item.product_id
+						n_order_list.amount = cart_item.order_number
+						require "date"
+						d1 = Date.today;
+						d2 = Date.parse("2019/10/1");
+						if d1 < d2
+							n_order_list.price = cart_item.product.price*1.08
+						else
+							n_order_list.price = cart_item.product.price*1.1
+						end
+						n_order_list.save!
+						cart_item.product.decrement(:stock_quantity, cart_item.order_number)
+						cart_item.product.save!
+						cart_item.destroy
+					end	
 				else
-					n_order_list.price = cart_item.product.price*1.1
+					@cart_item =current_user.cart_items
+					@delivery_fee = 500
+					@address = current_user.deliveries
+					flash[:notice] = "支払い方法を入力してください"
+					render 'new'#支払い方法の情報が入力されていない旨を表示
 				end
-				n_order_list.save!
-				cart_item.product.decrement(:stock_quantity, cart_item.order_number)
-				cart_item.product.save!
-				cart_item.destroy
+				
+			else
+				@cart_item =current_user.cart_items
+				@delivery_fee = 500
+				@address = current_user.deliveries
+				flash[:notice] = "住所を入力してください"
+				render 'new'#住所の情報が入力されていない旨を表示
 			end
 		when "住所の選択" then
 			order = OrderHistory.new
@@ -139,32 +154,41 @@ def completed
 			order.send_to_post_number = Delivery.find(params[:address_id]).post_number
 			order.send_to_telephone_number = Delivery.find(params[:address_id]).telephone_number
 			order_id = OrderHistory.count+1
-			order.save!
-			cart_items.each do |cart_item|
-				n_order_list = nil
-				n_order_list = OrderList.new
-				n_order_list.order_history_id =order_id
-				n_order_list.product_id = cart_item.product_id
-				n_order_list.amount = cart_item.order_number
-				require "date"
-				d1 = Date.today;
-				d2 = Date.parse("2019/10/1");
-				if d1 < d2
-					n_order_list.price = cart_item.product.price*1.08
-				else
-					n_order_list.price = cart_item.product.price*1.1
+			if order.save #支払い方法は入力されているか
+				cart_items.each do |cart_item|
+					n_order_list = nil
+					n_order_list = OrderList.new
+					n_order_list.order_history_id =order_id
+					n_order_list.product_id = cart_item.product_id
+					n_order_list.amount = cart_item.order_number
+					require "date"
+					d1 = Date.today;
+					d2 = Date.parse("2019/10/1");
+					if d1 < d2
+						n_order_list.price = cart_item.product.price*1.08
+					else
+						n_order_list.price = cart_item.product.price*1.1
+					end
+					n_order_list.save!
+					cart_item.product.decrement(:stock_quantity, cart_item.order_number)
+					cart_item.product.save!
+					cart_item.destroy
 				end
-				n_order_list.save!
-				cart_item.product.decrement(:stock_quantity, cart_item.order_number)
-				cart_item.product.save!
-				cart_item.destroy
+			else
+				@cart_item =current_user.cart_items
+				@delivery_fee = 500
+				@address = current_user.deliveries
+				flash[:notice] = "支払い方法を入力してください"
+				render 'new'#支払い方法の情報が入力されていない旨を表示
 			end
+			
 		else
 		#ここにエラー文の送信と、購入確認画面のリターンを行う
 			@cart_item =current_user.cart_items
 			@delivery_fee = 500
 			@address = current_user.deliveries
-			redirect_to  new_cart_item_path,notice:"住所選べよｵﾗｧ"
+			flash[:notice] = "住所の選択を行ってください"
+			render 'new'
 		end
 	end
 	private
