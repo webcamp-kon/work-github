@@ -3,4 +3,5 @@ class Review < ApplicationRecord
 	belongs_to :product
 	validates :title, {presence: true}
     validates :main_sentence, {presence: true}
+    include Discard::Model
 end

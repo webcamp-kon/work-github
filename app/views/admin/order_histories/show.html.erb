@@ -9,7 +9,7 @@
 			<table class="table table-bordered">
 				<tr>
 					<th class = "th">購入者</th>
-					 <td class = "td"><%= User.find(@order_history.user_id).last_name %> <%= User.find(@order_history.user_id).first_name %></td>
+					 <td class = "td"><%= User.with_discarded.find(@order_history.user_id).last_name %> <%= User.with_discarded.find(@order_history.user_id).first_name %></td>
 				</tr>
 				<tr>
 					<th class = "th">購入日</th>

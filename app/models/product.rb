@@ -2,7 +2,6 @@ class Product < ApplicationRecord
     belongs_to :label
     belongs_to :artist,optional: true
     belongs_to :genre
-    has_many :users
     has_many :reviews, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :cart_items, dependent: :destroy
@@ -14,6 +13,8 @@ class Product < ApplicationRecord
     validates :name, {presence: true}
     validates :price, {presence: true}
     validates :stock_quantity, {presence: true}
+    include Discard::Model
+    default_scope -> { kept }
     def self.search(search)
       if search
         Product.where(['name LIKE ?', "#{search}"])

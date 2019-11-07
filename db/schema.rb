@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_08_205357) do
+ActiveRecord::Schema.define(version: 2019_11_07_064629) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "address"
+    t.integer "post_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admin_managers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -140,6 +148,8 @@ ActiveRecord::Schema.define(version: 2019_09_08_205357) do
     t.integer "genre_id"
     t.string "name"
     t.string "jacket_image_id"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_products_on_discarded_at"
   end
 
   create_table "reviews", force: :cascade do |t|
