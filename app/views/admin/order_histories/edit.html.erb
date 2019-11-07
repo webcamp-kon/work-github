@@ -31,8 +31,8 @@
        </tr>
        <tr>
          <td>送付先氏名</td>
-         <td>姓<%=f.text_field :send_to_first_name%></td>
-         <td>名<%=f.text_field :send_to_last_name%></td>
+         <td>姓<%=f.text_field :send_to_last_name%></td>
+         <td>名<%=f.text_field :send_to_first_name%></td>
        </tr>
        <tr>
          <td>送付先郵便番号</td>
@@ -60,7 +60,7 @@
        </tr>
        <tr>
          <td>支払い方法</td>
-         <td> <%= f.text_field :method_of_pay %></td>
+         <td> <%= f.select :method_of_pay,[["銀行振込",0],["クレジットカード",1],["代金引換",2]] %></td>
        </tr>
        <tr>
          <td>ステータス</td>
