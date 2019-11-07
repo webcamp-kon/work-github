@@ -13,4 +13,5 @@ class OrderHistory < ApplicationRecord
 	validates :send_to_address, presence: true
 	validates :send_to_post_number, presence: true
 	accepts_nested_attributes_for :order_lists
+	include Discard::Model
 end
