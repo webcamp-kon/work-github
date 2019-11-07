@@ -5,6 +5,9 @@
             <div class="col-xs-12">
                 <div class = "address_mode_select">
                     <h2>配送設定</h2>
+                    <% if flash[:notice] %>
+                        <%= flash[:notice] %><br>
+                    <% end %>
                     <%= f.radio_button :method_of_mode, "新規作成",name: "radiradi" %>新規作成
                     <%= f.radio_button :method_of_mode, "住所の選択",name: "radiradi" %>住所の選択
                 </div>
