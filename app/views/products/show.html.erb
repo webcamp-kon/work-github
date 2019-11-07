@@ -36,18 +36,18 @@
         <br><%=@product.label.name %><br>
         <%=@product.genre.name %><br>
         <!--在庫確認-->
-            <%@ZAN=0%>
-            <%cart_items2 = CartItem.where(product_id: @product.id)%>
-            <%cart_items2.each do |cut|%>
-              <%@ZAN += cut.order_number%>
-            <%end%>
             <!--おしまい-->
-        <% if @product.stock_quantity>0+@ZAN%>
+        <% if @product.stock_quantity>0%>
             <% if user_signed_in? %>
                 <% judge=0 %>
                 <% @cart_items.each do |cart_item| %>
                     <% if cart_item.product_id == @product.id %>
+                    <% if cart_item.order_number < @product.stock_quantity %>
+
                         <%= link_to 'カートに入れる', cart_items_adding_path(cart_item_id: cart_item.id),class: "btn-border" %>
+                        <% else %>
+                        <%= link_to 'カートに入れる',cart_items_path(limit: 1),class: "btn-border" %>
+                        <% end %>
                         <% judge=1 %>
                         <% break %>
                     <% end %>

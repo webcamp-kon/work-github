@@ -34,7 +34,9 @@
                            <%= order_list.amount %>枚
 <span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class:"jacket"%></span>
                             <span class ="title"><%=order_list.product.name%></span>
+
                             <span class = "price">総計<%=(order_list.price*order_list.amount)%>円</span>
+
                         </div>
                     <% end %>
                 </div>
