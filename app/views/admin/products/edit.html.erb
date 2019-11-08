@@ -49,6 +49,21 @@
                         <td><%= f.select :is_selling,[["販売中",true],["販売停止中",false]] %></td>
                     </tr>
                     <tr>
+                        <td>発売日</td>
+                        <td>
+                            <%= raw sprintf(f.datetime_select(:released_date, {
+                            default:        DateTime.now,# デフォルトの年
+                            use_two_digit_numbers: true,
+                            date_separator: '%s',
+                            datetime_separator: '%s',
+                            time_separator: '%s'
+                            },
+                            { class: 'date-select' }
+                            ),
+                            '年 ', '月 ', '日 ', '時 ') + '分' %>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>曲名</td>
                         <td>
                             <div class="productGroup">

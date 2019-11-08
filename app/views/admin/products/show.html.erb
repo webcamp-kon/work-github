@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <td>発売日</td>
-                    <td><%=@product.released_date%></td>
+                    <td><%=@product.released_date.strftime("%Y年%m月%d日") %></td>
                 </tr>
                 <tr>
                     <td>価格</td>
