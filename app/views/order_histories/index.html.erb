@@ -21,12 +21,12 @@
                         <div class = "second_group">
                             <p>名前:<%=order_history.send_to_first_name%> <%=order_history.send_to_last_name%></p>
                             <p>郵便番号:<%=order_history.send_to_post_number%></p>
-                        </div>
-                        <div class = "third_group">
                             <p>住所:<%=order_history.send_to_address%></p>
                             <p>電話番号:<%=order_history.send_to_telephone_number%></p>
-                             <%= order_history.order_status %>
-                             <%= order_history.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                        </div>
+                        <div class = "third_group">
+                             <p>購入日  <%= order_history.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+                             <p>配送状態  <%= order_history.order_status %></p>
                         </div>
                     </div>
                     <%order_history.order_lists.each do|order_list|%>
