@@ -71,6 +71,7 @@ gem 'cocoon'
 gem 'discard', '~> 1.0'
 
 gem 'pry-byebug'
+gem 'rails-i18n', '~> 5.1'
 # gem 'json'
 # gem 'mysql2'
 # gem 'listen', '>= 3.0.5', '< 3.2'
