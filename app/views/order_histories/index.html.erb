@@ -26,7 +26,7 @@
                             <p>住所:<%=order_history.send_to_address%></p>
                             <p>電話番号:<%=order_history.send_to_telephone_number%></p>
                              <%= order_history.order_status %>
-                             <%= order_history.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                             <%= order_history.created_at.strftime("%Y年%m月%d日") %>
                         </div>
                     </div>
                     <%order_history.order_lists.each do|order_list|%>
