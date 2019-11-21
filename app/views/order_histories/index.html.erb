@@ -7,7 +7,7 @@
                 <div class ="order_history_contents">
                     <div class ="order_group">
                         <div class = "first_group">
-                            <p class ="total">総計 : <%= (order_history.sum*1.08).to_i%>円</span>
+                            <p class ="total">総計 : <%= (order_history.sum+order_history.delivery_fee).to_i%>円</p>
                             <p>支払い方法:
                                 <%case order_history.method_of_pay when 0 %>
                                     銀行振り込み
@@ -31,13 +31,12 @@
                     <%order_history.order_lists.each do|order_list|%>
                         <div class ="order_list_contents">
                            <%= order_list.amount %>枚
-<span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class:"jacket"%></span>
+                            <span class="image"><%=attachment_image_tag Product.find(order_list.product_id),:jacket_image,fallback:"no_image.jpg",class:"jacket"%></span>
                             <span class ="title"><%=order_list.product.name%></span>
-
-                            <span class = "price">総計<%=(order_list.price*order_list.amount)%>円</span>
-
                         </div>
+                        <span class = "price clearfix">合計<%=(order_list.price*order_list.amount)%>円</span>
                     <% end %>
+                </div>
                 </div>
             <% end %>
         </div>

@@ -20,6 +20,9 @@
                 p{
                     width:50%;
                 }
+                .total2{
+                    color:red;
+                }
             }
             .second_group{
                 display: flex;
@@ -39,10 +42,6 @@
         width:60%;
         margin:0 20% 0 20%;
         height:120px;
-        .image,.title,.price{
-            width:calc(100%/3);
-            text-align: center;
-        }
         .jacket{
             height:100px;
             line-height: 120px;
@@ -52,11 +51,11 @@
             line-height: 120px;
             font-size:28px;
         }
+    }
         .price{
-            float:right;
+            font-weight: bold;
             line-height:120px;
             font-size:28px;
             color:red;
         }
-    }
 }
